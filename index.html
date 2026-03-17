@@ -48,6 +48,15 @@
             color: var(--text);
             text-decoration: none;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            flex-shrink: 0;
         }
         .nav-logo span { color: var(--cyan); }
         .nav-cta {
@@ -390,7 +399,7 @@
 
 <!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo">GoBag<span>+</span></a>
+    <a href="#" class="nav-logo"><img src="icon.png" alt="GoBag+ icon">GoBag<span>+</span></a>
     <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="nav-cta" target="_blank" data-i18n="nav_cta">Download Free</a>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
@@ -598,7 +607,7 @@
     <div class="footer-links">
         <a href="https://mumisgreg.github.io/Privacy-GoBag/" target="_blank" data-i18n="footer_privacy">Privacy Policy</a>
         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Terms of Use</a>
-        <a href="mailto:support@gobagapp.com" data-i18n="footer_support">Support</a>
+        <a href="mailto:hidtresuh@gmail.com" data-i18n="footer_support">Support</a>
     </div>
     <p data-i18n="footer_copy">© 2026 GoBag+. All rights reserved.</p>
 </footer>
@@ -606,7 +615,7 @@
 <script>
 const T = {
   en: {
-    nav_cta:"Download Free",
+    nav_cta:"Download Free",hero_badge:"Available on iPhone",
     hero_h1:"Be ready before<br><span>disaster strikes.</span>",
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.",
     hero_trial:"Free 1-month trial · No commitment",cta_btn:"Download on the App Store",
@@ -637,7 +646,7 @@ const T = {
     footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GoBag+. All rights reserved."
   },
   fr: {
-    nav_cta:"Télécharger gratuitement",
+    nav_cta:"Télécharger gratuitement",hero_badge:"Disponible sur iPhone",
     hero_h1:"Préparez-vous<br><span>au désastre.</span>",
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et gardez toute votre famille préparée — dans une seule application.",
     hero_trial:"1 mois d'essai gratuit · Sans engagement",cta_btn:"Télécharger sur l'App Store",
@@ -668,7 +677,7 @@ const T = {
     footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GoBag+. Tous droits réservés."
   },
   de: {
-    nav_cta:"Kostenlos laden",
+    nav_cta:"Kostenlos laden",hero_badge:"Verfügbar auf iPhone",
     hero_h1:"Sei bereit<br><span>im Notfall.</span>",
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und halte deine ganze Familie vorbereitet — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",cta_btn:"Im App Store laden",
@@ -699,7 +708,7 @@ const T = {
     footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GoBag+. Alle Rechte vorbehalten."
   },
   es: {
-    nav_cta:"Descargar gratis",
+    nav_cta:"Descargar gratis",hero_badge:"Disponible en iPhone",
     hero_h1:"Prepárate antes<br><span>del desastre.</span>",
     hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y mantén a toda tu familia preparada — todo en una sola app.",
     hero_trial:"1 mes de prueba gratis · Sin compromiso",cta_btn:"Descargar en el App Store",
@@ -730,7 +739,7 @@ const T = {
     footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GoBag+. Todos los derechos reservados."
   },
   it: {
-    nav_cta:"Scarica gratis",
+    nav_cta:"Scarica gratis",hero_badge:"Disponibile su iPhone",
     hero_h1:"Sii pronto prima<br><span>del disastro.</span>",
     hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e tieni tutta la famiglia pronta — tutto in un'unica app.",
     hero_trial:"1 mese di prova gratuita · Nessun impegno",cta_btn:"Scarica sull'App Store",
@@ -761,7 +770,7 @@ const T = {
     footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GoBag+. Tutti i diritti riservati."
   },
   pt: {
-    nav_cta:"Baixar grátis",
+    nav_cta:"Baixar grátis",hero_badge:"Disponível no iPhone",
     hero_h1:"Pronto antes<br><span>do desastre.</span>",
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e mantenha toda a família preparada — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",cta_btn:"Transferir na App Store",
@@ -792,7 +801,7 @@ const T = {
     footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GoBag+. Todos os direitos reservados."
   },
   ru: {
-    nav_cta:"Скачать бесплатно",
+    nav_cta:"Скачать бесплатно",hero_badge:"Доступно на iPhone",
     hero_h1:"Будьте готовы<br><span>до катастрофы.</span>",
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните контакты экстренных служб и держите всю семью готовой — в одном приложении.",
     hero_trial:"1 месяц бесплатно · Без обязательств",cta_btn:"Загрузить в App Store",
