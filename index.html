@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBag+ — Emergency Preparedness App</title>
-    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared.">
+    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
     <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
@@ -68,28 +68,62 @@
         .nav-cta:hover { opacity: 0.85; }
 
         /* LANG SWITCHER */
-        .lang-switcher {
+        .lang-switcher { position: relative; flex-shrink: 0; }
+        .lang-trigger {
             display: flex;
-            gap: 4px;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .lang-btn {
-            background: none;
+            gap: 7px;
+            background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.12);
-            color: var(--muted);
-            font-size: 11px;
+            color: var(--text);
+            font-size: 13px;
             font-weight: 600;
-            padding: 5px 8px;
-            border-radius: 6px;
+            padding: 8px 12px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
-            letter-spacing: 0.5px;
             font-family: inherit;
+            white-space: nowrap;
         }
-        .lang-btn:hover { border-color: rgba(0,180,216,0.4); color: var(--text); }
-        .lang-btn.active { background: rgba(0,180,216,0.15); border-color: var(--cyan); color: var(--cyan); }
+        .lang-trigger:hover { border-color: rgba(0,180,216,0.4); background: rgba(0,180,216,0.08); }
+        .lang-trigger .arrow { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+        .lang-switcher.open .lang-trigger { border-color: var(--cyan); background: rgba(0,180,216,0.10); }
+        .lang-switcher.open .arrow { transform: rotate(180deg); }
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10,18,40,0.97);
+            border: 1px solid rgba(0,180,216,0.2);
+            border-radius: 14px;
+            overflow: hidden;
+            min-width: 190px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            z-index: 200;
+            backdrop-filter: blur(16px);
+        }
+        .lang-switcher.open .lang-dropdown { display: block; }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 11px 16px;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+        }
+        .lang-option:hover { background: rgba(0,180,216,0.10); color: var(--text); }
+        .lang-option.active { color: var(--cyan); background: rgba(0,180,216,0.08); }
+        .lang-option .flag { font-size: 18px; line-height: 1; }
+        .lang-option .name { font-weight: 500; }
 
         /* HERO */
         .hero {
@@ -158,7 +192,7 @@
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(42,111,240,0.45); }
         .hero-trial {
-            margin-top: 16px;
+            margin-top: 28px;
             font-size: 13px;
             color: var(--muted);
         }
@@ -166,11 +200,11 @@
         /* SCROLL HINT */
         .scroll-hint {
             position: absolute;
-            bottom: 32px;
+            bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            color: rgba(232,240,255,0.35);
+            color: rgba(232,240,255,0.55);
             animation: bounce 2.4s ease-in-out infinite;
             transition: color 0.2s;
             display: flex;
@@ -180,8 +214,8 @@
         }
         .scroll-hint:hover { color: var(--cyan); }
         @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.35; }
-            50% { transform: translateX(-50%) translateY(10px); opacity: 0.75; }
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
+            50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
         }
 
         /* SECTION */
@@ -253,10 +287,13 @@
         /* PRICING */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            max-width: 700px;
+            max-width: 960px;
             margin: 0 auto;
+        }
+        @media (max-width: 700px) {
+            .pricing-grid { grid-template-columns: 1fr; }
         }
         .pricing-card {
             background: rgba(255,255,255,0.04);
@@ -342,7 +379,7 @@
             .family-icon { display: none; }
         }
         @media (max-width: 480px) {
-            .lang-btn { font-size: 10px; padding: 4px 6px; }
+            .lang-trigger { padding: 7px 10px; font-size: 12px; }
         }
     </style>
 </head>
@@ -351,14 +388,21 @@
 <!-- NAV -->
 <nav>
     <a href="#" class="nav-logo">GoBag<span>+</span></a>
-    <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
-        <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
-        <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
-        <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-trigger" onclick="toggleLangMenu(event)">
+            <span id="currentFlag">🇬🇧</span>
+            <span id="currentLangCode">EN</span>
+            <span class="arrow">▼</span>
+        </button>
+        <div class="lang-dropdown">
+            <button class="lang-option active" data-lang="en" onclick="setLang('en')"><span class="flag">🇬🇧</span><span class="name">English</span></button>
+            <button class="lang-option" data-lang="fr" onclick="setLang('fr')"><span class="flag">🇫🇷</span><span class="name">Français</span></button>
+            <button class="lang-option" data-lang="de" onclick="setLang('de')"><span class="flag">🇩🇪</span><span class="name">Deutsch</span></button>
+            <button class="lang-option" data-lang="es" onclick="setLang('es')"><span class="flag">🇪🇸</span><span class="name">Español</span></button>
+            <button class="lang-option" data-lang="it" onclick="setLang('it')"><span class="flag">🇮🇹</span><span class="name">Italiano</span></button>
+            <button class="lang-option" data-lang="pt" onclick="setLang('pt')"><span class="flag">🇵🇹</span><span class="name">Português</span></button>
+            <button class="lang-option" data-lang="ru" onclick="setLang('ru')"><span class="flag">🇷🇺</span><span class="name">Русский</span></button>
+        </div>
     </div>
     <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="nav-cta" target="_blank" data-i18n="nav_cta">Download Free</a>
 </nav>
@@ -367,7 +411,7 @@
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
+<h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
         <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.</p>
         <div class="hero-buttons">
             <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
@@ -378,7 +422,7 @@
         <p class="hero-trial" data-i18n="hero_trial">Free 1-month trial · No commitment</p>
     </div>
     <div class="scroll-hint" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
         </svg>
     </div>
@@ -777,6 +821,18 @@ const T = {
   }
 };
 
+const FLAGS = {en:'🇬🇧',fr:'🇫🇷',de:'🇩🇪',es:'🇪🇸',it:'🇮🇹',pt:'🇵🇹',ru:'🇷🇺'};
+const LANG_NAMES = {en:'EN',fr:'FR',de:'DE',es:'ES',it:'IT',pt:'PT',ru:'RU'};
+
+function toggleLangMenu(e) {
+  e.stopPropagation();
+  document.getElementById('langSwitcher').classList.toggle('open');
+}
+
+document.addEventListener('click', function() {
+  document.getElementById('langSwitcher').classList.remove('open');
+});
+
 function setLang(lang) {
   const t = T[lang];
   if (!t) return;
@@ -788,9 +844,12 @@ function setLang(lang) {
     const k = el.getAttribute('data-i18n-html');
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
+  document.querySelectorAll('.lang-option').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
+  document.getElementById('currentFlag').textContent = FLAGS[lang];
+  document.getElementById('currentLangCode').textContent = LANG_NAMES[lang];
+  document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
 }
