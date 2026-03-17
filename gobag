@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoBag+ — Emergency Preparedness App</title>
+    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
+    <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
+    <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
+    <meta property="og:type" content="website">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #2a6ff0;
+            --cyan: #00b4d8;
+            --orange: #ff6b1a;
+            --dark: #080f1e;
+            --dark2: #0e1a35;
+            --text: #e8f0ff;
+            --muted: rgba(232,240,255,0.6);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            background: rgba(8,15,30,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--cyan); }
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: white;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(42,111,240,0.18) 0%, transparent 60%),
+                        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(255,107,26,0.14) 0%, transparent 60%),
+                        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,180,216,0.08) 0%, transparent 60%);
+        }
+        .hero-content { position: relative; max-width: 720px; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0,180,216,0.12);
+            border: 1px solid rgba(0,180,216,0.25);
+            color: var(--cyan);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .hero h1 span { color: var(--cyan); }
+        .hero p {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            box-shadow: 0 8px 32px rgba(42,111,240,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(42,111,240,0.45); }
+        .btn-primary img { width: 22px; height: 22px; }
+        .hero-trial {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* SECTION */
+        section { padding: 100px 24px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 500px;
+            margin-bottom: 60px;
+        }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .feature-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* HOW IT WORKS */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+        .step { text-align: center; }
+        .step-num {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 20px rgba(42,111,240,0.4);
+        }
+        .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .step p { font-size: 14px; color: var(--muted); }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 36px 28px;
+            position: relative;
+        }
+        .pricing-card.featured {
+            border-color: rgba(0,180,216,0.4);
+            background: rgba(0,180,216,0.06);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -14px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .pricing-name { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
+        .pricing-price { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+        .pricing-price span { font-size: 16px; font-weight: 400; color: var(--muted); }
+        .pricing-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+        .pricing-features { list-style: none; }
+        .pricing-features li {
+            font-size: 14px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li::before { content: "✓"; color: var(--cyan); font-weight: 700; flex-shrink: 0; }
+
+        /* FAMILY */
+        .family-banner {
+            background: linear-gradient(135deg, rgba(42,111,240,0.15), rgba(0,180,216,0.10));
+            border: 1px solid rgba(0,180,216,0.2);
+            border-radius: 24px;
+            padding: 48px 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .family-icon { font-size: 64px; flex-shrink: 0; }
+        .family-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+        .family-text p { font-size: 16px; color: var(--muted); max-width: 480px; }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 100px 24px;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(42,111,240,0.12) 0%, transparent 70%);
+        }
+        .cta-section h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .cta-section p { font-size: 17px; color: var(--muted); margin-bottom: 36px; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 20px; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text); }
+        footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+        /* DIVIDER */
+        .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
+
+        @media (max-width: 600px) {
+            nav { padding: 14px 20px; }
+            .hero { padding: 100px 20px 60px; }
+            .family-banner { padding: 32px 24px; }
+            .family-icon { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-logo">GoBag<span>+</span></a>
+    <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="nav-cta" target="_blank">
+        Download Free
+    </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Available on iPhone</div>
+        <h1>Be ready before<br><span>disaster strikes.</span></h1>
+        <p>Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.</p>
+        <div class="hero-buttons">
+            <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                Download on the App Store
+            </a>
+        </div>
+        <p class="hero-trial">Free 1-month trial · No commitment</p>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<section>
+    <div class="container">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">Everything you need<br>to stay prepared</h2>
+        <p class="section-sub">GoBag+ covers every aspect of emergency readiness — from your bag to your home to your family.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🎒</div>
+                <h3>Go Bag Builder</h3>
+                <p>Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(0,180,216,0.15)">🏠</div>
+                <h3>Home Supply Tracker</h3>
+                <p>Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(255,107,26,0.15)">📱</div>
+                <h3>Emergency Contacts</h3>
+                <p>Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(100,200,100,0.15)">☁️</div>
+                <h3>Family iCloud Sync</h3>
+                <p>Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(180,100,255,0.15)">🔔</div>
+                <h3>Smart Notifications</h3>
+                <p>Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(255,200,0,0.15)">📊</div>
+                <h3>Home Screen Widget</h3>
+                <p>See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(0,180,216,0.15)">💾</div>
+                <h3>Backup & Restore</h3>
+                <p>Export your data anytime and restore it on any device. Your preparation is never lost.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🌍</div>
+                <h3>7 Languages</h3>
+                <p>Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW IT WORKS -->
+<section>
+    <div class="container">
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">Ready in minutes</h2>
+        <p class="section-sub">Set up your emergency kit in just a few steps.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Choose your language</h3>
+                <p>The app adapts to your language immediately, no settings needed.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Build your go bag</h3>
+                <p>Add items across categories. Use the built-in list or create custom items.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Track your supplies</h3>
+                <p>Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h3>Share with family</h3>
+                <p>Sync everything via iCloud so your whole family stays prepared together.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAMILY SHARING -->
+<section>
+    <div class="container">
+        <div class="family-banner">
+            <div class="family-icon">👨‍👩‍👧‍👦</div>
+            <div class="family-text">
+                <h2>One subscription, whole family covered</h2>
+                <p>With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING -->
+<section>
+    <div class="container" style="text-align:center">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">Simple, honest pricing</h2>
+        <p class="section-sub" style="margin:0 auto 60px">Start free. Upgrade when you're ready.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Free</div>
+                <div class="pricing-price">€0</div>
+                <div class="pricing-desc">Forever free basics</div>
+                <ul class="pricing-features">
+                    <li>1 Go Bag</li>
+                    <li>Core item categories</li>
+                    <li>Emergency contacts</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-name">Premium Yearly</div>
+                <div class="pricing-price">€19.99 <span>/year</span></div>
+                <div class="pricing-desc">≈ €1.67/month · 1 month free trial</div>
+                <ul class="pricing-features">
+                    <li>Unlimited Go Bags</li>
+                    <li>All item categories</li>
+                    <li>Home reserve tracking</li>
+                    <li>Family iCloud sync</li>
+                    <li>Family Sharing (up to 5)</li>
+                    <li>Widget + notifications</li>
+                    <li>Backup & restore</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-name">Premium Monthly</div>
+                <div class="pricing-price">€2.99 <span>/month</span></div>
+                <div class="pricing-desc">1 month free trial</div>
+                <ul class="pricing-features">
+                    <li>All Premium features</li>
+                    <li>Family Sharing (up to 5)</li>
+                    <li>Cancel anytime</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2>Start your free trial today</h2>
+    <p>No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+    </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="https://mumisgreg.github.io/Privacy-GoBag/" target="_blank">Privacy Policy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use</a>
+        <a href="mailto:support@gobagapp.com">Support</a>
+    </div>
+    <p>© 2026 GoBag+. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
