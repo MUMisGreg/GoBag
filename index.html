@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBag+ — Emergency Preparedness App</title>
-    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared.">
+    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
     <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
@@ -40,12 +40,14 @@
             background: rgba(8,15,30,0.85);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255,255,255,0.06);
+            gap: 16px;
         }
         .nav-logo {
             font-size: 20px;
             font-weight: 700;
             color: var(--text);
             text-decoration: none;
+            flex-shrink: 0;
         }
         .nav-logo span { color: var(--cyan); }
         .nav-cta {
@@ -60,8 +62,34 @@
             font-size: 14px;
             font-weight: 600;
             transition: opacity 0.2s;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .nav-cta:hover { opacity: 0.85; }
+
+        /* LANG SWITCHER */
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+        .lang-btn:hover { border-color: rgba(0,180,216,0.4); color: var(--text); }
+        .lang-btn.active { background: rgba(0,180,216,0.15); border-color: var(--cyan); color: var(--cyan); }
 
         /* HERO */
         .hero {
@@ -70,7 +98,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 24px 80px;
+            padding: 120px 24px 100px;
             position: relative;
             overflow: hidden;
         }
@@ -129,11 +157,31 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(42,111,240,0.45); }
-        .btn-primary img { width: 22px; height: 22px; }
         .hero-trial {
             margin-top: 16px;
             font-size: 13px;
             color: var(--muted);
+        }
+
+        /* SCROLL HINT */
+        .scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            color: rgba(232,240,255,0.35);
+            animation: bounce 2.4s ease-in-out infinite;
+            transition: color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .scroll-hint:hover { color: var(--cyan); }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.35; }
+            50% { transform: translateX(-50%) translateY(10px); opacity: 0.75; }
         }
 
         /* SECTION */
@@ -184,16 +232,8 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .feature-card p {
-            font-size: 15px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .feature-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
         /* HOW IT WORKS */
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
@@ -294,11 +334,15 @@
         /* DIVIDER */
         .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
 
-        @media (max-width: 600px) {
-            nav { padding: 14px 20px; }
-            .hero { padding: 100px 20px 60px; }
+        @media (max-width: 700px) {
+            nav { padding: 14px 16px; }
+            .nav-cta { display: none; }
+            .hero { padding: 100px 20px 80px; }
             .family-banner { padding: 32px 24px; }
             .family-icon { display: none; }
+        }
+        @media (max-width: 480px) {
+            .lang-btn { font-size: 10px; padding: 4px 6px; }
         }
     </style>
 </head>
@@ -307,77 +351,89 @@
 <!-- NAV -->
 <nav>
     <a href="#" class="nav-logo">GoBag<span>+</span></a>
-    <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="nav-cta" target="_blank">
-        Download Free
-    </a>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    </div>
+    <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="nav-cta" target="_blank" data-i18n="nav_cta">Download Free</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="hero-badge">Available on iPhone</div>
-        <h1>Be ready before<br><span>disaster strikes.</span></h1>
-        <p>Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.</p>
+        <div class="hero-badge" data-i18n="hero_badge">Available on iPhone</div>
+        <h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
+        <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.</p>
         <div class="hero-buttons">
             <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                Download on the App Store
+                <span data-i18n="cta_btn">Download on the App Store</span>
             </a>
         </div>
-        <p class="hero-trial">Free 1-month trial · No commitment</p>
+        <p class="hero-trial" data-i18n="hero_trial">Free 1-month trial · No commitment</p>
+    </div>
+    <div class="scroll-hint" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
     </div>
 </section>
 
 <hr class="divider">
 
 <!-- FEATURES -->
-<section>
+<section id="features">
     <div class="container">
-        <div class="section-label">Features</div>
-        <h2 class="section-title">Everything you need<br>to stay prepared</h2>
-        <p class="section-sub">GoBag+ covers every aspect of emergency readiness — from your bag to your home to your family.</p>
+        <div class="section-label" data-i18n="features_label">Features</div>
+        <h2 class="section-title" data-i18n-html="features_title">Everything you need<br>to stay prepared</h2>
+        <p class="section-sub" data-i18n="features_sub">GoBag+ covers every aspect of emergency readiness — from your bag to your home to your family.</p>
 
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🎒</div>
-                <h3>Go Bag Builder</h3>
-                <p>Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
+                <h3 data-i18n="feat1_title">Go Bag Builder</h3>
+                <p data-i18n="feat1_p">Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(0,180,216,0.15)">🏠</div>
-                <h3>Home Supply Tracker</h3>
-                <p>Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
+                <h3 data-i18n="feat2_title">Home Supply Tracker</h3>
+                <p data-i18n="feat2_p">Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(255,107,26,0.15)">📱</div>
-                <h3>Emergency Contacts</h3>
-                <p>Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
+                <h3 data-i18n="feat3_title">Emergency Contacts</h3>
+                <p data-i18n="feat3_p">Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(100,200,100,0.15)">☁️</div>
-                <h3>Family iCloud Sync</h3>
-                <p>Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
+                <h3 data-i18n="feat4_title">Family iCloud Sync</h3>
+                <p data-i18n="feat4_p">Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(180,100,255,0.15)">🔔</div>
-                <h3>Smart Notifications</h3>
-                <p>Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
+                <h3 data-i18n="feat5_title">Smart Notifications</h3>
+                <p data-i18n="feat5_p">Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(255,200,0,0.15)">📊</div>
-                <h3>Home Screen Widget</h3>
-                <p>See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
+                <h3 data-i18n="feat6_title">Home Screen Widget</h3>
+                <p data-i18n="feat6_p">See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(0,180,216,0.15)">💾</div>
-                <h3>Backup & Restore</h3>
-                <p>Export your data anytime and restore it on any device. Your preparation is never lost.</p>
+                <h3 data-i18n="feat7_title">Backup &amp; Restore</h3>
+                <p data-i18n="feat7_p">Export your data anytime and restore it on any device. Your preparation is never lost.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🌍</div>
-                <h3>7 Languages</h3>
-                <p>Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
+                <h3 data-i18n="feat8_title">7 Languages</h3>
+                <p data-i18n="feat8_p">Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
             </div>
         </div>
     </div>
@@ -388,29 +444,29 @@
 <!-- HOW IT WORKS -->
 <section>
     <div class="container">
-        <div class="section-label">How it works</div>
-        <h2 class="section-title">Ready in minutes</h2>
-        <p class="section-sub">Set up your emergency kit in just a few steps.</p>
+        <div class="section-label" data-i18n="how_label">How it works</div>
+        <h2 class="section-title" data-i18n="how_title">Ready in minutes</h2>
+        <p class="section-sub" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
-                <h3>Choose your language</h3>
-                <p>The app adapts to your language immediately, no settings needed.</p>
+                <h3 data-i18n="step1_h">Choose your language</h3>
+                <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
-                <h3>Build your go bag</h3>
-                <p>Add items across categories. Use the built-in list or create custom items.</p>
+                <h3 data-i18n="step2_h">Build your go bag</h3>
+                <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <h3>Track your supplies</h3>
-                <p>Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
+                <h3 data-i18n="step3_h">Track your supplies</h3>
+                <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
-                <h3>Share with family</h3>
-                <p>Sync everything via iCloud so your whole family stays prepared together.</p>
+                <h3 data-i18n="step4_h">Share with family</h3>
+                <p data-i18n="step4_p">Sync everything via iCloud so your whole family stays prepared together.</p>
             </div>
         </div>
     </div>
@@ -424,8 +480,8 @@
         <div class="family-banner">
             <div class="family-icon">👨‍👩‍👧‍👦</div>
             <div class="family-text">
-                <h2>One subscription, whole family covered</h2>
-                <p>With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.</p>
+                <h2 data-i18n="family_h2">One subscription, whole family covered</h2>
+                <p data-i18n="family_p">With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.</p>
             </div>
         </div>
     </div>
@@ -436,43 +492,43 @@
 <!-- PRICING -->
 <section>
     <div class="container" style="text-align:center">
-        <div class="section-label">Pricing</div>
-        <h2 class="section-title">Simple, honest pricing</h2>
-        <p class="section-sub" style="margin:0 auto 60px">Start free. Upgrade when you're ready.</p>
+        <div class="section-label" data-i18n="pricing_label">Pricing</div>
+        <h2 class="section-title" data-i18n="pricing_title">Simple, honest pricing</h2>
+        <p class="section-sub" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
         <div class="pricing-grid">
             <div class="pricing-card">
-                <div class="pricing-name">Free</div>
+                <div class="pricing-name" data-i18n="free_name">Free</div>
                 <div class="pricing-price">€0</div>
-                <div class="pricing-desc">Forever free basics</div>
+                <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
                 <ul class="pricing-features">
-                    <li>1 Go Bag</li>
-                    <li>Core item categories</li>
-                    <li>Emergency contacts</li>
+                    <li data-i18n="free_f1">1 Go Bag</li>
+                    <li data-i18n="free_f2">Core item categories</li>
+                    <li data-i18n="free_f3">Emergency contacts</li>
                 </ul>
             </div>
             <div class="pricing-card featured">
-                <div class="pricing-badge">Most Popular</div>
-                <div class="pricing-name">Premium Yearly</div>
-                <div class="pricing-price">€19.99 <span>/year</span></div>
-                <div class="pricing-desc">≈ €1.67/month · 1 month free trial</div>
+                <div class="pricing-badge" data-i18n="pricing_badge">Most Popular</div>
+                <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
+                <div class="pricing-price" data-i18n-html="yearly_price">€19.99 <span>/year</span></div>
+                <div class="pricing-desc" data-i18n="yearly_desc">≈ €1.67/month · 1 month free trial</div>
                 <ul class="pricing-features">
-                    <li>Unlimited Go Bags</li>
-                    <li>All item categories</li>
-                    <li>Home reserve tracking</li>
-                    <li>Family iCloud sync</li>
-                    <li>Family Sharing (up to 5)</li>
-                    <li>Widget + notifications</li>
-                    <li>Backup & restore</li>
+                    <li data-i18n="yearly_f1">Unlimited Go Bags</li>
+                    <li data-i18n="yearly_f2">All item categories</li>
+                    <li data-i18n="yearly_f3">Home reserve tracking</li>
+                    <li data-i18n="yearly_f4">Family iCloud sync</li>
+                    <li data-i18n="yearly_f5">Family Sharing (up to 5)</li>
+                    <li data-i18n="yearly_f6">Widget + notifications</li>
+                    <li data-i18n="yearly_f7">Backup &amp; restore</li>
                 </ul>
             </div>
             <div class="pricing-card">
-                <div class="pricing-name">Premium Monthly</div>
-                <div class="pricing-price">€2.99 <span>/month</span></div>
-                <div class="pricing-desc">1 month free trial</div>
+                <div class="pricing-name" data-i18n="monthly_name">Premium Monthly</div>
+                <div class="pricing-price" data-i18n-html="monthly_price">€2.99 <span>/month</span></div>
+                <div class="pricing-desc" data-i18n="monthly_desc">1 month free trial</div>
                 <ul class="pricing-features">
-                    <li>All Premium features</li>
-                    <li>Family Sharing (up to 5)</li>
-                    <li>Cancel anytime</li>
+                    <li data-i18n="monthly_f1">All Premium features</li>
+                    <li data-i18n="monthly_f2">Family Sharing (up to 5)</li>
+                    <li data-i18n="monthly_f3">Cancel anytime</li>
                 </ul>
             </div>
         </div>
@@ -483,23 +539,270 @@
 
 <!-- CTA -->
 <div class="cta-section">
-    <h2>Start your free trial today</h2>
-    <p>No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <h2 data-i18n="cta_h2">Start your free trial today</h2>
+    <p data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
     <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download on the App Store
+        <span data-i18n="cta_btn">Download on the App Store</span>
     </a>
 </div>
 
 <!-- FOOTER -->
 <footer>
     <div class="footer-links">
-        <a href="https://mumisgreg.github.io/Privacy-GoBag/" target="_blank">Privacy Policy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use</a>
-        <a href="mailto:hidtresuh@gmail.com">Support</a>
+        <a href="https://mumisgreg.github.io/Privacy-GoBag/" target="_blank" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Terms of Use</a>
+        <a href="mailto:support@gobagapp.com" data-i18n="footer_support">Support</a>
     </div>
-    <p>© 2026 GoBag+. All rights reserved.</p>
+    <p data-i18n="footer_copy">© 2026 GoBag+. All rights reserved.</p>
 </footer>
 
+<script>
+const T = {
+  en: {
+    nav_cta:"Download Free",hero_badge:"Available on iPhone",
+    hero_h1:"Be ready before<br><span>disaster strikes.</span>",
+    hero_p:"Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.",
+    hero_trial:"Free 1-month trial · No commitment",cta_btn:"Download on the App Store",
+    features_label:"Features",features_title:"Everything you need<br>to stay prepared",
+    features_sub:"GoBag+ covers every aspect of emergency readiness — from your bag to your home to your family.",
+    feat1_title:"Go Bag Builder",feat1_p:"Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.",
+    feat2_title:"Home Supply Tracker",feat2_p:"Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.",
+    feat3_title:"Emergency Contacts",feat3_p:"Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.",
+    feat4_title:"Family iCloud Sync",feat4_p:"Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.",
+    feat5_title:"Smart Notifications",feat5_p:"Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.",
+    feat6_title:"Home Screen Widget",feat6_p:"See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.",
+    feat7_title:"Backup & Restore",feat7_p:"Export your data anytime and restore it on any device. Your preparation is never lost.",
+    feat8_title:"7 Languages",feat8_p:"Available in English, French, German, Spanish, Italian, Portuguese, and Russian.",
+    how_label:"How it works",how_title:"Ready in minutes",how_sub:"Set up your emergency kit in just a few steps.",
+    step1_h:"Choose your language",step1_p:"The app adapts to your language immediately, no settings needed.",
+    step2_h:"Build your go bag",step2_p:"Add items across categories. Use the built-in list or create custom items.",
+    step3_h:"Track your supplies",step3_p:"Set stock levels and expiry dates. Let GoBag+ remind you when to restock.",
+    step4_h:"Share with family",step4_p:"Sync everything via iCloud so your whole family stays prepared together.",
+    family_h2:"One subscription, whole family covered",
+    family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.",
+    pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Most Popular",
+    free_name:"Free",free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
+    yearly_name:"Premium Yearly",yearly_price:'€19.99 <span>/year</span>',yearly_desc:"≈ €1.67/month · 1 month free trial",
+    yearly_f1:"Unlimited Go Bags",yearly_f2:"All item categories",yearly_f3:"Home reserve tracking",yearly_f4:"Family iCloud sync",yearly_f5:"Family Sharing (up to 5)",yearly_f6:"Widget + notifications",yearly_f7:"Backup & restore",
+    monthly_name:"Premium Monthly",monthly_price:'€2.99 <span>/month</span>',monthly_desc:"1 month free trial",
+    monthly_f1:"All Premium features",monthly_f2:"Family Sharing (up to 5)",monthly_f3:"Cancel anytime",
+    cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
+    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GoBag+. All rights reserved."
+  },
+  fr: {
+    nav_cta:"Télécharger gratuitement",hero_badge:"Disponible sur iPhone",
+    hero_h1:"Soyez prêts avant que<br><span>la catastrophe frappe.</span>",
+    hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et gardez toute votre famille préparée — dans une seule application.",
+    hero_trial:"1 mois d'essai gratuit · Sans engagement",cta_btn:"Télécharger sur l'App Store",
+    features_label:"Fonctionnalités",features_title:"Tout ce dont vous avez besoin<br>pour rester préparé",
+    features_sub:"GoBag+ couvre tous les aspects de la préparation aux urgences — du sac à la maison en passant par la famille.",
+    feat1_title:"Constructeur de sac d'urgence",feat1_p:"Créez et organisez plusieurs sacs d'urgence en 9 catégories : documents, eau, nourriture, premiers secours, outils, abri, communication, soins personnels et plus.",
+    feat2_title:"Suivi des réserves à domicile",feat2_p:"Surveillez votre réserve avec les dates d'expiration et les niveaux de stock par personne. Recevez des notifications avant expiration.",
+    feat3_title:"Contacts d'urgence",feat3_p:"Stockez les numéros essentiels pour un accès hors ligne. Un tap pour appeler. Partagez une fiche d'urgence avec votre famille.",
+    feat4_title:"Synchronisation iCloud familiale",feat4_p:"Partagez vos sacs et réserves avec votre famille via iCloud. Tout le monde voit les mêmes données en temps réel.",
+    feat5_title:"Notifications intelligentes",feat5_p:"Rappels automatiques avant expiration et lorsque le stock descend sous votre seuil minimum. Toujours à jour.",
+    feat6_title:"Widget écran d'accueil",feat6_p:"Consultez votre niveau de préparation d'un coup d'œil. Formats petit, moyen et grand disponibles.",
+    feat7_title:"Sauvegarde & Restauration",feat7_p:"Exportez vos données à tout moment et restaurez-les sur n'importe quel appareil.",
+    feat8_title:"7 langues",feat8_p:"Disponible en anglais, français, allemand, espagnol, italien, portugais et russe.",
+    how_label:"Comment ça marche",how_title:"Prêt en quelques minutes",how_sub:"Configurez votre kit d'urgence en quelques étapes.",
+    step1_h:"Choisissez votre langue",step1_p:"L'application s'adapte immédiatement à votre langue, sans réglages.",
+    step2_h:"Préparez votre sac",step2_p:"Ajoutez des articles par catégorie. Utilisez la liste intégrée ou créez vos propres articles.",
+    step3_h:"Suivez vos réserves",step3_p:"Définissez des niveaux de stock et des dates d'expiration. Laissez GoBag+ vous rappeler de réapprovisionner.",
+    step4_h:"Partagez avec la famille",step4_p:"Synchronisez tout via iCloud pour que toute votre famille soit préparée ensemble.",
+    family_h2:"Un abonnement, toute la famille couverte",
+    family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet à jusqu'à 5 membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
+    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez Premium quand vous êtes prêt.",pricing_badge:"Le plus populaire",
+    free_name:"Gratuit",free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
+    yearly_name:"Premium Annuel",yearly_price:'€19,99 <span>/an</span>',yearly_desc:"≈ €1,67/mois · 1 mois d'essai gratuit",
+    yearly_f1:"Sacs d'urgence illimités",yearly_f2:"Toutes les catégories",yearly_f3:"Suivi des réserves",yearly_f4:"Synchronisation iCloud familiale",yearly_f5:"Partage familial (jusqu'à 5)",yearly_f6:"Widget + notifications",yearly_f7:"Sauvegarde & restauration",
+    monthly_name:"Premium Mensuel",monthly_price:'€2,99 <span>/mois</span>',monthly_desc:"1 mois d'essai gratuit",
+    monthly_f1:"Toutes les fonctionnalités Premium",monthly_f2:"Partage familial (jusqu'à 5)",monthly_f3:"Résiliez à tout moment",
+    cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
+    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GoBag+. Tous droits réservés."
+  },
+  de: {
+    nav_cta:"Kostenlos laden",hero_badge:"Verfügbar auf iPhone",
+    hero_h1:"Sei vorbereitet,<br><span>bevor die Katastrophe eintrifft.</span>",
+    hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und halte deine ganze Familie vorbereitet — alles in einer App.",
+    hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",cta_btn:"Im App Store laden",
+    features_label:"Funktionen",features_title:"Alles, was du brauchst,<br>um vorbereitet zu bleiben",
+    features_sub:"GoBag+ deckt alle Aspekte der Notfallvorsorge ab — vom Rucksack über das Zuhause bis zur Familie.",
+    feat1_title:"Notfallrucksack-Builder",feat1_p:"Erstelle und organisiere mehrere Notfallrucksäcke in 9 Kategorien: Dokumente, Wasser, Lebensmittel, Erste Hilfe, Werkzeug, Unterkunft, Kommunikation, Körperpflege und mehr.",
+    feat2_title:"Heimvorräte verwalten",feat2_p:"Überwache deine Heimreserven mit Ablaufdaten und Lagerbeständen pro Person. Erhalte Benachrichtigungen, bevor Artikel ablaufen.",
+    feat3_title:"Notfallkontakte",feat3_p:"Speichere wichtige Telefonnummern für den Offline-Zugriff. Ein Tipp zum Anrufen. Teile eine Notfallkarte mit deiner Familie.",
+    feat4_title:"iCloud-Familiensynchronisation",feat4_p:"Teile deine Rucksäcke und Vorräte mit Familienmitgliedern über iCloud. Alle sehen dieselben Daten in Echtzeit.",
+    feat5_title:"Smarte Benachrichtigungen",feat5_p:"Automatische Erinnerungen vor Ablaufdaten und wenn der Bestand unter deinen Mindestwert fällt. Immer aktuell.",
+    feat6_title:"Startbildschirm-Widget",feat6_p:"Sieh deinen Vorbereitungsstatus auf einen Blick, ohne die App zu öffnen. Klein, mittel und groß verfügbar.",
+    feat7_title:"Sicherung & Wiederherstellung",feat7_p:"Exportiere deine Daten jederzeit und stelle sie auf jedem Gerät wieder her.",
+    feat8_title:"7 Sprachen",feat8_p:"Verfügbar auf Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch und Russisch.",
+    how_label:"So funktioniert es",how_title:"In Minuten einsatzbereit",how_sub:"Richte dein Notfallkit in wenigen Schritten ein.",
+    step1_h:"Wähle deine Sprache",step1_p:"Die App passt sich sofort an deine Sprache an, ohne Einstellungen.",
+    step2_h:"Baue deinen Rucksack",step2_p:"Füge Artikel nach Kategorien hinzu. Nutze die integrierte Liste oder erstelle eigene Artikel.",
+    step3_h:"Verfolge deine Vorräte",step3_p:"Lege Lagerbestände und Ablaufdaten fest. Lass GoBag+ dich ans Nachfüllen erinnern.",
+    step4_h:"Mit Familie teilen",step4_p:"Synchronisiere alles über iCloud, damit deine ganze Familie gemeinsam vorbereitet ist.",
+    family_h2:"Ein Abo, die ganze Familie abgesichert",
+    family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement bis zu 5 Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
+    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Upgrade wenn du bereit bist.",pricing_badge:"Beliebteste Wahl",
+    free_name:"Kostenlos",free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
+    yearly_name:"Premium Jährlich",yearly_price:'€19,99 <span>/Jahr</span>',yearly_desc:"≈ €1,67/Monat · 1 Monat kostenlos",
+    yearly_f1:"Unbegrenzte Rucksäcke",yearly_f2:"Alle Kategorien",yearly_f3:"Heimvorräte verwalten",yearly_f4:"iCloud-Familiensynchronisation",yearly_f5:"Family Sharing (bis zu 5)",yearly_f6:"Widget + Benachrichtigungen",yearly_f7:"Sicherung & Wiederherstellung",
+    monthly_name:"Premium Monatlich",monthly_price:'€2,99 <span>/Monat</span>',monthly_desc:"1 Monat kostenlos testen",
+    monthly_f1:"Alle Premium-Funktionen",monthly_f2:"Family Sharing (bis zu 5)",monthly_f3:"Jederzeit kündigen",
+    cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
+    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GoBag+. Alle Rechte vorbehalten."
+  },
+  es: {
+    nav_cta:"Descargar gratis",hero_badge:"Disponible en iPhone",
+    hero_h1:"Prepárate antes de que<br><span>llegue el desastre.</span>",
+    hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y mantén a toda tu familia preparada — todo en una sola app.",
+    hero_trial:"1 mes de prueba gratis · Sin compromiso",cta_btn:"Descargar en el App Store",
+    features_label:"Características",features_title:"Todo lo que necesitas<br>para estar preparado",
+    features_sub:"GoBag+ cubre todos los aspectos de la preparación ante emergencias — desde tu bolsa hasta tu hogar y tu familia.",
+    feat1_title:"Constructor de bolsa de emergencia",feat1_p:"Crea y organiza múltiples bolsas de emergencia en 9 categorías: documentos, agua, comida, primeros auxilios, herramientas, refugio, comunicación, cuidado personal y más.",
+    feat2_title:"Control de suministros del hogar",feat2_p:"Monitorea tu reserva con fechas de caducidad y niveles de stock por persona. Recibe notificaciones antes de que caduquen.",
+    feat3_title:"Contactos de emergencia",feat3_p:"Almacena números clave para acceso sin conexión. Un toque para llamar. Comparte una tarjeta de emergencia con tu familia.",
+    feat4_title:"Sincronización familiar con iCloud",feat4_p:"Comparte tus bolsas y suministros con tu familia a través de iCloud. Todos ven los mismos datos en tiempo real.",
+    feat5_title:"Notificaciones inteligentes",feat5_p:"Recordatorios automáticos antes de caducidades y cuando el stock baja de tu mínimo. Siempre actualizado.",
+    feat6_title:"Widget en pantalla de inicio",feat6_p:"Ve tu estado de preparación de un vistazo sin abrir la app. Tamaños pequeño, mediano y grande disponibles.",
+    feat7_title:"Copia de seguridad y restauración",feat7_p:"Exporta tus datos en cualquier momento y restáuralos en cualquier dispositivo.",
+    feat8_title:"7 idiomas",feat8_p:"Disponible en inglés, francés, alemán, español, italiano, portugués y ruso.",
+    how_label:"Cómo funciona",how_title:"Listo en minutos",how_sub:"Configura tu kit de emergencia en pocos pasos.",
+    step1_h:"Elige tu idioma",step1_p:"La app se adapta a tu idioma inmediatamente, sin configuraciones.",
+    step2_h:"Construye tu bolsa",step2_p:"Añade artículos por categorías. Usa la lista integrada o crea artículos personalizados.",
+    step3_h:"Controla tus suministros",step3_p:"Establece niveles de stock y fechas de caducidad. Deja que GoBag+ te recuerde cuándo reabastecer.",
+    step4_h:"Comparte con tu familia",step4_p:"Sincroniza todo vía iCloud para que toda tu familia esté preparada junta.",
+    family_h2:"Una suscripción, toda la familia cubierta",
+    family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a hasta 5 miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
+    pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Más popular",
+    free_name:"Gratis",free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
+    yearly_name:"Premium Anual",yearly_price:'€19,99 <span>/año</span>',yearly_desc:"≈ €1,67/mes · 1 mes de prueba gratis",
+    yearly_f1:"Bolsas ilimitadas",yearly_f2:"Todas las categorías",yearly_f3:"Control de suministros",yearly_f4:"Sincronización iCloud familiar",yearly_f5:"Family Sharing (hasta 5)",yearly_f6:"Widget + notificaciones",yearly_f7:"Copia de seguridad y restauración",
+    monthly_name:"Premium Mensual",monthly_price:'€2,99 <span>/mes</span>',monthly_desc:"1 mes de prueba gratis",
+    monthly_f1:"Todas las funciones Premium",monthly_f2:"Family Sharing (hasta 5)",monthly_f3:"Cancela en cualquier momento",
+    cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
+    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GoBag+. Todos los derechos reservados."
+  },
+  it: {
+    nav_cta:"Scarica gratis",hero_badge:"Disponibile su iPhone",
+    hero_h1:"Sii pronto prima che<br><span>arrivi il disastro.</span>",
+    hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e tieni tutta la famiglia pronta — tutto in un'unica app.",
+    hero_trial:"1 mese di prova gratuita · Nessun impegno",cta_btn:"Scarica sull'App Store",
+    features_label:"Funzionalità",features_title:"Tutto quello che ti serve<br>per restare preparato",
+    features_sub:"GoBag+ copre ogni aspetto della preparazione alle emergenze — dallo zaino alla casa, fino alla famiglia.",
+    feat1_title:"Costruttore di zaino d'emergenza",feat1_p:"Crea e organizza più zaini d'emergenza in 9 categorie: documenti, acqua, cibo, pronto soccorso, strumenti, rifugio, comunicazione, igiene personale e altro.",
+    feat2_title:"Gestione scorte domestiche",feat2_p:"Monitora le tue riserve con date di scadenza e livelli di stock per persona. Ricevi notifiche prima che i prodotti scadano.",
+    feat3_title:"Contatti d'emergenza",feat3_p:"Salva i numeri essenziali per l'accesso offline. Un tocco per chiamare. Condividi una scheda d'emergenza con la famiglia.",
+    feat4_title:"Sincronizzazione familiare iCloud",feat4_p:"Condividi zaini e scorte con i familiari tramite iCloud. Tutti vedono gli stessi dati in tempo reale.",
+    feat5_title:"Notifiche intelligenti",feat5_p:"Promemoria automatici prima delle scadenze e quando le scorte scendono sotto il minimo. Sempre aggiornato.",
+    feat6_title:"Widget schermata home",feat6_p:"Controlla il tuo livello di preparazione a colpo d'occhio senza aprire l'app. Piccolo, medio e grande disponibili.",
+    feat7_title:"Backup e ripristino",feat7_p:"Esporta i tuoi dati in qualsiasi momento e ripristinali su qualsiasi dispositivo.",
+    feat8_title:"7 lingue",feat8_p:"Disponibile in inglese, francese, tedesco, spagnolo, italiano, portoghese e russo.",
+    how_label:"Come funziona",how_title:"Pronto in pochi minuti",how_sub:"Configura il tuo kit d'emergenza in pochi passaggi.",
+    step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
+    step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
+    step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi di rifornire.",
+    step4_h:"Condividi con la famiglia",step4_p:"Sincronizza tutto via iCloud affinché tutta la famiglia sia preparata insieme.",
+    family_h2:"Un abbonamento, tutta la famiglia coperta",
+    family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo a fino a 5 familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
+    pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Il più popolare",
+    free_name:"Gratuito",free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
+    yearly_name:"Premium Annuale",yearly_price:'€19,99 <span>/anno</span>',yearly_desc:"≈ €1,67/mese · 1 mese di prova gratuita",
+    yearly_f1:"Zaini illimitati",yearly_f2:"Tutte le categorie",yearly_f3:"Gestione scorte",yearly_f4:"Sincronizzazione iCloud familiare",yearly_f5:"Family Sharing (fino a 5)",yearly_f6:"Widget + notifiche",yearly_f7:"Backup e ripristino",
+    monthly_name:"Premium Mensile",monthly_price:'€2,99 <span>/mese</span>',monthly_desc:"1 mese di prova gratuita",
+    monthly_f1:"Tutte le funzionalità Premium",monthly_f2:"Family Sharing (fino a 5)",monthly_f3:"Cancella in qualsiasi momento",
+    cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
+    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GoBag+. Tutti i diritti riservati."
+  },
+  pt: {
+    nav_cta:"Baixar grátis",hero_badge:"Disponível no iPhone",
+    hero_h1:"Esteja pronto antes que<br><span>o desastre chegue.</span>",
+    hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e mantenha toda a família preparada — tudo numa única app.",
+    hero_trial:"1 mês de teste grátis · Sem compromisso",cta_btn:"Transferir na App Store",
+    features_label:"Funcionalidades",features_title:"Tudo o que precisa<br>para estar preparado",
+    features_sub:"O GoBag+ cobre todos os aspetos da preparação para emergências — da mochila à casa, passando pela família.",
+    feat1_title:"Construtor de mochila de emergência",feat1_p:"Crie e organize várias mochilas de emergência em 9 categorias: documentos, água, comida, primeiros socorros, ferramentas, abrigo, comunicação, cuidado pessoal e mais.",
+    feat2_title:"Controlo de reservas domésticas",feat2_p:"Monitorize as suas reservas com datas de validade e níveis de stock por pessoa. Receba notificações antes de os artigos expirarem.",
+    feat3_title:"Contactos de emergência",feat3_p:"Guarde números essenciais para acesso offline. Um toque para ligar. Partilhe uma ficha de emergência com a família.",
+    feat4_title:"Sincronização familiar com iCloud",feat4_p:"Partilhe as suas mochilas e reservas com familiares via iCloud. Todos veem os mesmos dados em tempo real.",
+    feat5_title:"Notificações inteligentes",feat5_p:"Lembretes automáticos antes das validades e quando o stock baixa do mínimo. Sempre atualizado.",
+    feat6_title:"Widget no ecrã inicial",feat6_p:"Veja o seu nível de preparação de relance sem abrir a app. Tamanhos pequeno, médio e grande disponíveis.",
+    feat7_title:"Cópia de segurança e restauro",feat7_p:"Exporte os seus dados a qualquer momento e restaure-os em qualquer dispositivo.",
+    feat8_title:"7 idiomas",feat8_p:"Disponível em inglês, francês, alemão, espanhol, italiano, português e russo.",
+    how_label:"Como funciona",how_title:"Pronto em minutos",how_sub:"Configure o seu kit de emergência em poucos passos.",
+    step1_h:"Escolha o seu idioma",step1_p:"A app adapta-se imediatamente ao seu idioma, sem configurações.",
+    step2_h:"Monte a sua mochila",step2_p:"Adicione artigos por categorias. Use a lista integrada ou crie artigos personalizados.",
+    step3_h:"Controle as suas reservas",step3_p:"Defina níveis de stock e datas de validade. Deixe o GoBag+ lembrá-lo de reabastecer.",
+    step4_h:"Partilhe com a família",step4_p:"Sincronize tudo via iCloud para que toda a família esteja preparada em conjunto.",
+    family_h2:"Uma subscrição, toda a família protegida",
+    family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo a até 5 familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
+    pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Mais popular",
+    free_name:"Grátis",free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
+    yearly_name:"Premium Anual",yearly_price:'€19,99 <span>/ano</span>',yearly_desc:"≈ €1,67/mês · 1 mês de teste grátis",
+    yearly_f1:"Mochilas ilimitadas",yearly_f2:"Todas as categorias",yearly_f3:"Controlo de reservas",yearly_f4:"Sincronização iCloud familiar",yearly_f5:"Family Sharing (até 5)",yearly_f6:"Widget + notificações",yearly_f7:"Cópia de segurança e restauro",
+    monthly_name:"Premium Mensal",monthly_price:'€2,99 <span>/mês</span>',monthly_desc:"1 mês de teste grátis",
+    monthly_f1:"Todas as funcionalidades Premium",monthly_f2:"Family Sharing (até 5)",monthly_f3:"Cancele quando quiser",
+    cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
+    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GoBag+. Todos os direitos reservados."
+  },
+  ru: {
+    nav_cta:"Скачать бесплатно",hero_badge:"Доступно на iPhone",
+    hero_h1:"Будьте готовы до того,<br><span>как случится беда.</span>",
+    hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните контакты экстренных служб и держите всю семью готовой — в одном приложении.",
+    hero_trial:"1 месяц бесплатно · Без обязательств",cta_btn:"Загрузить в App Store",
+    features_label:"Возможности",features_title:"Всё, что нужно<br>для готовности",
+    features_sub:"GoBag+ охватывает все аспекты подготовки к чрезвычайным ситуациям — от рюкзака до дома и семьи.",
+    feat1_title:"Конструктор тревожного чемоданчика",feat1_p:"Создавайте и организуйте несколько наборов по 9 категориям: документы, вода, еда, первая помощь, инструменты, укрытие, связь, личная гигиена и другое.",
+    feat2_title:"Учёт домашних запасов",feat2_p:"Отслеживайте запасы с датами истечения срока годности и уровнями на человека. Получайте уведомления до истечения.",
+    feat3_title:"Экстренные контакты",feat3_p:"Храните ключевые номера для доступа без интернета. Одно касание — звонок. Поделитесь карточкой с семьёй.",
+    feat4_title:"Семейная синхронизация iCloud",feat4_p:"Делитесь наборами и запасами с членами семьи через iCloud. Все видят одни данные в реальном времени.",
+    feat5_title:"Умные уведомления",feat5_p:"Автоматические напоминания об истечении срока и падении запасов ниже минимума. Всегда актуально.",
+    feat6_title:"Виджет на экране",feat6_p:"Видите уровень готовности с первого взгляда, не открывая приложение. Три размера виджета.",
+    feat7_title:"Резервное копирование",feat7_p:"Экспортируйте данные в любое время и восстанавливайте на любом устройстве.",
+    feat8_title:"7 языков",feat8_p:"Доступно на английском, французском, немецком, испанском, итальянском, португальском и русском.",
+    how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте набор экстренной помощи в несколько шагов.",
+    step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку, без настроек.",
+    step2_h:"Соберите рюкзак",step2_p:"Добавляйте предметы по категориям. Используйте встроенный список или создавайте свои.",
+    step3_h:"Отслеживайте запасы",step3_p:"Установите уровни запасов и даты истечения. Позвольте GoBag+ напоминать о пополнении.",
+    step4_h:"Делитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud, чтобы вся семья была готова вместе.",
+    family_h2:"Одна подписка — вся семья защищена",
+    family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ до 5 членам семьи — без дополнительных покупок и паролей.",
+    pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium, когда будете готовы.",pricing_badge:"Самый популярный",
+    free_name:"Бесплатно",free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
+    yearly_name:"Premium — Годовой",yearly_price:'€19,99 <span>/год</span>',yearly_desc:"≈ €1,67/мес · 1 месяц бесплатно",
+    yearly_f1:"Неограниченное число наборов",yearly_f2:"Все категории",yearly_f3:"Учёт домашних запасов",yearly_f4:"Семейная синхронизация iCloud",yearly_f5:"Family Sharing (до 5 чел.)",yearly_f6:"Виджет + уведомления",yearly_f7:"Резервное копирование",
+    monthly_name:"Premium — Ежемесячный",monthly_price:'€2,99 <span>/мес</span>',monthly_desc:"1 месяц бесплатно",
+    monthly_f1:"Все функции Premium",monthly_f2:"Family Sharing (до 5 чел.)",monthly_f3:"Отмена в любое время",
+    cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
+    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GoBag+. Все права защищены."
+  }
+};
+
+function setLang(lang) {
+  const t = T[lang];
+  if (!t) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.getAttribute('data-i18n-html');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('gobag_lang', lang);
+}
+
+(function() {
+  const saved = localStorage.getItem('gobag_lang');
+  const browser = (navigator.language || '').slice(0, 2).toLowerCase();
+  const supported = ['en','fr','de','es','it','pt','ru'];
+  const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
