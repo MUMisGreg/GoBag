@@ -385,18 +385,25 @@
 
         /* SCREENSHOTS */
         .screenshots-section { padding: 80px 24px 60px; overflow: hidden; }
-        .screenshots-scroll { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 52px; }
+        .screenshots-carousel { position: relative; margin-top: 52px; }
+        .screenshots-track-wrap { overflow: hidden; }
+        .screenshots-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
         .screenshot-frame { flex-shrink: 0; width: 200px; border-radius: 32px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.10); box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04); background: #111827; transition: transform 0.3s, box-shadow 0.3s; }
         .screenshot-frame:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 32px 70px rgba(0,0,0,0.65), 0 0 36px rgba(42,111,240,0.18); }
         .screenshot-frame img { width: 100%; display: block; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; z-index: 10; }
+        .carousel-btn:hover { background: rgba(0,180,216,0.18); border-color: var(--cyan); }
+        .carousel-btn:disabled { opacity: 0.25; cursor: default; }
+        .carousel-btn.prev { left: -22px; }
+        .carousel-btn.next { right: -22px; }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
             .hero { padding: 100px 20px 80px; }
             .family-banner { padding: 28px 20px; }
-            .screenshots-scroll { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-            .screenshots-scroll::-webkit-scrollbar { display: none; }
             .screenshot-frame { width: 185px; }
+            .carousel-btn.prev { left: 0; }
+            .carousel-btn.next { right: 0; }
         }
         @media (max-width: 480px) {
             .lang-trigger { padding: 7px 10px; font-size: 12px; }
@@ -456,16 +463,18 @@
         <div class="section-label" data-i18n="screenshots_label">App Preview</div>
         <h2 class="section-title" style="max-width:480px" data-i18n="screenshots_title">See it in action</h2>
         <p class="section-sub" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
-        <div class="screenshots-scroll">
-            <div class="screenshot-frame"><img src="screenshots/1.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/2.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/3.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/4.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/5.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/6.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/7.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/8.png" > </div>
-            <div class="screenshot-frame"><img src="screenshots/9.png" > </div>
+        <div class="screenshots-carousel">
+            <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
+            <div class="screenshots-track-wrap">
+                <div class="screenshots-scroll" id="screenshotsTrack">
+                    <div class="screenshot-frame"><img src="screenshots/screen1.png" alt="Go Bag"></div>
+                    <div class="screenshot-frame"><img src="screenshots/screen2.png" alt="Home Reserve"></div>
+                    <div class="screenshot-frame"><img src="screenshots/screen3.png" alt="Emergency Contacts"></div>
+                    <div class="screenshot-frame"><img src="screenshots/screen4.png" alt="Widget"></div>
+                    <div class="screenshot-frame"><img src="screenshots/screen5.png" alt="Settings"></div>
+                </div>
+            </div>
+            <button class="carousel-btn next" id="carouselNext" onclick="carouselMove(1)" aria-label="Next">&#8594;</button>
         </div>
     </div>
 </section>
@@ -673,14 +682,14 @@ const T = {
     lifetime_name:"Lifetime",lifetime_price:'€29.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
     lifetime_f1:"All Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
-    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
+    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GoBag+. All rights reserved."
   },
   fr: {
     nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui.",
     hero_h1:"Préparez-vous<br><span>au désastre.</span>",
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et gardez toute votre famille préparée — dans une seule application.",
     hero_trial:"1 mois d'essai gratuit · Sans engagement",cta_btn:"Télécharger sur l'App Store",
-    screenshots_label:"Aperçu de l'app",screenshots_title:"Regardez-le en action",screenshots_sub:"Tout ce dont vous avez besoin, conçu pour la simplicité et la rapidité sous pression.",
+    screenshots_label:"Aperçu de l'app",screenshots_title:"Voyez-la en action",screenshots_sub:"Tout ce dont vous avez besoin, conçu pour la simplicité et la rapidité sous pression.",
     features_label:"Fonctionnalités",features_title:"Tout ce dont vous avez besoin<br>pour rester préparé",
     features_sub:"GoBag+ couvre tous les aspects de la préparation aux urgences — du sac à la maison en passant par la famille.",
     feat1_title:"Constructeur de sac d'urgence",feat1_p:"Créez et organisez plusieurs sacs d'urgence en 9 catégories : documents, eau, nourriture, premiers secours, outils, abri, communication, soins personnels et plus.",
@@ -705,14 +714,14 @@ const T = {
     lifetime_name:"À vie",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
     lifetime_f1:"Toutes les fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Toutes les mises à jour futures",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
-    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
+    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GoBag+. Tous droits réservés."
   },
   de: {
     nav_cta:"Kostenlos laden",welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute.",
     hero_h1:"Sei bereit<br><span>im Notfall.</span>",
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und halte deine ganze Familie vorbereitet — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",cta_btn:"Im App Store laden",
-    screenshots_label:"App-Vorschau",screenshots_title:"Sehen Sie es in Aktion",screenshots_sub:"Alles, was du brauchst — einfach und schnell, auch unter Druck.",
+    screenshots_label:"App-Vorschau",screenshots_title:"Sieh sie in Aktion",screenshots_sub:"Alles, was du brauchst — einfach und schnell, auch unter Druck.",
     features_label:"Funktionen",features_title:"Alles, was du brauchst,<br>um vorbereitet zu bleiben",
     features_sub:"GoBag+ deckt alle Aspekte der Notfallvorsorge ab — vom Rucksack über das Zuhause bis zur Familie.",
     feat1_title:"Notfallrucksack-Builder",feat1_p:"Erstelle und organisiere mehrere Notfallrucksäcke in 9 Kategorien: Dokumente, Wasser, Lebensmittel, Erste Hilfe, Werkzeug, Unterkunft, Kommunikation, Körperpflege und mehr.",
@@ -737,14 +746,14 @@ const T = {
     lifetime_name:"Lebenslang",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
     lifetime_f1:"Alle Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Alle zukünftigen Updates",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
-    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
+    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GoBag+. Alle Rechte vorbehalten."
   },
   es: {
     nav_cta:"Descargar gratis",welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy.",
     hero_h1:"Prepárate antes<br><span>del desastre.</span>",
     hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y mantén a toda tu familia preparada — todo en una sola app.",
     hero_trial:"1 mes de prueba gratis · Sin compromiso",cta_btn:"Descargar en el App Store",
-    screenshots_label:"Vista previa",screenshots_title:"Mira cómo funciona",screenshots_sub:"Todo lo que necesitas, diseñado para la simplicidad y la rapidez bajo presión.",
+    screenshots_label:"Vista previa",screenshots_title:"Mírala en acción",screenshots_sub:"Todo lo que necesitas, diseñado para la simplicidad y la rapidez bajo presión.",
     features_label:"Características",features_title:"Todo lo que necesitas<br>para estar preparado",
     features_sub:"GoBag+ cubre todos los aspectos de la preparación ante emergencias — desde tu bolsa hasta tu hogar y tu familia.",
     feat1_title:"Constructor de bolsa de emergencia",feat1_p:"Crea y organiza múltiples bolsas de emergencia en 9 categorías: documentos, agua, comida, primeros auxilios, herramientas, refugio, comunicación, cuidado personal y más.",
@@ -769,14 +778,14 @@ const T = {
     lifetime_name:"De por vida",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pago único · Sin suscripción",
     lifetime_f1:"Todas las funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Todas las actualizaciones futuras",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
-    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
+    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GoBag+. Todos los derechos reservados."
   },
   it: {
     nav_cta:"Scarica gratis",welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi.",
     hero_h1:"Sii pronto prima<br><span>del disastro.</span>",
     hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e tieni tutta la famiglia pronta — tutto in un'unica app.",
     hero_trial:"1 mese di prova gratuita · Nessun impegno",cta_btn:"Scarica sull'App Store",
-    screenshots_label:"Anteprima app",screenshots_title:"Vedi come funziona",screenshots_sub:"Tutto ciò di cui hai bisogno, progettato per semplicità e rapidità sotto pressione.",
+    screenshots_label:"Anteprima app",screenshots_title:"Guardala in azione",screenshots_sub:"Tutto ciò di cui hai bisogno, progettato per semplicità e rapidità sotto pressione.",
     features_label:"Funzionalità",features_title:"Tutto quello che ti serve<br>per restare preparato",
     features_sub:"GoBag+ copre ogni aspetto della preparazione alle emergenze — dallo zaino alla casa, fino alla famiglia.",
     feat1_title:"Costruttore di zaino d'emergenza",feat1_p:"Crea e organizza più zaini d'emergenza in 9 categorie: documenti, acqua, cibo, pronto soccorso, strumenti, rifugio, comunicazione, igiene personale e altro.",
@@ -801,14 +810,14 @@ const T = {
     lifetime_name:"A vita",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
     lifetime_f1:"Tutte le funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Tutti gli aggiornamenti futuri",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
-    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
+    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GoBag+. Tutti i diritti riservati."
   },
   pt: {
     nav_cta:"Baixar grátis",welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje.",
     hero_h1:"Pronto antes<br><span>do desastre.</span>",
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e mantenha toda a família preparada — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",cta_btn:"Transferir na App Store",
-    screenshots_label:"Pré-visualização",screenshots_title:"Veja como funciona",screenshots_sub:"Tudo o que precisa, concebido para simplicidade e rapidez sob pressão.",
+    screenshots_label:"Pré-visualização",screenshots_title:"Veja em ação",screenshots_sub:"Tudo o que precisa, concebido para simplicidade e rapidez sob pressão.",
     features_label:"Funcionalidades",features_title:"Tudo o que precisa<br>para estar preparado",
     features_sub:"O GoBag+ cobre todos os aspetos da preparação para emergências — da mochila à casa, passando pela família.",
     feat1_title:"Construtor de mochila de emergência",feat1_p:"Crie e organize várias mochilas de emergência em 9 categorias: documentos, água, comida, primeiros socorros, ferramentas, abrigo, comunicação, cuidado pessoal e mais.",
@@ -833,14 +842,14 @@ const T = {
     lifetime_name:"Vitalício",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
     lifetime_f1:"Todas as funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Todas as atualizações futuras",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
-    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
+    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GoBag+. Todos os direitos reservados."
   },
   ru: {
     nav_cta:"Скачать бесплатно",welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня.",
     hero_h1:"Будьте готовы<br><span>до катастрофы.</span>",
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните контакты экстренных служб и держите всю семью готовой — в одном приложении.",
     hero_trial:"1 месяц бесплатно · Без обязательств",cta_btn:"Загрузить в App Store",
-    screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите, как это работает",screenshots_sub:"Всё необходимое работает просто и быстро в экстремальных ситуациях.",
+    screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите в действии",screenshots_sub:"Всё необходимое, созданное для простоты и скорости в экстремальных ситуациях.",
     features_label:"Возможности",features_title:"Всё, что нужно<br>для готовности",
     features_sub:"GoBag+ охватывает все аспекты подготовки к чрезвычайным ситуациям — от рюкзака до дома и семьи.",
     feat1_title:"Конструктор тревожного чемоданчика",feat1_p:"Создавайте и организуйте несколько наборов по 9 категориям: документы, вода, еда, первая помощь, инструменты, укрытие, связь, личная гигиена и другое.",
@@ -854,7 +863,7 @@ const T = {
     how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте набор экстренной помощи в несколько шагов.",
     step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку, без настроек.",
     step2_h:"Соберите рюкзак",step2_p:"Добавляйте предметы по категориям. Используйте встроенный список или создавайте свои.",
-    step3_h:"Отслеживайте запасы",step3_p:"Установите минимальный уровень запасов и даты истечения срока годности. Позвольте GoBag+ напоминать о пополнении.",
+    step3_h:"Отслеживайте запасы",step3_p:"Установите уровни запасов и даты истечения. Позвольте GoBag+ напоминать о пополнении.",
     step4_h:"Делитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud, чтобы вся семья была готова вместе.",
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ до 5 членам семьи — без дополнительных покупок и паролей.",
@@ -865,7 +874,7 @@ const T = {
     lifetime_name:"Навсегда",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
     lifetime_f1:"Все функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Все будущие обновления",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
-    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
+    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GoBag+. Все права защищены."
   }
 };
 
@@ -908,6 +917,27 @@ function setLang(lang) {
   const supported = ['en','fr','de','es','it','pt','ru'];
   const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
   setLang(lang);
+})();
+
+// CAROUSEL
+(function() {
+  let offset = 0;
+  window.carouselMove = function(dir) {
+    const track = document.getElementById('screenshotsTrack');
+    const wrap = track.parentElement;
+    const frames = track.querySelectorAll('.screenshot-frame');
+    if (!frames.length) return;
+    const frameW = frames[0].offsetWidth + 20; // width + gap
+    const visibleW = wrap.offsetWidth;
+    const maxOffset = Math.max(0, track.scrollWidth - visibleW);
+    offset = Math.min(Math.max(0, offset + dir * frameW), maxOffset);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    document.getElementById('carouselPrev').disabled = offset <= 0;
+    document.getElementById('carouselNext').disabled = offset >= maxOffset;
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('carouselPrev').disabled = true;
+  });
 })();
 </script>
 </body>
