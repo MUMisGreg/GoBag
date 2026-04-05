@@ -596,7 +596,7 @@
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-name" data-i18n="free_name">Free</div>
-                <div class="pricing-price">€0</div>
+                <div class="pricing-price" data-i18n-html="free_price">$0</div>
                 <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
                 <ul class="pricing-features">
                     <li data-i18n="free_f1">1 Go Bag</li>
@@ -606,7 +606,7 @@
             </div>
             <div class="pricing-card featured">
                 <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
-                <div class="pricing-price" data-i18n-html="yearly_price">€14.99 <span>/year</span></div>
+                <div class="pricing-price" data-i18n-html="yearly_price">$12.99 <span>/year</span></div>
                 <div class="pricing-desc" data-i18n="yearly_desc">≈ €1.25/month · 1 month free trial</div>
                 <ul class="pricing-features">
                     <li data-i18n="yearly_f1">Unlimited Go Bags</li>
@@ -620,7 +620,7 @@
             </div>
             <div class="pricing-card">
                 <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
-                <div class="pricing-price" data-i18n-html="lifetime_price">€29.99 <span></span></div>
+                <div class="pricing-price" data-i18n-html="lifetime_price">$24.99 <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
                 <ul class="pricing-features">
                     <li data-i18n="lifetime_f1">All Premium features</li>
@@ -680,7 +680,7 @@ const T = {
     family_h2:"One subscription, whole family covered",
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",
-    free_name:"Free",free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
+    free_name:"Free",free_price:'$0',free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
     yearly_name:"Premium Yearly",yearly_price:'$12.99 <span>/year</span>',yearly_desc:"≈ $1.08/month · 1 month free trial",
     yearly_f1:"Unlimited Go Bags",yearly_f2:"All item categories",yearly_f3:"Home reserve tracking",yearly_f4:"Family iCloud sync",yearly_f5:"Family Sharing (up to 5)",yearly_f6:"Widget + notifications",yearly_f7:"Backup & restore",
     lifetime_name:"Lifetime",lifetime_price:'$24.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
@@ -712,10 +712,10 @@ const T = {
     family_h2:"Un abonnement, toute la famille couverte",
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
     pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez Premium plus tard.",pricing_badge:"Meilleure offre",
-    free_name:"Gratuit",free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
-    yearly_name:"Premium Annuel",yearly_price:'€14,99 <span>/an</span>',yearly_desc:"≈ €1,25/mois · 1 mois d'essai gratuit",
+    free_name:"Gratuit",free_price:'0€',free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
+    yearly_name:"Premium Annuel",yearly_price:'14,99€ <span>/an</span>',yearly_desc:"≈ 1,25€/mois · 1 mois d'essai gratuit",
     yearly_f1:"Sacs d'urgence illimités",yearly_f2:"Toutes les catégories",yearly_f3:"Suivi des réserves",yearly_f4:"Synchronisation iCloud familiale",yearly_f5:"Partage familial (jusqu'à 5)",yearly_f6:"Widget + notifications",yearly_f7:"Sauvegarde & restauration",
-    lifetime_name:"À vie",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
+    lifetime_name:"À vie",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
     lifetime_f1:"Toutes les fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Toutes les mises à jour futures",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
     footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
@@ -744,10 +744,10 @@ const T = {
     family_h2:"Ein Abo, die ganze Familie abgesichert",
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
     pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Upgrade wenn du bereit bist.",pricing_badge:"Bestes Angebot",
-    free_name:"Kostenlos",free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
-    yearly_name:"Premium Jährlich",yearly_price:'€14,99 <span>/Jahr</span>',yearly_desc:"≈ €1,25/Monat · 1 Monat kostenlos",
+    free_name:"Kostenlos",free_price:'0€',free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
+    yearly_name:"Premium Jährlich",yearly_price:'14,99€ <span>/Jahr</span>',yearly_desc:"≈ 1,25€/Monat · 1 Monat kostenlos",
     yearly_f1:"Unbegrenzte Rucksäcke",yearly_f2:"Alle Kategorien",yearly_f3:"Heimvorräte verwalten",yearly_f4:"iCloud-Familiensynchronisation",yearly_f5:"Family Sharing (bis zu 5)",yearly_f6:"Widget + Benachrichtigungen",yearly_f7:"Sicherung & Wiederherstellung",
-    lifetime_name:"Lebenslang",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
+    lifetime_name:"Lebenslang",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
     lifetime_f1:"Alle Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Alle zukünftigen Updates",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
     footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
@@ -776,10 +776,10 @@ const T = {
     family_h2:"Una suscripción, toda la familia cubierta",
     family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
     pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",
-    free_name:"Gratis",free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
-    yearly_name:"Premium Anual",yearly_price:'€14,99 <span>/año</span>',yearly_desc:"≈ €1,25/mes · 1 mes de prueba gratis",
+    free_name:"Gratis",free_price:'0€',free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
+    yearly_name:"Premium Anual",yearly_price:'14,99€ <span>/año</span>',yearly_desc:"≈ 1,25€/mes · 1 mes de prueba gratis",
     yearly_f1:"Bolsas ilimitadas",yearly_f2:"Todas las categorías",yearly_f3:"Control de suministros",yearly_f4:"Sincronización iCloud familiar",yearly_f5:"Family Sharing (hasta 5)",yearly_f6:"Widget + notificaciones",yearly_f7:"Copia de seguridad y restauración",
-    lifetime_name:"De por vida",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pago único · Sin suscripción",
+    lifetime_name:"De por vida",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pago único · Sin suscripción",
     lifetime_f1:"Todas las funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Todas las actualizaciones futuras",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
     footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
@@ -808,10 +808,10 @@ const T = {
     family_h2:"Un abbonamento, tutta la famiglia coperta",
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
     pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",
-    free_name:"Gratuito",free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
-    yearly_name:"Premium Annuale",yearly_price:'€14,99 <span>/anno</span>',yearly_desc:"≈ €1,25/mese · 1 mese di prova gratuita",
+    free_name:"Gratuito",free_price:'0€',free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
+    yearly_name:"Premium Annuale",yearly_price:'14,99€ <span>/anno</span>',yearly_desc:"≈ 1,25€/mese · 1 mese di prova gratuita",
     yearly_f1:"Zaini illimitati",yearly_f2:"Tutte le categorie",yearly_f3:"Gestione scorte",yearly_f4:"Sincronizzazione iCloud familiare",yearly_f5:"Family Sharing (fino a 5)",yearly_f6:"Widget + notifiche",yearly_f7:"Backup e ripristino",
-    lifetime_name:"A vita",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
+    lifetime_name:"A vita",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
     lifetime_f1:"Tutte le funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Tutti gli aggiornamenti futuri",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
     footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
@@ -840,10 +840,10 @@ const T = {
     family_h2:"Uma subscrição, toda a família protegida",
     family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
     pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",
-    free_name:"Grátis",free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
-    yearly_name:"Premium Anual",yearly_price:'€14,99 <span>/ano</span>',yearly_desc:"≈ €1,25/mês · 1 mês de teste grátis",
+    free_name:"Grátis",free_price:'0€',free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
+    yearly_name:"Premium Anual",yearly_price:'14,99€ <span>/ano</span>',yearly_desc:"≈ 1,25€/mês · 1 mês de teste grátis",
     yearly_f1:"Mochilas ilimitadas",yearly_f2:"Todas as categorias",yearly_f3:"Controlo de reservas",yearly_f4:"Sincronização iCloud familiar",yearly_f5:"Family Sharing (até 5)",yearly_f6:"Widget + notificações",yearly_f7:"Cópia de segurança e restauro",
-    lifetime_name:"Vitalício",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
+    lifetime_name:"Vitalício",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
     lifetime_f1:"Todas as funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Todas as atualizações futuras",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
     footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
@@ -872,10 +872,10 @@ const T = {
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",
-    free_name:"Бесплатно",free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
-    yearly_name:"Premium — Годовой",yearly_price:'€14,99 <span>/год</span>',yearly_desc:"≈ €1,25/мес · 1 месяц бесплатно",
+    free_name:"Бесплатно",free_price:'0€',free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
+    yearly_name:"Premium — Годовой",yearly_price:'14,99€ <span>/год</span>',yearly_desc:"≈ 1,25€/мес · 1 месяц бесплатно",
     yearly_f1:"Неограниченное число наборов",yearly_f2:"Все категории",yearly_f3:"Учёт домашних запасов",yearly_f4:"Семейная синхронизация iCloud",yearly_f5:"Family Sharing (до 5 чел.)",yearly_f6:"Виджет + уведомления",yearly_f7:"Резервное копирование",
-    lifetime_name:"Навсегда",lifetime_price:'€29,99 <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
+    lifetime_name:"Навсегда",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
     lifetime_f1:"Все функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Все будущие обновления",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
     footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
