@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBag+ — Emergency Preparedness App</title>
-    <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
+<meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="screenshots/icon.png">
@@ -907,6 +907,38 @@ function setLang(lang) {
   document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
+  fetchAppStorePrices(lang);
+}
+
+const _priceCache = {};
+async function fetchAppStorePrices(lang) {
+  if (_priceCache[lang]) { _applyPrices(lang, _priceCache[lang]); return; }
+  const countryMap = {en:'us',fr:'fr',de:'de',es:'es',it:'it',pt:'pt',ru:'ru'};
+  const country = countryMap[lang] || 'us';
+  try {
+    const res = await fetch('https://itunes.apple.com/lookup?id=6760232332&entity=inAppPurchase&country=' + country);
+    if (!res.ok) return;
+    const data = await res.json();
+    const prices = {};
+    (data.results || []).filter(r => r.wrapperType === 'inApp').forEach(iap => {
+      if (iap.productId && iap.productId.includes('yearly')) prices.yearly = iap.formattedPrice;
+      if (iap.productId && iap.productId.includes('monthly')) prices.monthly = iap.formattedPrice;
+    });
+    if (prices.yearly || prices.monthly) { _priceCache[lang] = prices; _applyPrices(lang, prices); }
+  } catch(e) {}
+}
+function _applyPrices(lang, prices) {
+  const t = T[lang];
+  if (prices.yearly) {
+    const suf = (t.yearly_price.match(/<span>[^<]+<\/span>/) || ['<span>/year</span>'])[0];
+    t.yearly_price = prices.yearly + ' ' + suf;
+    document.querySelectorAll('[data-i18n-html="yearly_price"]').forEach(el => { el.innerHTML = t.yearly_price; });
+  }
+  if (prices.monthly) {
+    const suf = (t.monthly_price.match(/<span>[^<]+<\/span>/) || ['<span>/month</span>'])[0];
+    t.monthly_price = prices.monthly + ' ' + suf;
+    document.querySelectorAll('[data-i18n-html="monthly_price"]').forEach(el => { el.innerHTML = t.monthly_price; });
+  }
 }
 
 (function() {
