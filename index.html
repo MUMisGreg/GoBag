@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBag+ — Emergency Preparedness App</title>
-    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
+    <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
+    <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="screenshots/icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -377,11 +380,18 @@
 
         /* SCREENSHOTS */
         .screenshots-section { padding: 80px 24px 60px; overflow-x: clip; }
-        .screenshots-scroll { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 32px; padding-top: 20px; }
+        .screenshots-carousel { position: relative; margin-top: 52px; }
+        .screenshots-track-wrap { overflow-x: clip; overflow-y: visible; padding-top: 20px; }
+        .screenshots-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
         .screenshot-frame { flex-shrink: 0; width: 200px; border-radius: 32px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.10); box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04); background: #111827; transition: transform 0.3s, box-shadow 0.3s; }
         .screenshot-frame:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 32px 70px rgba(0,0,0,0.65), 0 0 36px rgba(42,111,240,0.18); }
         .screenshot-frame img { width: 100%; display: block; }
-        @media (max-width: 700px) { .screenshots-scroll { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; } .screenshots-scroll::-webkit-scrollbar { display: none; } .screenshot-frame { width: 185px; } }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; z-index: 10; }
+        .carousel-btn:hover { background: rgba(0,180,216,0.18); border-color: var(--cyan); }
+        .carousel-btn:disabled { opacity: 0.25; cursor: default; }
+        .carousel-btn.prev { left: -22px; }
+        .carousel-btn.next { right: -22px; }
+        @media (max-width: 700px) { .carousel-btn.prev { left: 0; } .carousel-btn.next { right: 0; } .screenshot-frame { width: 185px; } }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
@@ -447,16 +457,22 @@
         <div class="section-label">App Preview</div>
         <h2 class="section-title" style="max-width:480px">See it in action</h2>
         <p class="section-sub">Everything you need, designed for simplicity and speed under pressure.</p>
-        <div class="screenshots-scroll">
-            <div class="screenshot-frame"><img src="screenshots/1.png" alt="screen1"></div>
-            <div class="screenshot-frame"><img src="screenshots/2.png" alt="screen2"></div>
-            <div class="screenshot-frame"><img src="screenshots/3.png" alt="screen3"></div>
-            <div class="screenshot-frame"><img src="screenshots/4.png" alt="screen4"></div>
-            <div class="screenshot-frame"><img src="screenshots/5.png" alt="screen5"></div>
-            <div class="screenshot-frame"><img src="screenshots/6.png" alt="screen6"></div>
-            <div class="screenshot-frame"><img src="screenshots/7.png" alt="screen7"></div>
-            <div class="screenshot-frame"><img src="screenshots/8.png" alt="screen8"></div>
-            <div class="screenshot-frame"><img src="screenshots/9.png" alt="screen9"></div>
+        <div class="screenshots-carousel">
+            <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
+            <div class="screenshots-track-wrap">
+                <div class="screenshots-scroll" id="screenshotsTrack">
+                    <div class="screenshot-frame"><img src="screenshots/1.png" alt="Screenshot 1"></div>
+                    <div class="screenshot-frame"><img src="screenshots/2.png" alt="Screenshot 2"></div>
+                    <div class="screenshot-frame"><img src="screenshots/3.png" alt="Screenshot 3"></div>
+                    <div class="screenshot-frame"><img src="screenshots/4.png" alt="Screenshot 4"></div>
+                    <div class="screenshot-frame"><img src="screenshots/5.png" alt="Screenshot 5"></div>
+                    <div class="screenshot-frame"><img src="screenshots/6.png" alt="Screenshot 6"></div>
+                    <div class="screenshot-frame"><img src="screenshots/7.png" alt="Screenshot 7"></div>
+                    <div class="screenshot-frame"><img src="screenshots/8.png" alt="Screenshot 8"></div>
+                    <div class="screenshot-frame"><img src="screenshots/9.png" alt="Screenshot 9"></div>
+                </div>
+            </div>
+            <button class="carousel-btn next" id="carouselNext" onclick="carouselMove(1)" aria-label="Next">&#8594;</button>
         </div>
     </div>
 </section>
@@ -630,7 +646,7 @@
         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Terms of Use</a>
         <a href="mailto:hidtresuh@gmail.com" data-i18n="footer_support">Support</a>
     </div>
-    <p data-i18n="footer_copy">© 2026 GoBag+. All rights reserved.</p>
+    <p data-i18n="footer_copy">© 2026 GreDami. All rights reserved.</p>
 </footer>
 
 <script>
@@ -664,7 +680,7 @@ const T = {
     monthly_name:"Premium Monthly",monthly_price:'€2.99 <span>/month</span>',monthly_desc:"1 month free trial",
     monthly_f1:"All Premium features",monthly_f2:"Family Sharing (up to 5)",monthly_f3:"Cancel anytime",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
-    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GoBag+. All rights reserved."
+    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
   },
   fr: {
     nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui.",
@@ -688,18 +704,18 @@ const T = {
     step4_h:"Partagez avec la famille",step4_p:"Synchronisez tout via iCloud pour que toute votre famille soit préparée ensemble.",
     family_h2:"Un abonnement, toute la famille couverte",
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet à jusqu'à 5 membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
-    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez Premium quand vous êtes prêt.",pricing_badge:"Le plus populaire",
+    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Le plus populaire",
     free_name:"Gratuit",free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
     yearly_name:"Premium Annuel",yearly_price:'€19,99 <span>/an</span>',yearly_desc:"≈ €1,67/mois · 1 mois d'essai gratuit",
     yearly_f1:"Sacs d'urgence illimités",yearly_f2:"Toutes les catégories",yearly_f3:"Suivi des réserves",yearly_f4:"Synchronisation iCloud familiale",yearly_f5:"Partage familial (jusqu'à 5)",yearly_f6:"Widget + notifications",yearly_f7:"Sauvegarde & restauration",
     monthly_name:"Premium Mensuel",monthly_price:'€2,99 <span>/mois</span>',monthly_desc:"1 mois d'essai gratuit",
     monthly_f1:"Toutes les fonctionnalités Premium",monthly_f2:"Partage familial (jusqu'à 5)",monthly_f3:"Résiliez à tout moment",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
-    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GoBag+. Tous droits réservés."
+    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
   },
   de: {
     nav_cta:"Kostenlos laden",welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute.",
-    hero_h1:"Sei bereit<br><span>im Notfall.</span>",
+    hero_h1:"Sei bereit,<br><span>bevor der Notfall kommt.</span>",
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und halte deine ganze Familie vorbereitet — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",cta_btn:"Im App Store laden",
     features_label:"Funktionen",features_title:"Alles, was du brauchst,<br>um vorbereitet zu bleiben",
@@ -719,14 +735,14 @@ const T = {
     step4_h:"Mit Familie teilen",step4_p:"Synchronisiere alles über iCloud, damit deine ganze Familie gemeinsam vorbereitet ist.",
     family_h2:"Ein Abo, die ganze Familie abgesichert",
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement bis zu 5 Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
-    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Upgrade wenn du bereit bist.",pricing_badge:"Beliebteste Wahl",
+    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Beliebteste Wahl",
     free_name:"Kostenlos",free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
     yearly_name:"Premium Jährlich",yearly_price:'€19,99 <span>/Jahr</span>',yearly_desc:"≈ €1,67/Monat · 1 Monat kostenlos",
     yearly_f1:"Unbegrenzte Rucksäcke",yearly_f2:"Alle Kategorien",yearly_f3:"Heimvorräte verwalten",yearly_f4:"iCloud-Familiensynchronisation",yearly_f5:"Family Sharing (bis zu 5)",yearly_f6:"Widget + Benachrichtigungen",yearly_f7:"Sicherung & Wiederherstellung",
     monthly_name:"Premium Monatlich",monthly_price:'€2,99 <span>/Monat</span>',monthly_desc:"1 Monat kostenlos testen",
     monthly_f1:"Alle Premium-Funktionen",monthly_f2:"Family Sharing (bis zu 5)",monthly_f3:"Jederzeit kündigen",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
-    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GoBag+. Alle Rechte vorbehalten."
+    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
   },
   es: {
     nav_cta:"Descargar gratis",welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy.",
@@ -757,7 +773,7 @@ const T = {
     monthly_name:"Premium Mensual",monthly_price:'€2,99 <span>/mes</span>',monthly_desc:"1 mes de prueba gratis",
     monthly_f1:"Todas las funciones Premium",monthly_f2:"Family Sharing (hasta 5)",monthly_f3:"Cancela en cualquier momento",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
-    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GoBag+. Todos los derechos reservados."
+    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
   },
   it: {
     nav_cta:"Scarica gratis",welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi.",
@@ -777,7 +793,7 @@ const T = {
     how_label:"Come funziona",how_title:"Pronto in pochi minuti",how_sub:"Configura il tuo kit d'emergenza in pochi passaggi.",
     step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
     step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
-    step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi di rifornire.",
+    step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi quando fare scorta.",
     step4_h:"Condividi con la famiglia",step4_p:"Sincronizza tutto via iCloud affinché tutta la famiglia sia preparata insieme.",
     family_h2:"Un abbonamento, tutta la famiglia coperta",
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo a fino a 5 familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
@@ -788,11 +804,11 @@ const T = {
     monthly_name:"Premium Mensile",monthly_price:'€2,99 <span>/mese</span>',monthly_desc:"1 mese di prova gratuita",
     monthly_f1:"Tutte le funzionalità Premium",monthly_f2:"Family Sharing (fino a 5)",monthly_f3:"Cancella in qualsiasi momento",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
-    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GoBag+. Tutti i diritti riservati."
+    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
   },
   pt: {
     nav_cta:"Baixar grátis",welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje.",
-    hero_h1:"Pronto antes<br><span>do desastre.</span>",
+    hero_h1:"Esteja pronto<br><span>antes do desastre.</span>",
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e mantenha toda a família preparada — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",cta_btn:"Transferir na App Store",
     features_label:"Funcionalidades",features_title:"Tudo o que precisa<br>para estar preparado",
@@ -819,7 +835,7 @@ const T = {
     monthly_name:"Premium Mensal",monthly_price:'€2,99 <span>/mês</span>',monthly_desc:"1 mês de teste grátis",
     monthly_f1:"Todas as funcionalidades Premium",monthly_f2:"Family Sharing (até 5)",monthly_f3:"Cancele quando quiser",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
-    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GoBag+. Todos os direitos reservados."
+    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
   },
   ru: {
     nav_cta:"Скачать бесплатно",welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня.",
@@ -833,7 +849,7 @@ const T = {
     feat3_title:"Экстренные контакты",feat3_p:"Храните ключевые номера для доступа без интернета. Одно касание — звонок. Поделитесь карточкой с семьёй.",
     feat4_title:"Семейная синхронизация iCloud",feat4_p:"Делитесь наборами и запасами с членами семьи через iCloud. Все видят одни данные в реальном времени.",
     feat5_title:"Умные уведомления",feat5_p:"Автоматические напоминания об истечении срока и падении запасов ниже минимума. Всегда актуально.",
-    feat6_title:"Виджет на экране",feat6_p:"Видите уровень готовности с первого взгляда, не открывая приложение. Три размера виджета.",
+    feat6_title:"Виджет на экране",feat6_p:"Проверяйте уровень готовности с первого взгляда, не открывая приложение. Три размера виджета.",
     feat7_title:"Резервное копирование",feat7_p:"Экспортируйте данные в любое время и восстанавливайте на любом устройстве.",
     feat8_title:"7 языков",feat8_p:"Доступно на английском, французском, немецком, испанском, итальянском, португальском и русском.",
     how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте набор экстренной помощи в несколько шагов.",
@@ -850,7 +866,7 @@ const T = {
     monthly_name:"Premium — Ежемесячный",monthly_price:'€2,99 <span>/мес</span>',monthly_desc:"1 месяц бесплатно",
     monthly_f1:"Все функции Premium",monthly_f2:"Family Sharing (до 5 чел.)",monthly_f3:"Отмена в любое время",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
-    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GoBag+. Все права защищены."
+    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
   }
 };
 
@@ -886,6 +902,26 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
 }
+
+(function() {
+  let offset = 0;
+  window.carouselMove = function(dir) {
+    const track = document.getElementById('screenshotsTrack');
+    const wrap = track.parentElement;
+    const frames = track.querySelectorAll('.screenshot-frame');
+    if (!frames.length) return;
+    const frameW = frames[0].offsetWidth + 20;
+    const visibleW = wrap.offsetWidth;
+    const maxOffset = Math.max(0, track.scrollWidth - visibleW);
+    offset = Math.min(Math.max(0, offset + dir * frameW), maxOffset);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    document.getElementById('carouselPrev').disabled = offset <= 0;
+    document.getElementById('carouselNext').disabled = offset >= maxOffset;
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('carouselPrev').disabled = true;
+  });
+})();
 
 (function() {
   const saved = localStorage.getItem('gobag_lang');
