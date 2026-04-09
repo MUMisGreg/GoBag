@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoBag+ — Emergency Preparedness App</title>
-<meta property="og:title" content="GoBag+ — Emergency Preparedness App">
+    <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
+    <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="screenshots/icon.png">
@@ -312,17 +313,6 @@
             border-color: rgba(0,180,216,0.4);
             background: rgba(0,180,216,0.06);
         }
-        .pricing-badge {
-            position: absolute;
-            top: -14px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 5px 16px;
-            border-radius: 50px;
-            white-space: nowrap;
-        }
         .pricing-name { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
         .pricing-price { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
         .pricing-price span { font-size: 16px; font-weight: 400; color: var(--muted); }
@@ -341,18 +331,35 @@
 
         /* FAMILY */
         .family-banner {
-            background: linear-gradient(135deg, rgba(42,111,240,0.15), rgba(0,180,216,0.10));
+            background: linear-gradient(135deg, rgba(42,111,240,0.12), rgba(0,180,216,0.08));
             border: 1px solid rgba(0,180,216,0.2);
             border-radius: 24px;
-            padding: 48px 40px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
+            padding: 36px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .family-icon { font-size: 64px; flex-shrink: 0; }
-        .family-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
-        .family-text p { font-size: 16px; color: var(--muted); max-width: 480px; }
+        .family-banner::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 240px; height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,180,216,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .family-icon {
+            font-size: 40px;
+            width: 72px; height: 72px;
+            border-radius: 18px;
+            background: rgba(0,180,216,0.12);
+            border: 1px solid rgba(0,180,216,0.2);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .family-text { position: relative; }
+        .family-text h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 14px; }
+        .family-text p { font-size: 16px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.7; }
 
         /* CTA */
         .cta-section {
@@ -378,9 +385,9 @@
         .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
 
         /* SCREENSHOTS */
-        .screenshots-section { padding: 80px 24px 60px; overflow-x: clip; }
+        .screenshots-section { padding: 80px 24px 60px; overflow: hidden; }
         .screenshots-carousel { position: relative; margin-top: 52px; }
-        .screenshots-track-wrap { overflow-x: clip; overflow-y: visible; padding-top: 20px; }
+        .screenshots-track-wrap { overflow: hidden; }
         .screenshots-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
         .screenshot-frame { flex-shrink: 0; width: 200px; border-radius: 32px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.10); box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04); background: #111827; transition: transform 0.3s, box-shadow 0.3s; }
         .screenshot-frame:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 32px 70px rgba(0,0,0,0.65), 0 0 36px rgba(42,111,240,0.18); }
@@ -390,13 +397,14 @@
         .carousel-btn:disabled { opacity: 0.25; cursor: default; }
         .carousel-btn.prev { left: -22px; }
         .carousel-btn.next { right: -22px; }
-        @media (max-width: 700px) { .carousel-btn.prev { left: 0; } .carousel-btn.next { right: 0; } .screenshot-frame { width: 185px; } }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
             .hero { padding: 100px 20px 80px; }
-            .family-banner { padding: 32px 24px; }
-            .family-icon { display: none; }
+            .family-banner { padding: 28px 20px; }
+            .screenshot-frame { width: 185px; }
+            .carousel-btn.prev { left: 0; }
+            .carousel-btn.next { right: 0; }
         }
         @media (max-width: 480px) {
             .lang-trigger { padding: 7px 10px; font-size: 12px; }
@@ -407,7 +415,7 @@
 
 <!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo"><img src="screenshots/icon.png" alt="GoBag+">GoBag<span>+</span></a>
+    <a href="#" class="nav-logo"><img src="data:image/png;base64,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" alt="">GoBag<span>+</span></a>
     <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today.</span>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
@@ -454,7 +462,7 @@
 <section class="screenshots-section">
     <div class="container">
         <div class="section-label" data-i18n="screenshots_label">App Preview</div>
-        <h2 class="section-title" style="max-width:480px" data-i18n="screenshots_title">See it in action</h2>
+        <h2 class="section-title" data-i18n="screenshots_title">See it in action</h2>
         <p class="section-sub" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
         <div class="screenshots-carousel">
             <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
@@ -567,12 +575,12 @@
 
 <!-- FAMILY SHARING -->
 <section>
-    <div class="container">
+    <div class="container" style="max-width:680px">
         <div class="family-banner">
             <div class="family-icon">👨‍👩‍👧‍👦</div>
             <div class="family-text">
                 <h2 data-i18n="family_h2">One subscription, whole family covered</h2>
-                <p data-i18n="family_p">With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.</p>
+                <p data-i18n="family_p">With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.</p>
             </div>
         </div>
     </div>
@@ -582,14 +590,14 @@
 
 <!-- PRICING -->
 <section>
-    <div class="container">
+    <div class="container" style="text-align:center">
         <div class="section-label" data-i18n="pricing_label">Pricing</div>
         <h2 class="section-title" data-i18n="pricing_title">Simple, honest pricing</h2>
-        <p class="section-sub" style="max-width:100%; text-align:center" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
+        <p class="section-sub" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-name" data-i18n="free_name">Free</div>
-                <div class="pricing-price" id="freePrice">$0</div>
+                <div class="pricing-price" data-i18n-html="free_price">$0</div>
                 <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
                 <ul class="pricing-features">
                     <li data-i18n="free_f1">1 Go Bag</li>
@@ -598,7 +606,6 @@
                 </ul>
             </div>
             <div class="pricing-card featured">
-                <div class="pricing-badge" data-i18n="pricing_badge">Most Popular</div>
                 <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
                 <div class="pricing-price" data-i18n-html="yearly_price">$12.99 <span>/year</span></div>
                 <div class="pricing-desc" data-i18n="yearly_desc">≈ €1.25/month · 1 month free trial</div>
@@ -613,13 +620,13 @@
                 </ul>
             </div>
             <div class="pricing-card">
-                <div class="pricing-name" data-i18n="lifetime_name">Premium Lifetime</div>
-                <div class="pricing-price" data-i18n-html="lifetime_price">$24.99</div>
+                <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
+                <div class="pricing-price" data-i18n-html="lifetime_price">$24.99 <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
                 <ul class="pricing-features">
-                    <li data-i18n="lifetime_f1">All Premium features</li>
+                    <li data-i18n="lifetime_f1">Premium features</li>
                     <li data-i18n="lifetime_f2">Family Sharing (up to 5)</li>
-                    <li data-i18n="lifetime_f3">Lifetime updates</li>
+                    <li data-i18n="lifetime_f3">All future updates</li>
                 </ul>
             </div>
         </div>
@@ -672,19 +679,19 @@ const T = {
     step3_h:"Track your supplies",step3_p:"Set stock levels and expiry dates. Let GoBag+ remind you when to restock.",
     step4_h:"Share with family",step4_p:"Sync everything via iCloud so your whole family stays prepared together.",
     family_h2:"One subscription, whole family covered",
-    family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to up to 5 family members automatically — no extra purchases, no sharing passwords.",
-    pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Most Popular",
-    free_name:"Free",free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
+    family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
+    pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",
+    free_name:"Free",free_price:'$0',free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
     yearly_name:"Premium Yearly",yearly_price:'$12.99 <span>/year</span>',yearly_desc:"≈ $1.08/month · 1 month free trial",
     yearly_f1:"Unlimited Go Bags",yearly_f2:"All item categories",yearly_f3:"Home reserve tracking",yearly_f4:"Family iCloud sync",yearly_f5:"Family Sharing (up to 5)",yearly_f6:"Widget + notifications",yearly_f7:"Backup & restore",
-    lifetime_name:"Premium Lifetime",lifetime_price:'$24.99',lifetime_desc:"One-time payment · No subscription",
-    lifetime_f1:"All Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"Lifetime updates",
+    lifetime_name:"Lifetime",lifetime_price:'$24.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
+    lifetime_f1:"Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
     footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
   },
   fr: {
     nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui.",
-    hero_h1:"Soyez prêts<br><span>avant une catastrophe.</span>",
+    hero_h1:"Préparez-vous<br><span>avant qu'une catastrophe n'arrive.</span>",
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et gardez toute votre famille préparée — dans une seule application.",
     hero_trial:"1 mois d'essai gratuit · Sans engagement",cta_btn:"Télécharger sur l'App Store",
     screenshots_label:"Aperçu de l'app",screenshots_title:"Voyez-la en action",screenshots_sub:"Tout ce dont vous avez besoin, conçu pour la simplicité et la rapidité sous pression.",
@@ -704,13 +711,13 @@ const T = {
     step3_h:"Suivez vos réserves",step3_p:"Définissez des niveaux de stock et des dates d'expiration. Laissez GoBag+ vous rappeler de réapprovisionner.",
     step4_h:"Partagez avec la famille",step4_p:"Synchronisez tout via iCloud pour que toute votre famille soit préparée ensemble.",
     family_h2:"Un abonnement, toute la famille couverte",
-    family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet à jusqu'à 5 membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
-    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Le plus populaire",
-    free_name:"Gratuit",free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
-    yearly_name:"Premium Annuel",yearly_price:'14,99 € <span>/an</span>',yearly_desc:"≈ 1,25 €/mois · 1 mois d'essai gratuit",
+    family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
+    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Meilleure offre",
+    free_name:"Gratuit",free_price:'0€',free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
+    yearly_name:"Premium Annuel",yearly_price:'14,99€ <span>/an</span>',yearly_desc:"≈ 1,25€/mois · 1 mois d'essai gratuit",
     yearly_f1:"Sacs d'urgence illimités",yearly_f2:"Toutes les catégories",yearly_f3:"Suivi des réserves",yearly_f4:"Synchronisation iCloud familiale",yearly_f5:"Partage familial (jusqu'à 5)",yearly_f6:"Widget + notifications",yearly_f7:"Sauvegarde & restauration",
-    lifetime_name:"Premium À Vie",lifetime_price:'29,99 €',lifetime_desc:"Paiement unique · Sans abonnement",
-    lifetime_f1:"Toutes les fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Mises à jour à vie",
+    lifetime_name:"À vie",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
+    lifetime_f1:"Fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Toutes les mises à jour futures",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
     footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
   },
@@ -736,13 +743,13 @@ const T = {
     step3_h:"Verfolge deine Vorräte",step3_p:"Lege Lagerbestände und Ablaufdaten fest. Lass GoBag+ dich ans Nachfüllen erinnern.",
     step4_h:"Mit Familie teilen",step4_p:"Synchronisiere alles über iCloud, damit deine ganze Familie gemeinsam vorbereitet ist.",
     family_h2:"Ein Abo, die ganze Familie abgesichert",
-    family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement bis zu 5 Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
-    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Beliebteste Wahl",
-    free_name:"Kostenlos",free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
-    yearly_name:"Premium Jährlich",yearly_price:'14,99 € <span>/Jahr</span>',yearly_desc:"≈ 1,25 €/Monat · 1 Monat kostenlos",
+    family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
+    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Bestes Angebot",
+    free_name:"Kostenlos",free_price:'0€',free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
+    yearly_name:"Premium Jährlich",yearly_price:'14,99€ <span>/Jahr</span>',yearly_desc:"≈ 1,25€/Monat · 1 Monat kostenlos",
     yearly_f1:"Unbegrenzte Rucksäcke",yearly_f2:"Alle Kategorien",yearly_f3:"Heimvorräte verwalten",yearly_f4:"iCloud-Familiensynchronisation",yearly_f5:"Family Sharing (bis zu 5)",yearly_f6:"Widget + Benachrichtigungen",yearly_f7:"Sicherung & Wiederherstellung",
-    lifetime_name:"Premium Lebenslang",lifetime_price:'29,99 €',lifetime_desc:"Einmalzahlung · Kein Abo",
-    lifetime_f1:"Alle Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Lebenslange Updates",
+    lifetime_name:"Lebenslang",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
+    lifetime_f1:"Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Alle zukünftigen Updates",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
     footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
   },
@@ -768,13 +775,13 @@ const T = {
     step3_h:"Controla tus suministros",step3_p:"Establece niveles de stock y fechas de caducidad. Deja que GoBag+ te recuerde cuándo reabastecer.",
     step4_h:"Comparte con tu familia",step4_p:"Sincroniza todo vía iCloud para que toda tu familia esté preparada junta.",
     family_h2:"Una suscripción, toda la familia cubierta",
-    family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a hasta 5 miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
-    pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Más popular",
-    free_name:"Gratis",free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
-    yearly_name:"Premium Anual",yearly_price:'14,99 € <span>/año</span>',yearly_desc:"≈ 1,25 €/mes · 1 mes de prueba gratis",
+    family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
+    pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",
+    free_name:"Gratis",free_price:'0€',free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
+    yearly_name:"Premium Anual",yearly_price:'14,99€ <span>/año</span>',yearly_desc:"≈ 1,25€/mes · 1 mes de prueba gratis",
     yearly_f1:"Bolsas ilimitadas",yearly_f2:"Todas las categorías",yearly_f3:"Control de suministros",yearly_f4:"Sincronización iCloud familiar",yearly_f5:"Family Sharing (hasta 5)",yearly_f6:"Widget + notificaciones",yearly_f7:"Copia de seguridad y restauración",
-    lifetime_name:"Premium de por vida",lifetime_price:'29,99 €',lifetime_desc:"Pago único · Sin suscripción",
-    lifetime_f1:"Todas las funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Actualizaciones de por vida",
+    lifetime_name:"De por vida",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pago único · Sin suscripción",
+    lifetime_f1:"Funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Todas las actualizaciones futuras",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
     footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
   },
@@ -800,13 +807,13 @@ const T = {
     step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi quando fare scorta.",
     step4_h:"Condividi con la famiglia",step4_p:"Sincronizza tutto via iCloud affinché tutta la famiglia sia preparata insieme.",
     family_h2:"Un abbonamento, tutta la famiglia coperta",
-    family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo a fino a 5 familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
-    pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Il più popolare",
-    free_name:"Gratuito",free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
-    yearly_name:"Premium Annuale",yearly_price:'14,99 € <span>/anno</span>',yearly_desc:"≈ 1,25 €/mese · 1 mese di prova gratuita",
+    family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
+    pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",
+    free_name:"Gratuito",free_price:'0€',free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
+    yearly_name:"Premium Annuale",yearly_price:'14,99€ <span>/anno</span>',yearly_desc:"≈ 1,25€/mese · 1 mese di prova gratuita",
     yearly_f1:"Zaini illimitati",yearly_f2:"Tutte le categorie",yearly_f3:"Gestione scorte",yearly_f4:"Sincronizzazione iCloud familiare",yearly_f5:"Family Sharing (fino a 5)",yearly_f6:"Widget + notifiche",yearly_f7:"Backup e ripristino",
-    lifetime_name:"Premium a vita",lifetime_price:'29,99 €',lifetime_desc:"Pagamento unico · Nessun abbonamento",
-    lifetime_f1:"Tutte le funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Aggiornamenti a vita",
+    lifetime_name:"A vita",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
+    lifetime_f1:"Funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Tutti gli aggiornamenti futuri",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
     footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
   },
@@ -832,13 +839,13 @@ const T = {
     step3_h:"Controle as suas reservas",step3_p:"Defina níveis de stock e datas de validade. Deixe o GoBag+ lembrá-lo de reabastecer.",
     step4_h:"Partilhe com a família",step4_p:"Sincronize tudo via iCloud para que toda a família esteja preparada em conjunto.",
     family_h2:"Uma subscrição, toda a família protegida",
-    family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo a até 5 familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
-    pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Mais popular",
-    free_name:"Grátis",free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
-    yearly_name:"Premium Anual",yearly_price:'14,99 € <span>/ano</span>',yearly_desc:"≈ 1,25 €/mês · 1 mês de teste grátis",
+    family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
+    pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",
+    free_name:"Grátis",free_price:'0€',free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
+    yearly_name:"Premium Anual",yearly_price:'14,99€ <span>/ano</span>',yearly_desc:"≈ 1,25€/mês · 1 mês de teste grátis",
     yearly_f1:"Mochilas ilimitadas",yearly_f2:"Todas as categorias",yearly_f3:"Controlo de reservas",yearly_f4:"Sincronização iCloud familiar",yearly_f5:"Family Sharing (até 5)",yearly_f6:"Widget + notificações",yearly_f7:"Cópia de segurança e restauro",
-    lifetime_name:"Premium Vitalício",lifetime_price:'29,99 €',lifetime_desc:"Pagamento único · Sem subscrição",
-    lifetime_f1:"Todas as funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Atualizações vitalícias",
+    lifetime_name:"Vitalício",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
+    lifetime_f1:"Funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Todas as atualizações futuras",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
     footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
   },
@@ -848,7 +855,7 @@ const T = {
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните контакты экстренных служб и держите всю семью готовой — в одном приложении.",
     hero_trial:"1 месяц бесплатно · Без обязательств",cta_btn:"Загрузить в App Store",
     screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите, как это работает",screenshots_sub:"Всё необходимое — просто и быстро, даже в экстремальных ситуациях.",
-    features_label:"Возможности",features_title:"Всё, что нужно<br>для того, чтобы быть готовым",
+    features_label:"Возможности",features_title:"Всё что нужно,<br>чтобы быть готовым",
     features_sub:"GoBag+ охватывает все аспекты подготовки к чрезвычайным ситуациям.",
     feat1_title:"Конструктор тревожного чемоданчика",feat1_p:"Создавайте и организуйте несколько наборов по 9 категориям: документы, вода, еда, первая помощь, инструменты, укрытие, связь, личная гигиена и другое.",
     feat2_title:"Учёт домашних запасов",feat2_p:"Отслеживайте запасы с датами истечения срока годности и уровнями на человека. Получайте уведомления до истечения.",
@@ -864,13 +871,13 @@ const T = {
     step3_h:"Отслеживайте запасы",step3_p:"Установите уровни запасов и даты истечения. Позвольте GoBag+ напоминать о пополнении.",
     step4_h:"Делитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud, чтобы вся семья была готова вместе.",
     family_h2:"Одна подписка — вся семья защищена",
-    family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ до 5 членам семьи — без дополнительных покупок и паролей.",
-    pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium, когда будете готовы.",pricing_badge:"Самый популярный",
-    free_name:"Бесплатно",free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
-    yearly_name:"Premium — Годовой",yearly_price:'14,99 € <span>/год</span>',yearly_desc:"≈ 1,25 €/мес · 1 месяц бесплатно",
+    family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
+    pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",
+    free_name:"Бесплатно",free_price:'0€',free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
+    yearly_name:"Premium — Годовой",yearly_price:'14,99€ <span>/год</span>',yearly_desc:"≈ 1,25€/мес · 1 месяц бесплатно",
     yearly_f1:"Неограниченное число наборов",yearly_f2:"Все категории",yearly_f3:"Учёт домашних запасов",yearly_f4:"Семейная синхронизация iCloud",yearly_f5:"Family Sharing (до 5 чел.)",yearly_f6:"Виджет + уведомления",yearly_f7:"Резервное копирование",
-    lifetime_name:"Premium Навсегда",lifetime_price:'29,99 €',lifetime_desc:"Разовая оплата · Без подписки",
-    lifetime_f1:"Все функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Обновления навсегда",
+    lifetime_name:"Навсегда",lifetime_price:'29,99€ <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
+    lifetime_f1:"Функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Все будущие обновления",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
     footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
   }
@@ -907,44 +914,17 @@ function setLang(lang) {
   document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
-  _updateFreePrice(lang);
-  fetchAppStorePrices(lang);
 }
 
-const _priceCache = {};
-async function fetchAppStorePrices(lang) {
-  if (_priceCache[lang]) { _applyPrices(lang, _priceCache[lang]); return; }
-  const countryMap = {en:'us',fr:'fr',de:'de',es:'es',it:'it',pt:'pt',ru:'ru'};
-  const country = countryMap[lang] || 'us';
-  try {
-    const res = await fetch('https://itunes.apple.com/lookup?id=6760232332&entity=inAppPurchase&country=' + country);
-    if (!res.ok) return;
-    const data = await res.json();
-    const prices = {};
-    (data.results || []).filter(r => r.wrapperType === 'inApp').forEach(iap => {
-      if (iap.productId && iap.productId.includes('yearly')) prices.yearly = iap.formattedPrice;
-      if (iap.productId && iap.productId.includes('lifetime')) prices.lifetime = iap.formattedPrice;
-    });
-    if (prices.yearly || prices.lifetime) { _priceCache[lang] = prices; _applyPrices(lang, prices); }
-  } catch(e) {}
-}
-function _applyPrices(lang, prices) {
-  const t = T[lang];
-  if (prices.yearly) {
-    const suf = (t.yearly_price.match(/<span>[^<]+<\/span>/) || ['<span>/year</span>'])[0];
-    t.yearly_price = prices.yearly + ' ' + suf;
-    document.querySelectorAll('[data-i18n-html="yearly_price"]').forEach(el => { el.innerHTML = t.yearly_price; });
-  }
-  if (prices.lifetime) {
-    t.lifetime_price = prices.lifetime;
-    document.querySelectorAll('[data-i18n-html="lifetime_price"]').forEach(el => { el.innerHTML = prices.lifetime; });
-  }
-}
-function _updateFreePrice(lang) {
-  const fp = document.getElementById('freePrice');
-  if (fp) fp.textContent = lang === 'en' ? '$0' : '0 €';
-}
+(function() {
+  const saved = localStorage.getItem('gobag_lang');
+  const browser = (navigator.language || '').slice(0, 2).toLowerCase();
+  const supported = ['en','fr','de','es','it','pt','ru'];
+  const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
+  setLang(lang);
+})();
 
+// CAROUSEL
 (function() {
   let offset = 0;
   window.carouselMove = function(dir) {
@@ -952,7 +932,7 @@ function _updateFreePrice(lang) {
     const wrap = track.parentElement;
     const frames = track.querySelectorAll('.screenshot-frame');
     if (!frames.length) return;
-    const frameW = frames[0].offsetWidth + 20;
+    const frameW = frames[0].offsetWidth + 20; // width + gap
     const visibleW = wrap.offsetWidth;
     const maxOffset = Math.max(0, track.scrollWidth - visibleW);
     offset = Math.min(Math.max(0, offset + dir * frameW), maxOffset);
@@ -963,14 +943,6 @@ function _updateFreePrice(lang) {
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('carouselPrev').disabled = true;
   });
-})();
-
-(function() {
-  const saved = localStorage.getItem('gobag_lang');
-  const browser = (navigator.language || '').slice(0, 2).toLowerCase();
-  const supported = ['en','fr','de','es','it','pt','ru'];
-  const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
-  setLang(lang);
 })();
 </script>
 </body>
