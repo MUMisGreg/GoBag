@@ -8,7 +8,7 @@
     <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
-    <link rel="icon" type="image/png" href="screenshots/GB+icon.png">
+    <link rel="icon" type="image/png" href="GB+icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -76,34 +76,34 @@
         .lang-trigger {
             display: flex;
             align-items: center;
-            gap: 7px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--text);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 10px;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: color 0.2s;
             font-family: inherit;
             white-space: nowrap;
         }
-        .lang-trigger:hover { border-color: rgba(0,180,216,0.4); background: rgba(0,180,216,0.08); }
+        .lang-trigger:hover { color: var(--text); }
+        .lang-trigger .globe { font-size: 16px; }
         .lang-trigger .arrow { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
-        .lang-switcher.open .lang-trigger { border-color: var(--cyan); background: rgba(0,180,216,0.10); }
+        .lang-switcher.open .lang-trigger { color: var(--text); }
         .lang-switcher.open .arrow { transform: rotate(180deg); }
         .lang-dropdown {
             display: none;
             position: absolute;
             top: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
             background: rgba(10,18,40,0.97);
-            border: 1px solid rgba(0,180,216,0.2);
-            border-radius: 14px;
+            border: 1px solid rgba(0,180,216,0.15);
+            border-radius: 12px;
             overflow: hidden;
-            min-width: 190px;
+            min-width: 150px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
             z-index: 200;
             backdrop-filter: blur(16px);
@@ -112,9 +112,8 @@
         .lang-option {
             display: flex;
             align-items: center;
-            gap: 10px;
             width: 100%;
-            padding: 11px 16px;
+            padding: 10px 16px;
             background: none;
             border: none;
             color: var(--muted);
@@ -123,11 +122,10 @@
             cursor: pointer;
             transition: all 0.15s;
             text-align: left;
+            font-weight: 500;
         }
-        .lang-option:hover { background: rgba(0,180,216,0.10); color: var(--text); }
-        .lang-option.active { color: var(--cyan); background: rgba(0,180,216,0.08); }
-        .lang-option .flag { font-size: 18px; line-height: 1; }
-        .lang-option .name { font-weight: 500; }
+        .lang-option:hover { background: rgba(0,180,216,0.08); color: var(--text); }
+        .lang-option.active { color: var(--cyan); }
 
         /* HERO */
         .hero {
@@ -422,18 +420,18 @@
     <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today.</span>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
-            <span id="currentFlag">🇬🇧</span>
+            <span class="globe">Àあ</span>
             <span id="currentLangCode">EN</span>
             <span class="arrow">▼</span>
         </button>
         <div class="lang-dropdown">
-            <button class="lang-option active" data-lang="en" onclick="setLang('en')"><span class="flag">🇬🇧</span><span class="name">English</span></button>
-            <button class="lang-option" data-lang="fr" onclick="setLang('fr')"><span class="flag">🇫🇷</span><span class="name">Français</span></button>
-            <button class="lang-option" data-lang="de" onclick="setLang('de')"><span class="flag">🇩🇪</span><span class="name">Deutsch</span></button>
-            <button class="lang-option" data-lang="es" onclick="setLang('es')"><span class="flag">🇪🇸</span><span class="name">Español</span></button>
-            <button class="lang-option" data-lang="it" onclick="setLang('it')"><span class="flag">🇮🇹</span><span class="name">Italiano</span></button>
-            <button class="lang-option" data-lang="pt" onclick="setLang('pt')"><span class="flag">🇵🇹</span><span class="name">Português</span></button>
-            <button class="lang-option" data-lang="ru" onclick="setLang('ru')"><span class="flag">🇷🇺</span><span class="name">Русский</span></button>
+            <button class="lang-option active" data-lang="en" onclick="setLang('en')">English</button>
+            <button class="lang-option" data-lang="fr" onclick="setLang('fr')">Français</button>
+            <button class="lang-option" data-lang="de" onclick="setLang('de')">Deutsch</button>
+            <button class="lang-option" data-lang="es" onclick="setLang('es')">Español</button>
+            <button class="lang-option" data-lang="it" onclick="setLang('it')">Italiano</button>
+            <button class="lang-option" data-lang="pt" onclick="setLang('pt')">Português</button>
+            <button class="lang-option" data-lang="ru" onclick="setLang('ru')">Русский</button>
         </div>
     </div>
 </nav>
@@ -654,6 +652,12 @@
         <a href="https://www.facebook.com/profile.php?id=61575396419069" target="_blank" aria-label="Facebook">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.266h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
         </a>
+        <a href="https://www.instagram.com/gredami/" target="_blank" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCVHdlH5HjNXl2eQ6pk3aWmg" target="_blank" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
         <a href="https://x.com/GreDamiStudio" target="_blank" aria-label="X (Twitter)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
@@ -868,19 +872,19 @@ const T = {
     screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите, как это работает",screenshots_sub:"Всё необходимое — просто и быстро, даже в экстремальных ситуациях.",
     features_label:"Возможности",features_title:"Всё что нужно,<br>чтобы быть готовым",
     features_sub:"GoBag+ охватывает все аспекты подготовки к чрезвычайным ситуациям.",
-    feat1_title:"Конструктор тревожного чемоданчика",feat1_p:"Создавайте и организуйте несколько наборов по 9 категориям: документы, вода, еда, первая помощь, инструменты, укрытие, связь, личная гигиена и другое.",
-    feat2_title:"Учёт домашних запасов",feat2_p:"Отслеживайте запасы с датами истечения срока годности и уровнями на человека. Получайте уведомления до истечения.",
-    feat3_title:"Экстренные контакты",feat3_p:"Храните ключевые номера для доступа без интернета. Одно касание — звонок. Поделитесь карточкой с семьёй.",
-    feat4_title:"Семейная синхронизация iCloud",feat4_p:"Делитесь наборами и запасами с членами семьи через iCloud. Все видят одни данные в реальном времени.",
-    feat5_title:"Умные уведомления",feat5_p:"Автоматические напоминания об истечении срока и падении запасов ниже минимума. Всегда актуально.",
+    feat1_title:"Тревожный чемоданчик",feat1_p:"Создайте несколько наборов по категориям: документы, вода, еда, аптечка, инструменты, одежда, электроника и другое.",
+    feat2_title:"Домашние запасы",feat2_p:"Следите за запасами с датами годности и нормами на человека. Получайте уведомления заблаговременно.",
+    feat3_title:"Экстренные контакты",feat3_p:"Держите нужные номера под рукой — без интернета. Одно нажатие для звонка. Поделитесь карточкой с близкими.",
+    feat4_title:"Семейная синхронизация iCloud",feat4_p:"Делитесь чемоданчиками и запасами с семьёй через iCloud. Все видят одни и те же данные в режиме реального времени.",
+    feat5_title:"Умные уведомления",feat5_p:"Автоматические напоминания об истечении сроков годности и нехватке запасов. Всегда в курсе.",
     feat6_title:"Виджет на экране",feat6_p:"Проверяйте уровень готовности с первого взгляда, не открывая приложение. Три размера виджета.",
-    feat7_title:"Резервное копирование",feat7_p:"Экспортируйте данные в любое время и восстанавливайте на любом устройстве.",
+    feat7_title:"Резервное копирование",feat7_p:"Экспортируйте данные в любой момент и восстанавливайте на любом устройстве.",
     feat8_title:"7 языков",feat8_p:"Доступно на английском, французском, немецком, испанском, итальянском, португальском и русском.",
-    how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте набор экстренной помощи в несколько шагов.",
-    step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку, без настроек.",
-    step2_h:"Соберите рюкзак",step2_p:"Добавляйте предметы по категориям. Используйте встроенный список или создавайте свои.",
-    step3_h:"Отслеживайте запасы",step3_p:"Установите уровни запасов и даты истечения. Позвольте GoBag+ напоминать о пополнении.",
-    step4_h:"Делитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud, чтобы вся семья была готова вместе.",
+    how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте аварийный набор за несколько простых шагов.",
+    step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку — никаких дополнительных настроек.",
+    step2_h:"Соберите чемоданчик",step2_p:"Добавляйте предметы по категориям. Используйте готовый список или создавайте свои пункты.",
+    step3_h:"Следите за запасами",step3_p:"Задайте уровни запасов и сроки годности. GoBag+ напомнит, когда пора пополнить.",
+    step4_h:"Поделитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud — вся семья будет готова вместе.",
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",
@@ -920,7 +924,6 @@ function setLang(lang) {
   document.querySelectorAll('.lang-option').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
-  document.getElementById('currentFlag').textContent = FLAGS[lang];
   document.getElementById('currentLangCode').textContent = LANG_NAMES[lang];
   document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
