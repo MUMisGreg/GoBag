@@ -8,7 +8,8 @@
     <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
     <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
     <meta property="og:type" content="website">
-    <link rel="icon" type="image/png" href="GB+icon.png">
+    <link rel="icon" type="image/png" href="GB%2Bicon.png">
+    <link rel="apple-touch-icon" href="GB%2Bicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -76,22 +77,22 @@
         .lang-trigger {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             background: none;
             border: none;
-            color: rgba(232,240,255,0.45);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 2px;
+            color: rgba(232,240,255,0.40);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 0;
             cursor: pointer;
             transition: color 0.2s;
             font-family: inherit;
             white-space: nowrap;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
         }
-        .lang-trigger:hover { color: rgba(232,240,255,0.75); }
-        .lang-trigger .globe { font-size: 14px; opacity: 0.7; }
-        .lang-trigger .arrow { font-size: 9px; opacity: 0.6; transition: transform 0.2s; }
+        .lang-trigger:hover { color: rgba(232,240,255,0.70); }
+        .lang-trigger .globe { font-size: 11px; opacity: 0.6; }
+        .lang-trigger .arrow { font-size: 8px; opacity: 0.5; transition: transform 0.2s; }
         .lang-switcher.open .lang-trigger { color: rgba(232,240,255,0.75); }
         .lang-switcher.open .arrow { transform: rotate(180deg); }
         .lang-dropdown {
@@ -416,7 +417,7 @@
 
 <!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo"><img src="GB+icon.png" alt="GoBag+">GoBag<span>+</span></a>
+    <a href="#" class="nav-logo"><img src="GB%2Bicon.png" alt="GoBag+">GoBag<span>+</span></a>
     <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today.</span>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
