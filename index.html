@@ -417,6 +417,106 @@
         /* DIVIDER */
         .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
 
+        /* ====== LIVE ANIMATIONS ====== */
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0; transform: translateY(36px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.07s; } .d2 { transition-delay: 0.16s; }
+        .d3 { transition-delay: 0.25s; } .d4 { transition-delay: 0.34s; }
+
+        /* Hero animated orbs */
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; will-change: transform; }
+        .hero-orb-1 { width: 650px; height: 650px; background: rgba(42,111,240,0.22); top: -180px; left: -120px; animation: orbDrift1 14s ease-in-out infinite; }
+        .hero-orb-2 { width: 520px; height: 520px; background: rgba(255,107,26,0.16); bottom: -80px; right: -100px; animation: orbDrift2 17s ease-in-out infinite; }
+        .hero-orb-3 { width: 380px; height: 380px; background: rgba(0,180,216,0.14); top: 45%; left: 48%; transform: translate(-50%,-50%); animation: orbPulse 9s ease-in-out infinite; }
+        @keyframes orbDrift1 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(50px,-40px) scale(1.06); }
+            66% { transform: translate(-25px,30px) scale(0.95); }
+        }
+        @keyframes orbDrift2 {
+            0%,100% { transform: translate(0,0) scale(1); }
+            40% { transform: translate(-40px,50px) scale(1.08); }
+            70% { transform: translate(30px,-25px) scale(0.96); }
+        }
+        @keyframes orbPulse {
+            0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+        }
+
+        /* Floating particles */
+        .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .particle {
+            position: absolute; border-radius: 50%;
+            background: rgba(0,180,216,0.6);
+            animation: particleRise linear infinite;
+        }
+        @keyframes particleRise {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            8% { opacity: 1; }
+            92% { opacity: 0.4; }
+            100% { transform: translateY(-85vh) translateX(var(--dx,0px)); opacity: 0; }
+        }
+
+        /* Animated gradient on hero span */
+        .hero h1 span {
+            background: linear-gradient(135deg, #00c8e8, #2a6ff0, #00e5ff, #2a6ff0, #00b4d8);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero badge pulse */
+        .hero-badge { animation: badgePulse 3.5s ease-in-out infinite; }
+        @keyframes badgePulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(0,180,216,0.35); }
+            60% { box-shadow: 0 0 0 8px rgba(0,180,216,0); }
+        }
+
+        /* App Store button shimmer */
+        .btn-primary { overflow: hidden; position: relative; }
+        .btn-primary::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+            animation: shimmer 3.5s ease-in-out infinite; animation-delay: 1.2s;
+        }
+        @keyframes shimmer { 0% { left: -100%; } 100% { left: 200%; } }
+
+        /* Step number glow pulse */
+        .step-num { animation: stepGlow 3.5s ease-in-out infinite; }
+        .step:nth-child(2) .step-num { animation-delay: 0.5s; }
+        .step:nth-child(3) .step-num { animation-delay: 1s; }
+        .step:nth-child(4) .step-num { animation-delay: 1.5s; }
+        @keyframes stepGlow {
+            0%,100% { box-shadow: 0 4px 20px rgba(42,111,240,0.4); }
+            50% { box-shadow: 0 4px 30px rgba(42,111,240,0.75), 0 0 40px rgba(0,180,216,0.25); }
+        }
+
+        /* Featured pricing card glow */
+        @keyframes featuredGlow {
+            0%,100% { box-shadow: 0 0 24px rgba(0,180,216,0.1); }
+            50% { box-shadow: 0 0 48px rgba(0,180,216,0.28); }
+        }
+        .pricing-card.featured { animation: featuredGlow 3.5s ease-in-out infinite; }
+
+        /* Family banner glow */
+        @keyframes familyGlow {
+            0%,100% { box-shadow: none; }
+            50% { box-shadow: 0 0 50px rgba(0,180,216,0.12); }
+        }
+        .family-banner { animation: familyGlow 5s ease-in-out infinite; }
+
         /* SCREENSHOTS */
         .screenshots-section { padding: 80px 24px 60px; overflow: hidden; }
         .screenshots-carousel { position: relative; margin-top: 52px; }
@@ -466,7 +566,10 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
 <h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
         <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.</p>
@@ -490,9 +593,9 @@
 <!-- SCREENSHOTS -->
 <section class="screenshots-section">
     <div class="container">
-        <div class="section-label" data-i18n="screenshots_label">App Preview</div>
-        <h2 class="section-title" data-i18n="screenshots_title">See it in action</h2>
-        <p class="section-sub" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
+        <div class="section-label reveal" data-i18n="screenshots_label">App Preview</div>
+        <h2 class="section-title reveal d1" data-i18n="screenshots_title">See it in action</h2>
+        <p class="section-sub reveal d2" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
         <div style="text-align:center;margin-bottom:36px;display:flex;flex-direction:column;align-items:center;gap:14px">
             <a href="demo.html" class="btn-demo">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
@@ -525,9 +628,9 @@
 <!-- FEATURES -->
 <section id="features">
     <div class="container">
-        <div class="section-label" data-i18n="features_label">Features</div>
-        <h2 class="section-title" data-i18n-html="features_title">Everything you need<br>to stay prepared</h2>
-        <p class="section-sub" data-i18n="features_sub">GoBag+ covers every aspect of emergency readiness.</p>
+        <div class="section-label reveal" data-i18n="features_label">Features</div>
+        <h2 class="section-title reveal d1" data-i18n-html="features_title">Everything you need<br>to stay prepared</h2>
+        <p class="section-sub reveal d2" data-i18n="features_sub">GoBag+ covers every aspect of emergency readiness.</p>
 
         <div class="features-carousel">
             <button class="carousel-btn prev" id="featPrev" onclick="featMove(-1)" aria-label="Previous">&#8592;</button>
@@ -585,26 +688,26 @@
 <!-- HOW IT WORKS -->
 <section>
     <div class="container">
-        <div class="section-label" data-i18n="how_label">How it works</div>
-        <h2 class="section-title" data-i18n="how_title">Ready in minutes</h2>
-        <p class="section-sub" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
+        <div class="section-label reveal" data-i18n="how_label">How it works</div>
+        <h2 class="section-title reveal d1" data-i18n="how_title">Ready in minutes</h2>
+        <p class="section-sub reveal d2" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
         <div class="steps">
-            <div class="step">
+            <div class="step reveal d1">
                 <div class="step-num">1</div>
                 <h3 data-i18n="step1_h">Choose your language</h3>
                 <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
             </div>
-            <div class="step">
+            <div class="step reveal d2">
                 <div class="step-num">2</div>
                 <h3 data-i18n="step2_h">Build your go bag</h3>
                 <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
             </div>
-            <div class="step">
+            <div class="step reveal d3">
                 <div class="step-num">3</div>
                 <h3 data-i18n="step3_h">Track your supplies</h3>
                 <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
             </div>
-            <div class="step">
+            <div class="step reveal d4">
                 <div class="step-num">4</div>
                 <h3 data-i18n="step4_h">Share with family</h3>
                 <p data-i18n="step4_p">Sync everything via iCloud so your whole family stays prepared together.</p>
@@ -618,7 +721,7 @@
 <!-- FAMILY SHARING -->
 <section>
     <div class="container" style="max-width:680px">
-        <div class="family-banner">
+        <div class="family-banner reveal">
             <div class="family-icon">👨‍👩‍👧‍👦</div>
             <div class="family-text">
                 <h2 data-i18n="family_h2">One subscription, whole family covered</h2>
@@ -633,11 +736,11 @@
 <!-- PRICING -->
 <section>
     <div class="container" style="text-align:center">
-        <div class="section-label" data-i18n="pricing_label">Pricing</div>
-        <h2 class="section-title" data-i18n="pricing_title">Simple, honest pricing</h2>
-        <p class="section-sub" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
+        <div class="section-label reveal" data-i18n="pricing_label">Pricing</div>
+        <h2 class="section-title reveal d1" data-i18n="pricing_title">Simple, honest pricing</h2>
+        <p class="section-sub reveal d2" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
         <div class="pricing-grid">
-            <div class="pricing-card">
+            <div class="pricing-card reveal d1">
                 <div class="pricing-name" data-i18n="free_name">Free</div>
                 <div class="pricing-price" data-i18n-html="free_price">$0</div>
                 <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
@@ -647,7 +750,7 @@
                     <li data-i18n="free_f3">Emergency contacts</li>
                 </ul>
             </div>
-            <div class="pricing-card featured">
+            <div class="pricing-card featured reveal d2">
                 <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
                 <div class="pricing-price" data-i18n-html="yearly_price">$29.99 <span>/year</span></div>
                 <div class="pricing-desc" data-i18n="yearly_desc">≈ €1.25/month · 1 month free trial</div>
@@ -661,7 +764,7 @@
                     <li data-i18n="yearly_f7">Backup &amp; restore</li>
                 </ul>
             </div>
-            <div class="pricing-card">
+            <div class="pricing-card reveal d3">
                 <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
                 <div class="pricing-price" data-i18n-html="lifetime_price">$59.99 <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
@@ -679,8 +782,8 @@
 
 <!-- CTA -->
 <div class="cta-section">
-    <h2 data-i18n="cta_h2">Start your free trial today</h2>
-    <p data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <h2 class="reveal" data-i18n="cta_h2">Start your free trial today</h2>
+    <p class="reveal d1" data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
     <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <span data-i18n="cta_btn">Download on the App Store</span>
@@ -1076,6 +1179,47 @@ function setLang(lang) {
   };
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('carouselPrev').disabled = true;
+  });
+})();
+
+// ====== SCROLL REVEAL ======
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ====== FLOATING PARTICLES ======
+(function() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*20}%;
+      --dx:${(Math.random()-0.5)*80}px;
+      animation-duration:${6+Math.random()*10}s;
+      animation-delay:${Math.random()*8}s;
+      opacity:${0.3+Math.random()*0.5};
+      background:${Math.random()>0.5?'rgba(0,180,216,0.6)':'rgba(42,111,240,0.5)'};
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// ====== MOUSE PARALLAX ON HERO ORBS ======
+(function() {
+  const orbs = document.querySelectorAll('.hero-orb');
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    orbs.forEach((orb, i) => {
+      const f = (i + 1) * 22;
+      orb.style.transform = `translate(${x*f}px,${y*f}px)`;
+    });
   });
 })();
 </script>
