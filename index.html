@@ -328,6 +328,7 @@
             gap: 24px;
             max-width: 960px;
             margin: 0 auto;
+            padding-top: 20px;
         }
         @media (max-width: 700px) {
             .pricing-grid { grid-template-columns: 1fr; }
@@ -338,22 +339,26 @@
             border-radius: 24px;
             padding: 36px 28px;
             position: relative;
+            overflow: visible;
         }
         .pricing-card.featured {
             border-color: rgba(0,180,216,0.4);
             background: rgba(0,180,216,0.06);
         }
         .pricing-badge {
-            display: inline-block;
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(135deg, var(--cyan), var(--blue));
             color: white;
             font-size: 0.62rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 50px;
-            margin-bottom: 14px;
+            white-space: nowrap;
         }
         .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
         .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
