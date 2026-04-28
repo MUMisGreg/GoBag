@@ -3404,19 +3404,12 @@ function renderRelationList() {
 // Apply language from main site — runs after all variables are defined
 (function() {
   applySettingsLang();
-  if (currentLang !== 'en') {
-    const idx = LS_CODES.indexOf(currentLang);
-    if (idx !== -1) {
-      lsSelectedLang = idx;
-      document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
-      document.getElementById('lsPickerBtn').classList.add('selected');
-      document.getElementById('lsContinueBtn').disabled = false;
-    }
-    document.getElementById('screen-lang-select').classList.add('hidden');
-    document.getElementById('screen-onboarding').classList.remove('hidden', 'slide-left');
-    currentScreen = 'screen-onboarding';
-    obSlideIdx = 0;
-    renderOnboarding();
+  const idx = LS_CODES.indexOf(currentLang);
+  if (idx !== -1) {
+    lsSelectedLang = idx;
+    document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
+    document.getElementById('lsPickerBtn').classList.add('selected');
+    document.getElementById('lsContinueBtn').disabled = false;
   }
 })();
 </script>
