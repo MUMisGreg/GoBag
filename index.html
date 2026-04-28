@@ -978,21 +978,62 @@ function setLang(lang) {
 // FEATURES CAROUSEL
 (function() {
   let offset = 0;
-  window.featMove = function(dir) {
+  let autoTimer = null;
+
+  function getMaxOffset() {
     const track = document.getElementById('featTrack');
-    const wrap = track.parentElement;
-    const cards = track.querySelectorAll('.feature-card');
-    if (!cards.length) return;
-    const cardW = cards[0].offsetWidth + 20;
-    const visibleW = wrap.offsetWidth;
-    const maxOffset = Math.max(0, track.scrollWidth - visibleW);
-    offset = Math.min(Math.max(0, offset + dir * cardW), maxOffset);
+    if (!track) return 0;
+    return Math.max(0, track.scrollWidth - track.parentElement.offsetWidth);
+  }
+
+  function getCardW() {
+    const cards = document.getElementById('featTrack').querySelectorAll('.feature-card');
+    if (!cards.length) return 300;
+    return cards[0].offsetWidth + 20;
+  }
+
+  function applyOffset() {
+    const track = document.getElementById('featTrack');
+    const maxOffset = getMaxOffset();
     track.style.transform = 'translateX(-' + offset + 'px)';
     document.getElementById('featPrev').disabled = offset <= 0;
     document.getElementById('featNext').disabled = offset >= maxOffset;
+  }
+
+  function autoStep() {
+    const maxOffset = getMaxOffset();
+    if (offset >= maxOffset) {
+      offset = 0;
+    } else {
+      offset = Math.min(offset + getCardW(), maxOffset);
+    }
+    applyOffset();
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(autoStep, 2800);
+  }
+
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  window.featMove = function(dir) {
+    const maxOffset = getMaxOffset();
+    offset = Math.min(Math.max(0, offset + dir * getCardW()), maxOffset);
+    applyOffset();
+    startAuto();
   };
+
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('featPrev').disabled = true;
+    const carousel = document.querySelector('.features-carousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+    }
+    startAuto();
   });
 })();
 
