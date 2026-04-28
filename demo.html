@@ -2727,22 +2727,16 @@ RESERVE_CATEGORIES.forEach(cat => {
 });
 
 let reserveSetupDone = false;
-let reservePeopleCount = 1;
 
 function rsetupChange(dir) {
-  reservePeopleCount = Math.max(1, Math.min(10, reservePeopleCount + dir));
-  document.getElementById('rsetupCount').textContent = reservePeopleCount;
-  document.getElementById('rsetupLabel').textContent = reservePeopleCount + ' person(s)';
-  document.querySelector('.rsetup-stepper-minus').style.opacity = reservePeopleCount <= 1 ? '0.4' : '1';
+  reservePersonCount = Math.max(1, Math.min(10, reservePersonCount + dir));
+  document.getElementById('rsetupCount').textContent = reservePersonCount;
+  document.getElementById('rsetupLabel').textContent = reservePersonCount + ' person(s)';
+  document.querySelector('.rsetup-stepper-minus').style.opacity = reservePersonCount <= 1 ? '0.4' : '1';
 }
 
 function rsetupContinue() {
   reserveSetupDone = true;
-  const label = reservePeopleCount === 1 ? '1 person' : reservePeopleCount + ' people';
-  const el = document.getElementById('personCountLabel');
-  if (el) el.textContent = label;
-  const el2 = document.getElementById('resItemsPerson');
-  if (el2) el2.textContent = 'For ' + reservePeopleCount + ' person(s)';
   renderReserveCatGrid();
   updateReserveStats();
   showScreen('screen-reserve');
@@ -2750,7 +2744,7 @@ function rsetupContinue() {
 
 function goToReserve() {
   if (!reserveSetupDone) {
-    reservePeopleCount = 1;
+    reservePersonCount = 1;
     document.getElementById('rsetupCount').textContent = '1';
     document.getElementById('rsetupLabel').textContent = '1 person(s)';
     document.querySelector('.rsetup-stepper-minus').style.opacity = '0.4';
