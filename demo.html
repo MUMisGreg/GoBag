@@ -224,7 +224,7 @@ body {
 .main-top-bar {
   position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: flex-end;
-  padding: 4px 14px 0;
+  padding: 44px 14px 0;
   flex-shrink: 0; gap: 8px;
 }
 .top-bar-group {
@@ -251,8 +251,8 @@ body {
 #screen-main .main-content {
   position: relative; z-index: 1; flex: 1;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start;
-  padding: 20px 20px 20px;
+  align-items: center; justify-content: center;
+  padding: 20px 20px 40px;
   gap: 0;
 }
 .greeting {
@@ -269,9 +269,10 @@ body {
 
 /* BIG ROUND BUTTONS */
 .round-btns {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 100px;
-  margin-top: 24px; width: 100%;
+  display: flex; flex-direction: row;
+  align-items: center; justify-content: center;
+  gap: 40px;
+  margin-top: 36px; width: 100%;
 }
 .round-btn {
   width: 100px; height: 100px; border-radius: 50%;
@@ -370,7 +371,7 @@ body {
 .ios-nav-bar {
   position: relative; z-index: 1;
   display: flex; align-items: center;
-  padding: 6px 14px 8px;
+  padding: 44px 14px 8px;
   flex-shrink: 0;
   gap: 8px;
 }
@@ -414,7 +415,7 @@ body {
 .bags-nav-bar {
   position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 14px 8px; flex-shrink: 0;
+  padding: 44px 14px 8px; flex-shrink: 0;
 }
 .nav-circle-btn {
   width: 32px; height: 32px; border-radius: 50%;
@@ -704,7 +705,7 @@ body {
 #screen-settings { background: #111113; }
 .sett-header {
   display: flex; align-items: center; justify-content: center;
-  padding: 14px 16px 10px; position: relative;
+  padding: 44px 16px 10px; position: relative;
 }
 .sett-title { font-size: 1rem; font-weight: 700; color: white; }
 .sett-done-btn {
@@ -749,7 +750,7 @@ body {
 #screen-new-contact { background: #0d0d10; }
 .nc-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 14px 8px;
+  padding: 44px 14px 8px;
   position: relative; z-index: 250;
 }
 .nc-pill-btn {
@@ -1473,7 +1474,7 @@ body {
         <div class="bg-gradient"></div>
         <div class="bg-blob1"></div>
 
-        <div class="ios-nav-bar" style="padding:6px 10px 4px">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
           <div style="display:flex;gap:6px">
             <button class="nav-circle-btn" onclick="goBack('screen-bags')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1515,7 +1516,7 @@ body {
 
       <!-- ===== SCREEN 4: CATEGORY ITEMS ===== -->
       <div class="screen hidden" id="screen-items">
-        <div class="ios-nav-bar" style="padding:6px 10px 4px">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
           <button class="nav-circle-btn items-back-btn" onclick="goBack('screen-gobag')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
@@ -1591,7 +1592,7 @@ body {
         <div class="sos-bg-blob-teal"></div>
         <div class="sos-bg-blob-warm"></div>
 
-        <div class="ios-nav-bar" style="padding:6px 10px 4px">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
           <button class="nav-circle-btn sos-nav-share" onclick="showDemoModal('Share Contacts', 'Export your emergency contacts as a PDF to print or share.')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           </button>
@@ -1628,7 +1629,7 @@ body {
         <div class="bg-gradient"></div>
         <div class="bg-blob1"></div>
 
-        <div class="ios-nav-bar" style="padding:6px 10px 4px">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
           <button class="nav-circle-btn" onclick="goBack('screen-main')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
@@ -1671,7 +1672,7 @@ body {
 
       <!-- ===== SCREEN 6: RESERVE ITEMS ===== -->
       <div class="screen hidden" id="screen-reserve-items">
-        <div class="ios-nav-bar" style="padding:6px 10px 4px">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
           <button class="nav-circle-btn items-back-btn" onclick="goBack('screen-reserve')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
