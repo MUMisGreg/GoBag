@@ -194,7 +194,7 @@
             background: linear-gradient(135deg, var(--blue), var(--cyan));
             color: white;
             text-decoration: none;
-            padding: 14px 32px;
+            padding: 18px 12px;
             border-radius: 14px;
             font-size: 0.9rem;
             font-weight: 600;
@@ -259,16 +259,16 @@
         }
 
         /* FEATURES */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
+        .features-carousel { position: relative; margin-top: 40px; }
+        .features-track-wrap { overflow: hidden; }
+        .features-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
         .feature-card {
+            flex-shrink: 0;
+            width: 280px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
-            padding: 32px;
+            padding: 28px;
             transition: border-color 0.2s, transform 0.2s;
         }
         .feature-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
@@ -472,6 +472,13 @@
         <div class="section-label" data-i18n="screenshots_label">App Preview</div>
         <h2 class="section-title" data-i18n="screenshots_title">See it in action</h2>
         <p class="section-sub" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
+        <div style="text-align:center;margin-bottom:36px;display:flex;flex-direction:column;align-items:center;gap:14px">
+            <a href="demo.html" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,rgba(0,180,216,0.15),rgba(42,111,240,0.15));border:1px solid rgba(0,180,216,0.35);color:#00b4d8;text-decoration:none;padding:14px 12px;border-radius:14px;font-size:0.9rem;font-weight:600;transition:all 0.2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(0,180,216,0.25),rgba(42,111,240,0.25))';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(0,180,216,0.15),rgba(42,111,240,0.15))';this.style.transform='translateY(0)'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                <span data-i18n="try_demo_btn">Try the app in your browser →</span>
+            </a>
+            <p style="font-size:0.72rem;color:rgba(232,240,255,0.35);font-weight:300" data-i18n="try_demo_hint">Interactive demo · No download needed</p>
+        </div>
         <div class="screenshots-carousel">
             <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
             <div class="screenshots-track-wrap">
@@ -501,47 +508,53 @@
         <h2 class="section-title" data-i18n-html="features_title">Everything you need<br>to stay prepared</h2>
         <p class="section-sub" data-i18n="features_sub">GoBag+ covers every aspect of emergency readiness.</p>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🎒</div>
-                <h3 data-i18n="feat1_title">Go Bag Builder</h3>
-                <p data-i18n="feat1_p">Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
+        <div class="features-carousel">
+            <button class="carousel-btn prev" id="featPrev" onclick="featMove(-1)" aria-label="Previous">&#8592;</button>
+            <div class="features-track-wrap">
+                <div class="features-scroll" id="featTrack">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🎒</div>
+                        <h3 data-i18n="feat1_title">Go Bag Builder</h3>
+                        <p data-i18n="feat1_p">Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(0,180,216,0.15)">🏠</div>
+                        <h3 data-i18n="feat2_title">Home Supply Tracker</h3>
+                        <p data-i18n="feat2_p">Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(255,107,26,0.15)">📱</div>
+                        <h3 data-i18n="feat3_title">Emergency Contacts</h3>
+                        <p data-i18n="feat3_p">Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(100,200,100,0.15)">☁️</div>
+                        <h3 data-i18n="feat4_title">Family iCloud Sync</h3>
+                        <p data-i18n="feat4_p">Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(180,100,255,0.15)">🔔</div>
+                        <h3 data-i18n="feat5_title">Smart Notifications</h3>
+                        <p data-i18n="feat5_p">Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(255,200,0,0.15)">📊</div>
+                        <h3 data-i18n="feat6_title">Home Screen Widget</h3>
+                        <p data-i18n="feat6_p">See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(0,180,216,0.15)">💾</div>
+                        <h3 data-i18n="feat7_title">Backup &amp; Restore</h3>
+                        <p data-i18n="feat7_p">Export your data anytime and restore it on any device. Your preparation is never lost.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🌍</div>
+                        <h3 data-i18n="feat8_title">7 Languages</h3>
+                        <p data-i18n="feat8_p">Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(0,180,216,0.15)">🏠</div>
-                <h3 data-i18n="feat2_title">Home Supply Tracker</h3>
-                <p data-i18n="feat2_p">Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(255,107,26,0.15)">📱</div>
-                <h3 data-i18n="feat3_title">Emergency Contacts</h3>
-                <p data-i18n="feat3_p">Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(100,200,100,0.15)">☁️</div>
-                <h3 data-i18n="feat4_title">Family iCloud Sync</h3>
-                <p data-i18n="feat4_p">Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(180,100,255,0.15)">🔔</div>
-                <h3 data-i18n="feat5_title">Smart Notifications</h3>
-                <p data-i18n="feat5_p">Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(255,200,0,0.15)">📊</div>
-                <h3 data-i18n="feat6_title">Home Screen Widget</h3>
-                <p data-i18n="feat6_p">See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(0,180,216,0.15)">💾</div>
-                <h3 data-i18n="feat7_title">Backup &amp; Restore</h3>
-                <p data-i18n="feat7_p">Export your data anytime and restore it on any device. Your preparation is never lost.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🌍</div>
-                <h3 data-i18n="feat8_title">7 Languages</h3>
-                <p data-i18n="feat8_p">Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
-            </div>
+            <button class="carousel-btn next" id="featNext" onclick="featMove(1)" aria-label="Next">&#8594;</button>
         </div>
     </div>
 </section>
@@ -709,6 +722,7 @@ const T = {
     lifetime_name:"Lifetime",lifetime_price:'$59.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
     lifetime_f1:"Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
+    try_demo_btn:"Try the app in your browser →",try_demo_hint:"Interactive demo · No download needed",
     footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
   },
   fr: {
@@ -741,6 +755,7 @@ const T = {
     lifetime_name:"À vie",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
     lifetime_f1:"Fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Toutes les mises à jour futures",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
+    try_demo_btn:"Essayer l'app dans votre navigateur →",try_demo_hint:"Démo interactive · Sans téléchargement",
     footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
   },
   de: {
@@ -773,6 +788,7 @@ const T = {
     lifetime_name:"Lebenslang",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
     lifetime_f1:"Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Alle zukünftigen Updates",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
+    try_demo_btn:"App im Browser testen →",try_demo_hint:"Interaktive Demo · Kein Download nötig",
     footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
   },
   es: {
@@ -805,6 +821,7 @@ const T = {
     lifetime_name:"De por vida",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Pago único · Sin suscripción",
     lifetime_f1:"Funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Todas las actualizaciones futuras",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
+    try_demo_btn:"Probar la app en el navegador →",try_demo_hint:"Demo interactiva · Sin descarga",
     footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
   },
   it: {
@@ -837,6 +854,7 @@ const T = {
     lifetime_name:"A vita",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
     lifetime_f1:"Funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Tutti gli aggiornamenti futuri",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
+    try_demo_btn:"Prova l'app nel browser →",try_demo_hint:"Demo interattiva · Nessun download",
     footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
   },
   pt: {
@@ -869,6 +887,7 @@ const T = {
     lifetime_name:"Vitalício",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
     lifetime_f1:"Funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Todas as atualizações futuras",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
+    try_demo_btn:"Experimentar a app no browser →",try_demo_hint:"Demo interativa · Sem download",
     footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
   },
   ru: {
@@ -901,6 +920,7 @@ const T = {
     lifetime_name:"Навсегда",lifetime_price:'69,99€ <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
     lifetime_f1:"Функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Все будущие обновления",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
+    try_demo_btn:"Попробовать в браузере →",try_demo_hint:"Интерактивное демо · Без скачивания",
     footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
   }
 };
@@ -953,6 +973,27 @@ function setLang(lang) {
   const supported = ['en','fr','de','es','it','pt','ru'];
   const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
   setLang(lang);
+})();
+
+// FEATURES CAROUSEL
+(function() {
+  let offset = 0;
+  window.featMove = function(dir) {
+    const track = document.getElementById('featTrack');
+    const wrap = track.parentElement;
+    const cards = track.querySelectorAll('.feature-card');
+    if (!cards.length) return;
+    const cardW = cards[0].offsetWidth + 20;
+    const visibleW = wrap.offsetWidth;
+    const maxOffset = Math.max(0, track.scrollWidth - visibleW);
+    offset = Math.min(Math.max(0, offset + dir * cardW), maxOffset);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    document.getElementById('featPrev').disabled = offset <= 0;
+    document.getElementById('featNext').disabled = offset >= maxOffset;
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('featPrev').disabled = true;
+  });
 })();
 
 // CAROUSEL
