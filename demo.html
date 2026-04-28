@@ -1379,7 +1379,7 @@ body {
 
 <div class="page-header">
   <h1>Try <span>GoBag+</span></h1>
-  <p>This is a simplified interactive demo — tap the cards and items to explore</p>
+  <p id="demoSubtitle">This is a simplified interactive demo — tap the cards and items to explore</p>
 </div>
 
 <div class="phone-wrap">
@@ -2114,7 +2114,7 @@ body {
 </div><!-- /phone-wrap -->
 
 <div class="demo-cta">
-  <p>Like what you see? Get the real app.</p>
+  <p id="demoCta">Like what you see? Get the real app.</p>
   <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-download" target="_blank">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
     Download on the App Store
@@ -3117,7 +3117,9 @@ const LANG_STRINGS = {
         ob3Title:'Reserve', ob3Sub:'Track your home supplies',
         ob4Title:'Emergency Contacts', ob4Sub:'Key numbers always within reach',
         ob5Title:'Family & Alerts', ob5List:['Expiry reminders','One plan for the whole family','Syncs across all your devices'],
-        nameScreenTitle:"What's Your Name?", nameScreenSub:'Enter your name', namePlaceholder:'Your name' },
+        nameScreenTitle:"What's Your Name?", nameScreenSub:'Enter your name', namePlaceholder:'Your name',
+        demoSubtitle:'This is a simplified interactive demo — tap the cards and items to explore',
+        demoCta:'Like what you see? Get the real app.' },
   fr: { settings:'Réglages', done:'OK', appearance:'Apparence', darkMode:'Mode sombre',
         notifSection:'Notifications', notifTitle:'Notifications', notifSub:"Soyez alerté quand des articles sont sur le point d'expirer.",
         userSection:'Utilisateur', nameTitle:'Nom', langSection:'Langue', langTitle:'Langue',
@@ -3132,7 +3134,9 @@ const LANG_STRINGS = {
         ob3Title:'Réserve', ob3Sub:'Suivez vos provisions à domicile',
         ob4Title:'Contacts d\'urgence', ob4Sub:'Numéros clés toujours à portée',
         ob5Title:'Famille & Alertes', ob5List:['Rappels d\'expiration','Un plan pour toute la famille','Synchronisé sur tous vos appareils'],
-        nameScreenTitle:'Votre Prénom ?', nameScreenSub:'Entrez votre prénom', namePlaceholder:'Votre prénom' },
+        nameScreenTitle:'Votre Prénom ?', nameScreenSub:'Entrez votre prénom', namePlaceholder:'Votre prénom',
+        demoSubtitle:'Démo interactive simplifiée — appuyez sur les cartes et les éléments pour explorer',
+        demoCta:'Vous aimez ce que vous voyez ? Obtenez la vraie application.' },
   de: { settings:'Einstellungen', done:'Fertig', appearance:'Darstellung', darkMode:'Dunkelmodus',
         notifSection:'Benachrichtigungen', notifTitle:'Benachrichtigungen', notifSub:'Erhalten Sie Hinweise wenn Artikel ablaufen.',
         userSection:'Benutzer', nameTitle:'Name', langSection:'Sprache', langTitle:'Sprache',
@@ -3147,7 +3151,9 @@ const LANG_STRINGS = {
         ob3Title:'Vorrat', ob3Sub:'Verfolgen Sie Ihre Haushaltsvorräte',
         ob4Title:'Notfallkontakte', ob4Sub:'Wichtige Nummern immer griffbereit',
         ob5Title:'Familie & Alarme', ob5List:['Ablauferinnerungen','Ein Plan für die ganze Familie','Synchronisiert auf allen Geräten'],
-        nameScreenTitle:'Wie heißen Sie?', nameScreenSub:'Geben Sie Ihren Namen ein', namePlaceholder:'Ihr Name' },
+        nameScreenTitle:'Wie heißen Sie?', nameScreenSub:'Geben Sie Ihren Namen ein', namePlaceholder:'Ihr Name',
+        demoSubtitle:'Vereinfachte interaktive Demo — tippen Sie auf Karten und Elemente zum Erkunden',
+        demoCta:'Gefällt Ihnen was Sie sehen? Holen Sie sich die echte App.' },
   es: { settings:'Ajustes', done:'Listo', appearance:'Apariencia', darkMode:'Modo oscuro',
         notifSection:'Notificaciones', notifTitle:'Notificaciones', notifSub:'Reciba alertas cuando los artículos estén por vencer.',
         userSection:'Usuario', nameTitle:'Nombre', langSection:'Idioma', langTitle:'Idioma',
@@ -3162,7 +3168,9 @@ const LANG_STRINGS = {
         ob3Title:'Reserva', ob3Sub:'Controla tus suministros del hogar',
         ob4Title:'Contactos de emergencia', ob4Sub:'Números clave siempre al alcance',
         ob5Title:'Familia y Alertas', ob5List:['Recordatorios de vencimiento','Un plan para toda la familia','Sincronizado en todos sus dispositivos'],
-        nameScreenTitle:'¿Cómo te llamas?', nameScreenSub:'Ingresa tu nombre', namePlaceholder:'Tu nombre' },
+        nameScreenTitle:'¿Cómo te llamas?', nameScreenSub:'Ingresa tu nombre', namePlaceholder:'Tu nombre',
+        demoSubtitle:'Demo interactiva simplificada — toca las tarjetas y los elementos para explorar',
+        demoCta:'¿Te gusta lo que ves? Descarga la app real.' },
   it: { settings:'Impostazioni', done:'Fine', appearance:'Aspetto', darkMode:'Modalità scura',
         notifSection:'Notifiche', notifTitle:'Notifiche', notifSub:'Ricevi avvisi quando gli articoli stanno per scadere.',
         userSection:'Utente', nameTitle:'Nome', langSection:'Lingua', langTitle:'Lingua',
@@ -3177,7 +3185,9 @@ const LANG_STRINGS = {
         ob3Title:'Riserva', ob3Sub:'Tieni traccia delle scorte di casa',
         ob4Title:'Contatti di emergenza', ob4Sub:'Numeri chiave sempre a portata di mano',
         ob5Title:'Famiglia e Avvisi', ob5List:['Promemoria di scadenza','Un piano per tutta la famiglia','Sincronizzato su tutti i dispositivi'],
-        nameScreenTitle:'Come ti chiami?', nameScreenSub:'Inserisci il tuo nome', namePlaceholder:'Il tuo nome' },
+        nameScreenTitle:'Come ti chiami?', nameScreenSub:'Inserisci il tuo nome', namePlaceholder:'Il tuo nome',
+        demoSubtitle:'Demo interattiva semplificata — tocca le schede e gli elementi per esplorare',
+        demoCta:'Ti piace quello che vedi? Scarica la vera app.' },
   pt: { settings:'Definições', done:'OK', appearance:'Aparência', darkMode:'Modo escuro',
         notifSection:'Notificações', notifTitle:'Notificações', notifSub:'Receba alertas quando os itens estiverem prestes a expirar.',
         userSection:'Utilizador', nameTitle:'Nome', langSection:'Idioma', langTitle:'Idioma',
@@ -3192,7 +3202,9 @@ const LANG_STRINGS = {
         ob3Title:'Reserva', ob3Sub:'Controle os seus suprimentos domésticos',
         ob4Title:'Contatos de emergência', ob4Sub:'Números importantes sempre ao alcance',
         ob5Title:'Família e Alertas', ob5List:['Lembretes de validade','Um plano para toda a família','Sincronizado em todos os dispositivos'],
-        nameScreenTitle:'Qual é o seu nome?', nameScreenSub:'Introduza o seu nome', namePlaceholder:'O seu nome' },
+        nameScreenTitle:'Qual é o seu nome?', nameScreenSub:'Introduza o seu nome', namePlaceholder:'O seu nome',
+        demoSubtitle:'Demo interativa simplificada — toque nos cartões e itens para explorar',
+        demoCta:'Gostou do que viu? Obtenha a aplicação real.' },
   ru: { settings:'Настройки', done:'Готово', appearance:'Внешний вид', darkMode:'Тёмный режим',
         notifSection:'Уведомления', notifTitle:'Уведомления', notifSub:'Получайте уведомления когда товары истекают.',
         userSection:'Пользователь', nameTitle:'Имя', langSection:'Язык', langTitle:'Язык',
@@ -3207,7 +3219,9 @@ const LANG_STRINGS = {
         ob3Title:'Запас', ob3Sub:'Отслеживайте домашние запасы',
         ob4Title:'Экстренные контакты', ob4Sub:'Важные номера всегда под рукой',
         ob5Title:'Семья и оповещения', ob5List:['Напоминания об истечении','Один план для всей семьи','Синхронизация на всех устройствах'],
-        nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя' },
+        nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя',
+        demoSubtitle:'Упрощённая интерактивная демо — нажимайте на карточки и элементы для изучения',
+        demoCta:'Нравится то, что видите? Скачайте настоящее приложение.' },
 };
 
 const VALID_LANGS = ['en','fr','de','es','it','pt','ru'];
@@ -3249,6 +3263,8 @@ function applySettingsLang() {
   set('nameScreenSub', s.nameScreenSub);
   const ni = document.getElementById('nameInput');
   if (ni) ni.placeholder = s.namePlaceholder;
+  set('demoSubtitle', s.demoSubtitle);
+  set('demoCta', s.demoCta);
   if (currentScreen === 'screen-onboarding') renderOnboarding();
 }
 
