@@ -1238,6 +1238,49 @@ body {
 .ls-option.active { color: #00b4d8; }
 
 /* DEMO FEATURE MODAL */
+/* iOS NOTIFICATION ALERT */
+.ios-alert-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9100;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.ios-alert-overlay.open { opacity: 1; pointer-events: all; }
+.ios-alert {
+  width: 258px;
+  background: rgba(44,44,46,0.97);
+  border-radius: 14px;
+  overflow: hidden;
+  transform: scale(0.88);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.ios-alert-overlay.open .ios-alert { transform: scale(1); }
+.ios-alert-title {
+  font-size: 0.82rem; font-weight: 700; color: white;
+  text-align: center; padding: 18px 16px 6px; line-height: 1.35;
+}
+.ios-alert-msg {
+  font-size: 0.72rem; color: rgba(255,255,255,0.6);
+  text-align: center; padding: 0 16px 18px; line-height: 1.45;
+}
+.ios-alert-divider { height: 1px; background: rgba(255,255,255,0.12); }
+.ios-alert-btns {
+  display: flex; flex-direction: row;
+}
+.ios-alert-btn {
+  flex: 1; padding: 13px 8px; background: none; border: none;
+  font-family: inherit; font-size: 0.82rem; font-weight: 400;
+  color: #0a84ff; cursor: pointer; transition: background 0.12s;
+}
+.ios-alert-btn:hover { background: rgba(255,255,255,0.06); }
+.ios-alert-btn-primary { font-weight: 700; }
+.ios-alert-btn-divider { width: 1px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
 .demo-modal-overlay {
   position: absolute;
   inset: 0;
@@ -2036,6 +2079,20 @@ body {
     </div><!-- /screen-container -->
 
     <!-- DEMO FEATURE MODAL (sits above all screens) -->
+    <!-- iOS Notification Permission Alert -->
+    <div class="ios-alert-overlay" id="notifAlertOverlay">
+      <div class="ios-alert">
+        <div class="ios-alert-title">"GoBag+" Would Like to Send You Notifications</div>
+        <div class="ios-alert-msg">Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.</div>
+        <div class="ios-alert-divider"></div>
+        <div class="ios-alert-btns">
+          <button class="ios-alert-btn" onclick="dismissNotifAlert()">Don't Allow</button>
+          <div class="ios-alert-btn-divider"></div>
+          <button class="ios-alert-btn ios-alert-btn-primary" onclick="dismissNotifAlert()">Allow</button>
+        </div>
+      </div>
+    </div>
+
     <div class="demo-modal-overlay" id="demoModalOverlay" onclick="closeDemoModal(event)">
       <div class="demo-modal" onclick="event.stopPropagation()">
         <div class="demo-modal-icon" id="demoModalIcon">
@@ -2284,6 +2341,13 @@ function goToMain() {
   document.getElementById('greetingText').textContent = `Hello, ${name}!`;
   showScreen('screen-main');
   updateBagProgress();
+  setTimeout(() => {
+    document.getElementById('notifAlertOverlay').classList.add('open');
+  }, 700);
+}
+
+function dismissNotifAlert() {
+  document.getElementById('notifAlertOverlay').classList.remove('open');
 }
 
 function openSettings() {
