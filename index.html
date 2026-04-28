@@ -343,6 +343,18 @@
             border-color: rgba(0,180,216,0.4);
             background: rgba(0,180,216,0.06);
         }
+        .pricing-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: white;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
         .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
         .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
         .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
@@ -750,10 +762,10 @@
                     <li data-i18n="free_f3">Emergency contacts</li>
                 </ul>
             </div>
-            <div class="pricing-card featured reveal d2">
+            <div class="pricing-card reveal d2">
                 <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
-                <div class="pricing-price" data-i18n-html="yearly_price">$29.99 <span>/year</span></div>
-                <div class="pricing-desc" data-i18n="yearly_desc">≈ €1.25/month · 1 month free trial</div>
+                <div class="pricing-price" data-i18n-html="yearly_price">$22.99 <span>/year</span></div>
+                <div class="pricing-desc" data-i18n="yearly_desc">≈ $1.92/month · 1 month free trial</div>
                 <ul class="pricing-features">
                     <li data-i18n="yearly_f1">Unlimited Go Bags</li>
                     <li data-i18n="yearly_f2">All item categories</li>
@@ -764,7 +776,8 @@
                     <li data-i18n="yearly_f7">Backup &amp; restore</li>
                 </ul>
             </div>
-            <div class="pricing-card reveal d3">
+            <div class="pricing-card featured reveal d3">
+                <div class="pricing-badge" data-i18n="pricing_badge">Best Value</div>
                 <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
                 <div class="pricing-price" data-i18n-html="lifetime_price">$59.99 <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
@@ -841,7 +854,7 @@ const T = {
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",
     free_name:"Free",free_price:'$0',free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
-    yearly_name:"Premium Yearly",yearly_price:'$29.99 <span>/year</span>',yearly_desc:"≈ $2.50/month · 1 month free trial",
+    yearly_name:"Premium Yearly",yearly_price:'$22.99 <span>/year</span>',yearly_desc:"≈ $1.92/month · 1 month free trial",
     yearly_f1:"Unlimited Go Bags",yearly_f2:"All item categories",yearly_f3:"Home reserve tracking",yearly_f4:"Family iCloud sync",yearly_f5:"Family Sharing (up to 5)",yearly_f6:"Widget + notifications",yearly_f7:"Backup & restore",
     lifetime_name:"Lifetime",lifetime_price:'$59.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
     lifetime_f1:"Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
