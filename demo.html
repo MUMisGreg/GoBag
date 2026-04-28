@@ -2326,25 +2326,6 @@ let currentCategory = null;
 let currentScreen = 'screen-lang-select';
 let historyStack = [];
 
-// If language already chosen on main site, skip lang-select and start in that language
-(function initLang() {
-  applySettingsLang();
-  if (currentLang !== 'en') {
-    const idx = LS_CODES.indexOf(currentLang);
-    if (idx !== -1) {
-      lsSelectedLang = idx;
-      document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
-      document.getElementById('lsPickerBtn').classList.add('selected');
-      document.getElementById('lsContinueBtn').disabled = false;
-    }
-    // Hide lang-select, show onboarding directly
-    document.getElementById('screen-lang-select').classList.add('hidden');
-    document.getElementById('screen-onboarding').classList.remove('hidden', 'slide-left');
-    currentScreen = 'screen-onboarding';
-    obSlideIdx = 0;
-    renderOnboarding();
-  }
-})();
 
 // ============ NAME SCREEN ============
 const nameInput = document.getElementById('nameInput');
@@ -3419,6 +3400,25 @@ function renderRelationList() {
     list.appendChild(row);
   });
 }
+
+// Apply language from main site — runs after all variables are defined
+(function() {
+  applySettingsLang();
+  if (currentLang !== 'en') {
+    const idx = LS_CODES.indexOf(currentLang);
+    if (idx !== -1) {
+      lsSelectedLang = idx;
+      document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
+      document.getElementById('lsPickerBtn').classList.add('selected');
+      document.getElementById('lsContinueBtn').disabled = false;
+    }
+    document.getElementById('screen-lang-select').classList.add('hidden');
+    document.getElementById('screen-onboarding').classList.remove('hidden', 'slide-left');
+    currentScreen = 'screen-onboarding';
+    obSlideIdx = 0;
+    renderOnboarding();
+  }
+})();
 </script>
 </body>
 </html>
