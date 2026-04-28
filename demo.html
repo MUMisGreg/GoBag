@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GoBag+ Interactive Demo</title>
+<link rel="icon" type="image/png" href="screenshots/gobag-icon.png">
+<link rel="apple-touch-icon" href="screenshots/gobag-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -2153,6 +2155,7 @@ function closeLsSheet(e) {
 function selectLsLang(idx) {
   lsSelectedLang = idx;
   currentLang = LS_CODES[idx];
+  localStorage.setItem('gobag_lang', currentLang);
   document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
   document.getElementById('lsPickerBtn').classList.add('selected');
   document.getElementById('lsContinueBtn').disabled = false;
@@ -2322,6 +2325,17 @@ const checkedItems = {}; // 'bag_N' -> { categoryId -> Set }
 let currentCategory = null;
 let currentScreen = 'screen-lang-select';
 let historyStack = [];
+
+// Pre-apply language from main site
+if (currentLang !== 'en') {
+  const idx = LS_CODES.indexOf(currentLang);
+  if (idx !== -1) {
+    document.getElementById('lsPickerLabel').textContent = LS_LANGS[idx];
+    document.getElementById('lsPickerBtn').classList.add('selected');
+    document.getElementById('lsContinueBtn').disabled = false;
+    applySettingsLang();
+  }
+}
 
 // ============ NAME SCREEN ============
 const nameInput = document.getElementById('nameInput');
@@ -3187,7 +3201,9 @@ const LANG_STRINGS = {
         nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя' },
 };
 
-let currentLang = 'en';
+const VALID_LANGS = ['en','fr','de','es','it','pt','ru'];
+const _savedLang = localStorage.getItem('gobag_lang') || new URLSearchParams(location.search).get('lang') || 'en';
+let currentLang = VALID_LANGS.includes(_savedLang) ? _savedLang : 'en';
 
 function applySettingsLang() {
   const s = LANG_STRINGS[currentLang];
