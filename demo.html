@@ -583,6 +583,52 @@ body {
 .item-expiry-label { font-size: 0.6rem; color: #00b4d8; margin-top: 2px; }
 .res-item-expiry-label { font-size: 0.58rem; color: #00b4d8; margin-top: 2px; }
 
+/* RESERVE SETUP SCREEN */
+#screen-reserve-setup { background: #111113; }
+.rsetup-wrap {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 20px 28px 32px;
+}
+.rsetup-body {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 28px;
+}
+.rsetup-icon-circle {
+  width: 110px; height: 110px; border-radius: 50%;
+  background: rgba(52,199,89,0.18);
+  display: flex; align-items: center; justify-content: center;
+}
+.rsetup-question {
+  font-size: 1.15rem; font-weight: 700; color: white;
+  text-align: center; line-height: 1.4;
+}
+.rsetup-stepper {
+  display: flex; align-items: center; gap: 28px;
+}
+.rsetup-stepper-btn {
+  width: 52px; height: 52px; border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; font-weight: 300; cursor: pointer;
+  transition: transform 0.12s;
+}
+.rsetup-stepper-btn:active { transform: scale(0.92); }
+.rsetup-stepper-minus { background: rgba(255,255,255,0.14); color: white; }
+.rsetup-stepper-plus  { background: #34c759; color: white; }
+.rsetup-count {
+  font-size: 2.6rem; font-weight: 800; color: white; min-width: 40px; text-align: center;
+}
+.rsetup-label {
+  font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: -16px;
+}
+.rsetup-continue {
+  width: 100%; padding: 17px; border-radius: 14px;
+  background: #34c759; border: none; color: white;
+  font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.rsetup-continue:hover { opacity: 0.88; }
+
 /* RESERVE ITEMS SCREEN */
 #screen-reserve-items { background: #09090f; }
 .res-items-header {
@@ -1625,6 +1671,34 @@ body {
       </div>
 
       <!-- ===== SCREEN 5: RESERVE ===== -->
+      <!-- ===== SCREEN: RESERVE SETUP ===== -->
+      <div class="screen hidden" id="screen-reserve-setup">
+        <div class="ios-nav-bar" style="padding:44px 10px 4px">
+          <button class="nav-circle-btn" onclick="goBack('screen-main')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="ios-nav-title">Reserve Setup</div>
+          <div style="width:32px"></div>
+        </div>
+        <div class="rsetup-wrap">
+          <div class="rsetup-body">
+            <div class="rsetup-icon-circle">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="#34c759">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              </svg>
+            </div>
+            <div class="rsetup-question">How many people are you<br>preparing the reserve for?</div>
+            <div class="rsetup-stepper">
+              <button class="rsetup-stepper-btn rsetup-stepper-minus" onclick="rsetupChange(-1)">−</button>
+              <div class="rsetup-count" id="rsetupCount">1</div>
+              <button class="rsetup-stepper-btn rsetup-stepper-plus" onclick="rsetupChange(1)">+</button>
+            </div>
+            <div class="rsetup-label" id="rsetupLabel">1 person(s)</div>
+          </div>
+          <button class="rsetup-continue" onclick="rsetupContinue()">Continue</button>
+        </div>
+      </div>
+
       <div class="screen hidden" id="screen-reserve">
         <div class="bg-gradient"></div>
         <div class="bg-blob1"></div>
@@ -2652,10 +2726,35 @@ RESERVE_CATEGORIES.forEach(cat => {
   });
 });
 
-function goToReserve() {
+let reserveSetupDone = false;
+let reservePeopleCount = 1;
+
+function rsetupChange(dir) {
+  reservePeopleCount = Math.max(1, Math.min(10, reservePeopleCount + dir));
+  document.getElementById('rsetupCount').textContent = reservePeopleCount;
+  document.getElementById('rsetupLabel').textContent = reservePeopleCount + ' person(s)';
+  document.querySelector('.rsetup-stepper-minus').style.opacity = reservePeopleCount <= 1 ? '0.4' : '1';
+}
+
+function rsetupContinue() {
+  reserveSetupDone = true;
   renderReserveCatGrid();
   updateReserveStats();
   showScreen('screen-reserve');
+}
+
+function goToReserve() {
+  if (!reserveSetupDone) {
+    reservePeopleCount = 1;
+    document.getElementById('rsetupCount').textContent = '1';
+    document.getElementById('rsetupLabel').textContent = '1 person(s)';
+    document.querySelector('.rsetup-stepper-minus').style.opacity = '0.4';
+    showScreen('screen-reserve-setup');
+  } else {
+    renderReserveCatGrid();
+    updateReserveStats();
+    showScreen('screen-reserve');
+  }
 }
 
 function renderReserveCatGrid() {
