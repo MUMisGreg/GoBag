@@ -1494,7 +1494,7 @@ body {
                 <path d="M9 4a3 3 0 0 0-3 3H6a3 3 0 0 0-3 3v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a3 3 0 0 0-3-3h-.01a3 3 0 0 0-3-3H9z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
                 <rect x="8" y="13" width="8" height="2.5" rx="1.25" fill="white"/>
               </svg>
-              <span class="round-btn-label" id="bagProgress">Go Bag</span>
+              <span class="round-btn-label" id="bagProgress"><span id="lblGoBagBtn">Go Bag</span></span>
             </button>
 
             <button class="round-btn reserve" onclick="goToReserve()">
@@ -1502,7 +1502,7 @@ body {
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
                 <polyline points="9 22 9 12 15 12 15 22" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
               </svg>
-              <span class="round-btn-label">Reserve</span>
+              <span class="round-btn-label" id="lblReserveBtn">Reserve</span>
             </button>
           </div>
         </div>
@@ -1535,7 +1535,7 @@ body {
           <button class="nav-circle-btn" onclick="goBack('screen-main')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <div class="ios-nav-title">Go Bags</div>
+          <div class="ios-nav-title" id="lblNavGoBags">Go Bags</div>
           <button class="nav-circle-btn" onclick="openNewBagSheet2()">+</button>
         </div>
 
@@ -1687,7 +1687,7 @@ body {
           <button class="nav-circle-btn sos-nav-share" onclick="showDemoModal('Share Contacts', 'Export your emergency contacts as a PDF to print or share.')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           </button>
-          <div class="ios-nav-title">Emergency Contacts</div>
+          <div class="ios-nav-title" id="lblNavSOS">Emergency Contacts</div>
           <div style="display:flex;gap:6px">
             <button class="nav-circle-btn sos-nav-add" onclick="openNewContact()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="10" cy="8" r="4"/><path d="M2 21a8 8 0 0 1 13.3-6"/><circle cx="19" cy="18" r="3" fill="currentColor" stroke="none"/><path d="M19 15v6M16 18h6" stroke="white" stroke-width="2"/></svg>
@@ -1722,7 +1722,7 @@ body {
           <button class="nav-circle-btn" onclick="goBack('screen-main')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <div class="ios-nav-title">Reserve Setup</div>
+          <div class="ios-nav-title" id="lblNavReserveSetup">Reserve Setup</div>
           <div style="width:32px"></div>
         </div>
         <div class="rsetup-wrap">
@@ -1732,7 +1732,7 @@ body {
                 <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
               </svg>
             </div>
-            <div class="rsetup-question">How many people are you<br>preparing the reserve for?</div>
+            <div class="rsetup-question" id="lblRsetupQ">How many people are you preparing the reserve for?</div>
             <div class="rsetup-stepper">
               <button class="rsetup-stepper-btn rsetup-stepper-minus" onclick="rsetupChange(-1)">−</button>
               <div class="rsetup-count" id="rsetupCount">1</div>
@@ -1740,7 +1740,7 @@ body {
             </div>
             <div class="rsetup-label" id="rsetupLabel">1 person(s)</div>
           </div>
-          <button class="rsetup-continue" onclick="rsetupContinue()">Continue</button>
+          <button class="rsetup-continue" id="lblRsetupContinue" onclick="rsetupContinue()">Continue</button>
         </div>
       </div>
 
@@ -1752,7 +1752,7 @@ body {
           <button class="nav-circle-btn" onclick="goBack('screen-main')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <div class="ios-nav-title">Reserve</div>
+          <div class="ios-nav-title" id="lblNavReserve">Reserve</div>
           <div style="display:flex;gap:6px">
             <button class="nav-circle-btn" onclick="changePersonCount()" title="Edit person count">
               <svg viewBox="0 0 24 24" fill="none" stroke="#4ecb71" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/><circle cx="19" cy="10" r="3" fill="#4ecb71" stroke="none"/><path d="M19 8v4M17 10h4" stroke="white" stroke-width="1.5"/></svg>
@@ -1895,7 +1895,7 @@ body {
         <div style="background:#0d0d10;flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;">
           <div class="nc-header">
             <button class="nc-pill-btn" onclick="goBack('screen-sos')">Cancel</button>
-            <div class="nc-center-title">New Contact</div>
+            <div class="nc-center-title" id="lblNavNewContact">New Contact</div>
             <button class="nc-pill-btn nc-save-pill" id="ncSaveBtn" onclick="saveNewContact()">Save</button>
           </div>
           <div style="flex:1;overflow-y:auto;padding:0 16px 24px;">
@@ -2084,13 +2084,13 @@ body {
     <!-- iOS Notification Permission Alert -->
     <div class="ios-alert-overlay" id="notifAlertOverlay">
       <div class="ios-alert">
-        <div class="ios-alert-title">"GoBag+" Would Like to Send You Notifications</div>
-        <div class="ios-alert-msg">Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.</div>
+        <div class="ios-alert-title" id="lblNotifTitle">"GoBag+" Would Like to Send You Notifications</div>
+        <div class="ios-alert-msg" id="lblNotifMsg">Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.</div>
         <div class="ios-alert-divider"></div>
         <div class="ios-alert-btns">
-          <button class="ios-alert-btn" onclick="dismissNotifAlert()">Don't Allow</button>
+          <button class="ios-alert-btn" id="lblNotifDeny" onclick="dismissNotifAlert()">Don't Allow</button>
           <div class="ios-alert-btn-divider"></div>
-          <button class="ios-alert-btn ios-alert-btn-primary" onclick="dismissNotifAlert()">Allow</button>
+          <button class="ios-alert-btn ios-alert-btn-primary" id="lblNotifAllow" onclick="dismissNotifAlert()">Allow</button>
         </div>
       </div>
     </div>
@@ -2105,8 +2105,8 @@ body {
         </div>
         <div class="demo-modal-title" id="demoModalTitle">Feature Title</div>
         <div class="demo-modal-sub" id="demoModalSub">This feature is available in the full app.</div>
-        <div class="demo-modal-badge">Available in GoBag+</div>
-        <button class="demo-modal-close" onclick="closeDemoModal()">Got it</button>
+        <div class="demo-modal-badge" id="lblDemoModalBadge">Available in GoBag+</div>
+        <button class="demo-modal-close" id="lblDemoModalClose" onclick="closeDemoModal()">Got it</button>
       </div>
     </div>
 
@@ -2342,7 +2342,8 @@ let currentUserName = 'User';
 function goToMain() {
   const name = nameInput.value.trim() || 'Friend';
   currentUserName = name;
-  document.getElementById('greetingText').textContent = `Hello, ${name}!`;
+  const s = LANG_STRINGS[currentLang] || LANG_STRINGS.en;
+  document.getElementById('greetingText').textContent = s.greeting.replace('{name}', name);
   showScreen('screen-main');
   updateBagProgress();
   setTimeout(() => {
@@ -2798,8 +2799,9 @@ let reserveSetupDone = false;
 
 function rsetupChange(dir) {
   reservePersonCount = Math.max(1, Math.min(10, reservePersonCount + dir));
+  const s = LANG_STRINGS[currentLang] || LANG_STRINGS.en;
   document.getElementById('rsetupCount').textContent = reservePersonCount;
-  document.getElementById('rsetupLabel').textContent = reservePersonCount + ' person(s)';
+  document.getElementById('rsetupLabel').textContent = reservePersonCount + ' ' + s.rsetupPersons;
   document.querySelector('.rsetup-stepper-minus').style.opacity = reservePersonCount <= 1 ? '0.4' : '1';
 }
 
@@ -2813,8 +2815,9 @@ function rsetupContinue() {
 function goToReserve() {
   if (!reserveSetupDone) {
     reservePersonCount = 1;
+    const _s = LANG_STRINGS[currentLang] || LANG_STRINGS.en;
     document.getElementById('rsetupCount').textContent = '1';
-    document.getElementById('rsetupLabel').textContent = '1 person(s)';
+    document.getElementById('rsetupLabel').textContent = '1 ' + _s.rsetupPersons;
     document.querySelector('.rsetup-stepper-minus').style.opacity = '0.4';
     showScreen('screen-reserve-setup');
   } else {
@@ -3100,7 +3103,16 @@ const LANG_STRINGS = {
         ob5Title:'Family & Alerts', ob5List:['Expiry reminders','One plan for the whole family','Syncs across all your devices'],
         nameScreenTitle:"What's Your Name?", nameScreenSub:'Enter your name', namePlaceholder:'Your name',
         demoSubtitle:'This is a simplified interactive demo — tap the cards and items to explore',
-        demoCta:'Like what you see? Get the real app.' },
+        demoCta:'Like what you see? Get the real app.',
+        greeting:'Hello, {name}!',
+        navGoBags:'Go Bags', navGoBag:'Go Bag', navReserve:'Reserve', navSOS:'Emergency Contacts',
+        navNewContact:'New Contact', navReserveSetup:'Reserve Setup',
+        btnGoBag:'Go Bag', btnReserve:'Reserve',
+        rsetupQ:'How many people are you preparing the reserve for?', rsetupPersons:'person(s)', rsetupContinueBtn:'Continue',
+        notifTitle:'"GoBag+" Would Like to Send You Notifications',
+        notifMsg:'Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.',
+        notifDeny:"Don't Allow", notifAllow:'Allow',
+        demoAvailable:'Available in GoBag+', demoGotIt:'Got it' },
   fr: { settings:'Réglages', done:'OK', appearance:'Apparence', darkMode:'Mode sombre',
         notifSection:'Notifications', notifTitle:'Notifications', notifSub:"Soyez alerté quand des articles sont sur le point d'expirer.",
         userSection:'Utilisateur', nameTitle:'Nom', langSection:'Langue', langTitle:'Langue',
@@ -3117,7 +3129,16 @@ const LANG_STRINGS = {
         ob5Title:'Famille & Alertes', ob5List:['Rappels d\'expiration','Un plan pour toute la famille','Synchronisé sur tous vos appareils'],
         nameScreenTitle:'Votre Prénom ?', nameScreenSub:'Entrez votre prénom', namePlaceholder:'Votre prénom',
         demoSubtitle:'Démo interactive simplifiée — appuyez sur les cartes et les éléments pour explorer',
-        demoCta:'Vous aimez ce que vous voyez ? Obtenez la vraie application.' },
+        demoCta:'Vous aimez ce que vous voyez ? Obtenez la vraie application.',
+        greeting:'Bonjour, {name} !',
+        navGoBags:'Sacs de survie', navGoBag:'Sac de survie', navReserve:'Réserve', navSOS:'Contacts d\'urgence',
+        navNewContact:'Nouveau contact', navReserveSetup:'Configuration',
+        btnGoBag:'Sac de survie', btnReserve:'Réserve',
+        rsetupQ:'Pour combien de personnes préparez-vous la réserve ?', rsetupPersons:'personne(s)', rsetupContinueBtn:'Continuer',
+        notifTitle:'"GoBag+" souhaite vous envoyer des notifications',
+        notifMsg:'Les notifications peuvent inclure des alertes, sons et badges. Configurables dans Réglages.',
+        notifDeny:'Ne pas autoriser', notifAllow:'Autoriser',
+        demoAvailable:'Disponible dans GoBag+', demoGotIt:'Compris' },
   de: { settings:'Einstellungen', done:'Fertig', appearance:'Darstellung', darkMode:'Dunkelmodus',
         notifSection:'Benachrichtigungen', notifTitle:'Benachrichtigungen', notifSub:'Erhalten Sie Hinweise wenn Artikel ablaufen.',
         userSection:'Benutzer', nameTitle:'Name', langSection:'Sprache', langTitle:'Sprache',
@@ -3134,7 +3155,16 @@ const LANG_STRINGS = {
         ob5Title:'Familie & Alarme', ob5List:['Ablauferinnerungen','Ein Plan für die ganze Familie','Synchronisiert auf allen Geräten'],
         nameScreenTitle:'Wie heißen Sie?', nameScreenSub:'Geben Sie Ihren Namen ein', namePlaceholder:'Ihr Name',
         demoSubtitle:'Vereinfachte interaktive Demo — tippen Sie auf Karten und Elemente zum Erkunden',
-        demoCta:'Gefällt Ihnen was Sie sehen? Holen Sie sich die echte App.' },
+        demoCta:'Gefällt Ihnen was Sie sehen? Holen Sie sich die echte App.',
+        greeting:'Hallo, {name}!',
+        navGoBags:'Notfallrucksäcke', navGoBag:'Notfallrucksack', navReserve:'Vorrat', navSOS:'Notfallkontakte',
+        navNewContact:'Neuer Kontakt', navReserveSetup:'Einrichtung',
+        btnGoBag:'Notfallrucksack', btnReserve:'Vorrat',
+        rsetupQ:'Für wie viele Personen bereiten Sie die Reserve vor?', rsetupPersons:'Person(en)', rsetupContinueBtn:'Weiter',
+        notifTitle:'"GoBag+" möchte Ihnen Benachrichtigungen senden',
+        notifMsg:'Benachrichtigungen können Hinweise, Töne und App-Badges umfassen. In Einstellungen konfigurierbar.',
+        notifDeny:'Nicht erlauben', notifAllow:'Erlauben',
+        demoAvailable:'Verfügbar in GoBag+', demoGotIt:'Verstanden' },
   es: { settings:'Ajustes', done:'Listo', appearance:'Apariencia', darkMode:'Modo oscuro',
         notifSection:'Notificaciones', notifTitle:'Notificaciones', notifSub:'Reciba alertas cuando los artículos estén por vencer.',
         userSection:'Usuario', nameTitle:'Nombre', langSection:'Idioma', langTitle:'Idioma',
@@ -3151,7 +3181,16 @@ const LANG_STRINGS = {
         ob5Title:'Familia y Alertas', ob5List:['Recordatorios de vencimiento','Un plan para toda la familia','Sincronizado en todos sus dispositivos'],
         nameScreenTitle:'¿Cómo te llamas?', nameScreenSub:'Ingresa tu nombre', namePlaceholder:'Tu nombre',
         demoSubtitle:'Demo interactiva simplificada — toca las tarjetas y los elementos para explorar',
-        demoCta:'¿Te gusta lo que ves? Descarga la app real.' },
+        demoCta:'¿Te gusta lo que ves? Descarga la app real.',
+        greeting:'¡Hola, {name}!',
+        navGoBags:'Bolsas de emergencia', navGoBag:'Bolsa de emergencia', navReserve:'Reserva', navSOS:'Contactos de emergencia',
+        navNewContact:'Nuevo contacto', navReserveSetup:'Configuración',
+        btnGoBag:'Bolsa de emergencia', btnReserve:'Reserva',
+        rsetupQ:'¿Para cuántas personas preparas la reserva?', rsetupPersons:'persona(s)', rsetupContinueBtn:'Continuar',
+        notifTitle:'"GoBag+" desea enviarte notificaciones',
+        notifMsg:'Las notificaciones pueden incluir alertas, sonidos e insignias. Configurables en Ajustes.',
+        notifDeny:'No permitir', notifAllow:'Permitir',
+        demoAvailable:'Disponible en GoBag+', demoGotIt:'Entendido' },
   it: { settings:'Impostazioni', done:'Fine', appearance:'Aspetto', darkMode:'Modalità scura',
         notifSection:'Notifiche', notifTitle:'Notifiche', notifSub:'Ricevi avvisi quando gli articoli stanno per scadere.',
         userSection:'Utente', nameTitle:'Nome', langSection:'Lingua', langTitle:'Lingua',
@@ -3168,7 +3207,16 @@ const LANG_STRINGS = {
         ob5Title:'Famiglia e Avvisi', ob5List:['Promemoria di scadenza','Un piano per tutta la famiglia','Sincronizzato su tutti i dispositivi'],
         nameScreenTitle:'Come ti chiami?', nameScreenSub:'Inserisci il tuo nome', namePlaceholder:'Il tuo nome',
         demoSubtitle:'Demo interattiva semplificata — tocca le schede e gli elementi per esplorare',
-        demoCta:'Ti piace quello che vedi? Scarica la vera app.' },
+        demoCta:'Ti piace quello che vedi? Scarica la vera app.',
+        greeting:'Ciao, {name}!',
+        navGoBags:'Kit di emergenza', navGoBag:'Kit di emergenza', navReserve:'Riserva', navSOS:'Contatti di emergenza',
+        navNewContact:'Nuovo contatto', navReserveSetup:'Configurazione',
+        btnGoBag:'Kit di emergenza', btnReserve:'Riserva',
+        rsetupQ:'Per quante persone stai preparando la riserva?', rsetupPersons:'persona/e', rsetupContinueBtn:'Continua',
+        notifTitle:'"GoBag+" vorrebbe inviarti notifiche',
+        notifMsg:'Le notifiche possono includere avvisi, suoni e badge. Configurabili in Impostazioni.',
+        notifDeny:'Non consentire', notifAllow:'Consenti',
+        demoAvailable:'Disponibile in GoBag+', demoGotIt:'Capito' },
   pt: { settings:'Definições', done:'OK', appearance:'Aparência', darkMode:'Modo escuro',
         notifSection:'Notificações', notifTitle:'Notificações', notifSub:'Receba alertas quando os itens estiverem prestes a expirar.',
         userSection:'Utilizador', nameTitle:'Nome', langSection:'Idioma', langTitle:'Idioma',
@@ -3185,7 +3233,16 @@ const LANG_STRINGS = {
         ob5Title:'Família e Alertas', ob5List:['Lembretes de validade','Um plano para toda a família','Sincronizado em todos os dispositivos'],
         nameScreenTitle:'Qual é o seu nome?', nameScreenSub:'Introduza o seu nome', namePlaceholder:'O seu nome',
         demoSubtitle:'Demo interativa simplificada — toque nos cartões e itens para explorar',
-        demoCta:'Gostou do que viu? Obtenha a aplicação real.' },
+        demoCta:'Gostou do que viu? Obtenha a aplicação real.',
+        greeting:'Olá, {name}!',
+        navGoBags:'Mochilas de emergência', navGoBag:'Mochila de emergência', navReserve:'Reserva', navSOS:'Contactos de emergência',
+        navNewContact:'Novo contacto', navReserveSetup:'Configuração',
+        btnGoBag:'Mochila de emergência', btnReserve:'Reserva',
+        rsetupQ:'Para quantas pessoas está a preparar a reserva?', rsetupPersons:'pessoa(s)', rsetupContinueBtn:'Continuar',
+        notifTitle:'"GoBag+" gostaria de enviar-lhe notificações',
+        notifMsg:'As notificações podem incluir alertas, sons e emblemas. Configuráveis nas Definições.',
+        notifDeny:'Não permitir', notifAllow:'Permitir',
+        demoAvailable:'Disponível em GoBag+', demoGotIt:'Entendido' },
   ru: { settings:'Настройки', done:'Готово', appearance:'Внешний вид', darkMode:'Тёмный режим',
         notifSection:'Уведомления', notifTitle:'Уведомления', notifSub:'Получайте уведомления когда товары истекают.',
         userSection:'Пользователь', nameTitle:'Имя', langSection:'Язык', langTitle:'Язык',
@@ -3202,7 +3259,16 @@ const LANG_STRINGS = {
         ob5Title:'Семья и оповещения', ob5List:['Напоминания об истечении','Один план для всей семьи','Синхронизация на всех устройствах'],
         nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя',
         demoSubtitle:'Упрощённая интерактивная демо — нажимайте на карточки и элементы для изучения',
-        demoCta:'Нравится то, что видите? Скачайте настоящее приложение.' },
+        demoCta:'Нравится то, что видите? Скачайте настоящее приложение.',
+        greeting:'Привет, {name}!',
+        navGoBags:'Тревожные чемоданчики', navGoBag:'Тревожный чемоданчик', navReserve:'Запас', navSOS:'Экстренные контакты',
+        navNewContact:'Новый контакт', navReserveSetup:'Настройка',
+        btnGoBag:'Тревожный чемоданчик', btnReserve:'Запас',
+        rsetupQ:'Для скольких человек вы готовите запас?', rsetupPersons:'чел.', rsetupContinueBtn:'Продолжить',
+        notifTitle:'"GoBag+" хочет отправлять вам уведомления',
+        notifMsg:'Уведомления могут включать оповещения, звуки и значки. Настраиваются в Настройках.',
+        notifDeny:'Не разрешать', notifAllow:'Разрешить',
+        demoAvailable:'Доступно в GoBag+', demoGotIt:'Понятно' },
 };
 
 const VALID_LANGS = ['en','fr','de','es','it','pt','ru'];
@@ -3246,6 +3312,38 @@ function applySettingsLang() {
   if (ni) ni.placeholder = s.namePlaceholder;
   set('demoSubtitle', s.demoSubtitle);
   set('demoCta', s.demoCta);
+  // Nav titles
+  set('lblGoBagBtn', s.btnGoBag);
+  set('lblReserveBtn', s.btnReserve);
+  set('lblNavGoBags', s.navGoBags);
+  set('lblNavGoBag', s.navGoBag);
+  set('lblNavReserve', s.navReserve);
+  set('lblNavSOS', s.navSOS);
+  set('lblNavNewContact', s.navNewContact);
+  set('lblNavReserveSetup', s.navReserveSetup);
+  // gobagNavTitle is dynamic but set default
+  const gnt = document.getElementById('gobagNavTitle');
+  if (gnt && gnt.textContent === LANG_STRINGS.en.navGoBag || gnt) set('gobagNavTitle', s.navGoBag);
+  // Reserve setup
+  set('lblRsetupQ', s.rsetupQ);
+  set('lblRsetupContinue', s.rsetupContinueBtn);
+  const rl = document.getElementById('rsetupLabel');
+  if (rl) { const n = parseInt(rl.textContent) || reservePersonCount; rl.textContent = n + ' ' + s.rsetupPersons; }
+  // Notification alert
+  set('lblNotifTitle', s.notifTitle);
+  set('lblNotifMsg', s.notifMsg);
+  set('lblNotifDeny', s.notifDeny);
+  set('lblNotifAllow', s.notifAllow);
+  // Demo modal
+  set('lblDemoModalBadge', s.demoAvailable);
+  set('lblDemoModalClose', s.demoGotIt);
+  // Greeting (update if on main screen)
+  if (currentUserName && currentUserName !== 'User') {
+    const gt = document.getElementById('greetingText');
+    if (gt) gt.textContent = s.greeting.replace('{name}', currentUserName);
+  }
+  // Save to localStorage so main site stays in sync
+  localStorage.setItem('gobag_lang', currentLang);
   if (currentScreen === 'screen-onboarding') renderOnboarding();
 }
 
