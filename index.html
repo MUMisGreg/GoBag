@@ -279,32 +279,33 @@
             margin-bottom: 60px;
         }
 
-        /* FEATURES */
-        .features-carousel { position: relative; margin-top: 40px; }
-        .features-track-wrap { overflow: hidden; }
-        .features-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-        .feature-card {
-            flex-shrink: 0;
-            width: 280px;
+        /* KEY FEATURES GRID */
+        .key-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+        @media (max-width: 600px) { .key-features-grid { grid-template-columns: 1fr; } }
+        .key-feature {
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
-            padding: 28px;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-        .feature-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
-        .feature-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+            padding: 32px 28px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+            gap: 20px;
+            align-items: flex-start;
+            transition: border-color 0.25s, transform 0.25s;
         }
-        .feature-card h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
-        .feature-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+        .key-feature:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
+        .key-feature-icon {
+            width: 52px; height: 52px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .key-feature-icon svg { width: 26px; height: 26px; }
+        .key-feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+        .key-feature p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
 
         /* HOW IT WORKS */
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
@@ -646,56 +647,44 @@
 <section id="features">
     <div class="container">
         <div class="section-label reveal" data-i18n="features_label">Features</div>
-        <h2 class="section-title reveal d1" data-i18n-html="features_title">Everything you need<br>to stay prepared</h2>
-        <p class="section-sub reveal d2" data-i18n="features_sub">GoBag+ covers every aspect of emergency readiness.</p>
-
-        <div class="features-carousel">
-            <button class="carousel-btn prev" id="featPrev" onclick="featMove(-1)" aria-label="Previous">&#8592;</button>
-            <div class="features-track-wrap">
-                <div class="features-scroll" id="featTrack">
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🎒</div>
-                        <h3 data-i18n="feat1_title">Go Bag Builder</h3>
-                        <p data-i18n="feat1_p">Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(0,180,216,0.15)">🏠</div>
-                        <h3 data-i18n="feat2_title">Home Supply Tracker</h3>
-                        <p data-i18n="feat2_p">Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(255,107,26,0.15)">📱</div>
-                        <h3 data-i18n="feat3_title">Emergency Contacts</h3>
-                        <p data-i18n="feat3_p">Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(100,200,100,0.15)">☁️</div>
-                        <h3 data-i18n="feat4_title">Family iCloud Sync</h3>
-                        <p data-i18n="feat4_p">Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(180,100,255,0.15)">🔔</div>
-                        <h3 data-i18n="feat5_title">Smart Notifications</h3>
-                        <p data-i18n="feat5_p">Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(255,200,0,0.15)">📊</div>
-                        <h3 data-i18n="feat6_title">Home Screen Widget</h3>
-                        <p data-i18n="feat6_p">See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(0,180,216,0.15)">💾</div>
-                        <h3 data-i18n="feat7_title">Backup &amp; Restore</h3>
-                        <p data-i18n="feat7_p">Export your data anytime and restore it on any device. Your preparation is never lost.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" style="background:rgba(42,111,240,0.15)">🌍</div>
-                        <h3 data-i18n="feat8_title">7 Languages</h3>
-                        <p data-i18n="feat8_p">Available in English, French, German, Spanish, Italian, Portuguese, and Russian.</p>
-                    </div>
+        <h2 class="section-title reveal d1" data-i18n="features_title">Key features</h2>
+        <div class="key-features-grid">
+            <div class="key-feature reveal d1">
+                <div class="key-feature-icon" style="background:rgba(42,111,240,0.15)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#2a6ff0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 0 0-3 3H6a3 3 0 0 0-3 3v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a3 3 0 0 0-3-3h-.01a3 3 0 0 0-3-3H9z"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="kfeat1_title">Go Bags &amp; Home Reserve</h3>
+                    <p data-i18n="kfeat1_p">Organize your emergency kits by category and track home supplies with stock levels and expiry dates — all in one place.</p>
                 </div>
             </div>
-            <button class="carousel-btn next" id="featNext" onclick="featMove(1)" aria-label="Next">&#8594;</button>
+            <div class="key-feature reveal d2">
+                <div class="key-feature-icon" style="background:rgba(255,107,26,0.15)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="kfeat2_title">Expiry &amp; Low Stock Alerts</h3>
+                    <p data-i18n="kfeat2_p">Get notified automatically before items expire or fall below your minimum stock level. Never be caught unprepared.</p>
+                </div>
+            </div>
+            <div class="key-feature reveal d3">
+                <div class="key-feature-icon" style="background:rgba(0,180,216,0.15)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 7h6M9 11h6"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="kfeat3_title">Sync across all iOS devices</h3>
+                    <p data-i18n="kfeat3_p">Your go bags and reserve stay up to date on every iPhone and iPad you own — automatically, via iCloud.</p>
+                </div>
+            </div>
+            <div class="key-feature reveal d4">
+                <div class="key-feature-icon" style="background:rgba(52,199,89,0.15)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="kfeat4_title">Family sharing</h3>
+                    <p data-i18n="kfeat4_p">Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -840,16 +829,11 @@ const T = {
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and keep your whole family prepared — all in one app.",
     hero_trial:"Free 1-month trial · No commitment",cta_btn:"Download on the App Store",
     screenshots_label:"App Preview",screenshots_title:"See it in action",screenshots_sub:"Everything you need, designed for simplicity and speed under pressure.",
-    features_label:"Features",features_title:"Everything you need<br>to stay prepared",
-    features_sub:"GoBag+ covers every aspect of emergency readiness.",
-    feat1_title:"Go Bag Builder",feat1_p:"Create and organize multiple go bags across 9 categories: documents, water, food, first aid, tools, shelter, communication, personal care, and more.",
-    feat2_title:"Home Supply Tracker",feat2_p:"Monitor your home reserve with expiry dates and per-person stock levels. Get notified before items expire or run low.",
-    feat3_title:"Emergency Contacts",feat3_p:"Store key phone numbers for offline access. One tap to call. Share a formatted emergency card with your family instantly.",
-    feat4_title:"Family iCloud Sync",feat4_p:"Share your go bags and reserve with family members via iCloud. Everyone sees the same data updated in real time.",
-    feat5_title:"Smart Notifications",feat5_p:"Automatic reminders before items expire and when stock falls below your minimum threshold. Always up to date.",
-    feat6_title:"Home Screen Widget",feat6_p:"See your readiness at a glance without opening the app. Small, medium, and large widget sizes supported.",
-    feat7_title:"Backup & Restore",feat7_p:"Export your data anytime and restore it on any device. Your preparation is never lost.",
-    feat8_title:"7 Languages",feat8_p:"Available in English, French, German, Spanish, Italian, Portuguese, and Russian.",
+    features_label:"Features",features_title:"Key features",
+    kfeat1_title:"Go Bags & Home Reserve",kfeat1_p:"Organize your emergency kits by category and track home supplies with stock levels and expiry dates — all in one place.",
+    kfeat2_title:"Expiry & Low Stock Alerts",kfeat2_p:"Get notified automatically before items expire or fall below your minimum stock level. Never be caught unprepared.",
+    kfeat3_title:"Sync across all iOS devices",kfeat3_p:"Your go bags and reserve stay up to date on every iPhone and iPad you own — automatically, via iCloud.",
+    kfeat4_title:"Family sharing",kfeat4_p:"Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.",
     how_label:"How it works",how_title:"Ready in minutes",how_sub:"Set up your emergency kit in just a few steps.",
     step1_h:"Choose your language",step1_p:"The app adapts to your language immediately, no settings needed.",
     step2_h:"Build your go bag",step2_p:"Add items across categories. Use the built-in list or create custom items.",
@@ -873,16 +857,11 @@ const T = {
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et gardez toute votre famille préparée — dans une seule application.",
     hero_trial:"1 mois d'essai gratuit · Sans engagement",cta_btn:"Télécharger sur l'App Store",
     screenshots_label:"Aperçu de l'app",screenshots_title:"Voyez-la en action",screenshots_sub:"Tout ce dont vous avez besoin, conçu pour la simplicité et la rapidité sous pression.",
-    features_label:"Fonctionnalités",features_title:"Tout ce dont vous avez besoin<br>pour rester préparé",
-    features_sub:"GoBag+ couvre tous les aspects de la préparation aux urgences.",
-    feat1_title:"Constructeur de sac d'urgence",feat1_p:"Créez et organisez plusieurs sacs d'urgence en 9 catégories : documents, eau, nourriture, premiers secours, outils, abri, communication, soins personnels et plus.",
-    feat2_title:"Suivi des réserves à domicile",feat2_p:"Surveillez votre réserve avec les dates d'expiration et les niveaux de stock par personne. Recevez des notifications avant expiration.",
-    feat3_title:"Contacts d'urgence",feat3_p:"Stockez les numéros essentiels pour un accès hors ligne. Un tap pour appeler. Partagez une fiche d'urgence avec votre famille.",
-    feat4_title:"Synchronisation iCloud familiale",feat4_p:"Partagez vos sacs et réserves avec votre famille via iCloud. Tout le monde voit les mêmes données en temps réel.",
-    feat5_title:"Notifications intelligentes",feat5_p:"Rappels automatiques avant expiration et lorsque le stock descend sous votre seuil minimum. Toujours à jour.",
-    feat6_title:"Widget écran d'accueil",feat6_p:"Consultez votre niveau de préparation d'un coup d'œil. Formats petit, moyen et grand disponibles.",
-    feat7_title:"Sauvegarde & Restauration",feat7_p:"Exportez vos données à tout moment et restaurez-les sur n'importe quel appareil.",
-    feat8_title:"7 langues",feat8_p:"Disponible en anglais, français, allemand, espagnol, italien, portugais et russe.",
+    features_label:"Fonctionnalités",features_title:"Fonctionnalités clés",
+    kfeat1_title:"Sacs de survie & réserve maison",kfeat1_p:"Organisez vos kits d'urgence par catégorie et suivez vos provisions avec les niveaux de stock et dates d'expiration — tout en un.",
+    kfeat2_title:"Alertes expiration & stock bas",kfeat2_p:"Recevez des notifications automatiques avant expiration ou lorsque le stock passe sous votre minimum. Toujours prêt.",
+    kfeat3_title:"Sync sur tous vos appareils iOS",kfeat3_p:"Vos sacs et réserves restent à jour sur chaque iPhone et iPad — automatiquement, via iCloud.",
+    kfeat4_title:"Partage familial",kfeat4_p:"Partagez votre plan de préparation avec toute la famille. Tout le monde est synchronisé — un abonnement pour jusqu'à 5 membres.",
     how_label:"Comment ça marche",how_title:"Prêt en quelques minutes",how_sub:"Configurez votre kit d'urgence en quelques étapes.",
     step1_h:"Choisissez votre langue",step1_p:"L'application s'adapte immédiatement à votre langue, sans réglages.",
     step2_h:"Préparez votre sac",step2_p:"Ajoutez des articles par catégorie. Utilisez la liste intégrée ou créez vos propres articles.",
@@ -906,16 +885,11 @@ const T = {
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und halte deine ganze Familie vorbereitet — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",cta_btn:"Im App Store laden",
     screenshots_label:"App-Vorschau",screenshots_title:"Sieh sie in Aktion",screenshots_sub:"Alles, was du brauchst — einfach und schnell, auch unter Druck.",
-    features_label:"Funktionen",features_title:"Alles, was du brauchst,<br>um vorbereitet zu bleiben",
-    features_sub:"GoBag+ deckt alle Aspekte der Notfallvorsorge ab.",
-    feat1_title:"Notfallrucksack-Builder",feat1_p:"Erstelle und organisiere mehrere Notfallrucksäcke in 9 Kategorien: Dokumente, Wasser, Lebensmittel, Erste Hilfe, Werkzeug, Unterkunft, Kommunikation, Körperpflege und mehr.",
-    feat2_title:"Heimvorräte verwalten",feat2_p:"Überwache deine Heimreserven mit Ablaufdaten und Lagerbeständen pro Person. Erhalte Benachrichtigungen, bevor Artikel ablaufen.",
-    feat3_title:"Notfallkontakte",feat3_p:"Speichere wichtige Telefonnummern für den Offline-Zugriff. Ein Tipp zum Anrufen. Teile eine Notfallkarte mit deiner Familie.",
-    feat4_title:"iCloud-Familiensynchronisation",feat4_p:"Teile deine Rucksäcke und Vorräte mit Familienmitgliedern über iCloud. Alle sehen dieselben Daten in Echtzeit.",
-    feat5_title:"Smarte Benachrichtigungen",feat5_p:"Automatische Erinnerungen vor Ablaufdaten und wenn der Bestand unter deinen Mindestwert fällt. Immer aktuell.",
-    feat6_title:"Startbildschirm-Widget",feat6_p:"Sieh deinen Vorbereitungsstatus auf einen Blick, ohne die App zu öffnen. Klein, mittel und groß verfügbar.",
-    feat7_title:"Sicherung & Wiederherstellung",feat7_p:"Exportiere deine Daten jederzeit und stelle sie auf jedem Gerät wieder her.",
-    feat8_title:"7 Sprachen",feat8_p:"Verfügbar auf Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch und Russisch.",
+    features_label:"Funktionen",features_title:"Hauptfunktionen",
+    kfeat1_title:"Notfallrucksäcke & Heimvorrat",kfeat1_p:"Organisiere deine Notfallkits nach Kategorien und verfolge Heimvorräte mit Lagerbeständen und Ablaufdaten — alles an einem Ort.",
+    kfeat2_title:"Ablauf- & Bestandswarnungen",kfeat2_p:"Erhalte automatisch Benachrichtigungen vor Ablaufdaten oder wenn der Bestand unter dein Minimum fällt. Nie wieder unvorbereitet.",
+    kfeat3_title:"Sync auf allen iOS-Geräten",kfeat3_p:"Deine Rucksäcke und Vorräte bleiben auf jedem iPhone und iPad aktuell — automatisch, via iCloud.",
+    kfeat4_title:"Familienfreigabe",kfeat4_p:"Teile deinen Vorbereitungsplan mit der ganzen Familie. Alle bleiben synchron — ein Abo für bis zu 5 Mitglieder.",
     how_label:"So funktioniert es",how_title:"In Minuten einsatzbereit",how_sub:"Richte dein Notfallkit in wenigen Schritten ein.",
     step1_h:"Wähle deine Sprache",step1_p:"Die App passt sich sofort an deine Sprache an, ohne Einstellungen.",
     step2_h:"Baue deinen Rucksack",step2_p:"Füge Artikel nach Kategorien hinzu. Nutze die integrierte Liste oder erstelle eigene Artikel.",
@@ -939,16 +913,11 @@ const T = {
     hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y mantén a toda tu familia preparada — todo en una sola app.",
     hero_trial:"1 mes de prueba gratis · Sin compromiso",cta_btn:"Descargar en el App Store",
     screenshots_label:"Vista previa",screenshots_title:"Mírala en acción",screenshots_sub:"Todo lo que necesitas, diseñado para la simplicidad y la rapidez bajo presión.",
-    features_label:"Características",features_title:"Todo lo que necesitas<br>para estar preparado",
-    features_sub:"GoBag+ cubre todos los aspectos de la preparación ante emergencias.",
-    feat1_title:"Constructor de bolsa de emergencia",feat1_p:"Crea y organiza múltiples bolsas de emergencia en 9 categorías: documentos, agua, comida, primeros auxilios, herramientas, refugio, comunicación, cuidado personal y más.",
-    feat2_title:"Control de suministros del hogar",feat2_p:"Monitorea tu reserva con fechas de caducidad y niveles de stock por persona. Recibe notificaciones antes de que caduquen.",
-    feat3_title:"Contactos de emergencia",feat3_p:"Almacena números clave para acceso sin conexión. Un toque para llamar. Comparte una tarjeta de emergencia con tu familia.",
-    feat4_title:"Sincronización familiar con iCloud",feat4_p:"Comparte tus bolsas y suministros con tu familia a través de iCloud. Todos ven los mismos datos en tiempo real.",
-    feat5_title:"Notificaciones inteligentes",feat5_p:"Recordatorios automáticos antes de caducidades y cuando el stock baja de tu mínimo. Siempre actualizado.",
-    feat6_title:"Widget en pantalla de inicio",feat6_p:"Ve tu estado de preparación de un vistazo sin abrir la app. Tamaños pequeño, mediano y grande disponibles.",
-    feat7_title:"Copia de seguridad y restauración",feat7_p:"Exporta tus datos en cualquier momento y restáuralos en cualquier dispositivo.",
-    feat8_title:"7 idiomas",feat8_p:"Disponible en inglés, francés, alemán, español, italiano, portugués y ruso.",
+    features_label:"Características",features_title:"Características clave",
+    kfeat1_title:"Bolsas de emergencia & reserva",kfeat1_p:"Organiza tus kits por categoría y controla las provisiones del hogar con niveles de stock y fechas de caducidad — todo en un lugar.",
+    kfeat2_title:"Alertas de caducidad & stock bajo",kfeat2_p:"Recibe notificaciones automáticas antes de que los artículos caduquen o bajen del mínimo. Nunca te pilles desprevenido.",
+    kfeat3_title:"Sync en todos tus dispositivos iOS",kfeat3_p:"Tus bolsas y reserva se mantienen actualizadas en cada iPhone e iPad — automáticamente, via iCloud.",
+    kfeat4_title:"Compartir en familia",kfeat4_p:"Comparte tu plan con toda la familia. Todos sincronizados — una suscripción para hasta 5 miembros.",
     how_label:"Cómo funciona",how_title:"Listo en minutos",how_sub:"Configura tu kit de emergencia en pocos pasos.",
     step1_h:"Elige tu idioma",step1_p:"La app se adapta a tu idioma inmediatamente, sin configuraciones.",
     step2_h:"Construye tu bolsa",step2_p:"Añade artículos por categorías. Usa la lista integrada o crea artículos personalizados.",
@@ -972,16 +941,11 @@ const T = {
     hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e tieni tutta la famiglia pronta — tutto in un'unica app.",
     hero_trial:"1 mese di prova gratuita · Nessun impegno",cta_btn:"Scarica sull'App Store",
     screenshots_label:"Anteprima app",screenshots_title:"Guardala in azione",screenshots_sub:"Tutto ciò di cui hai bisogno, progettato per semplicità e rapidità sotto pressione.",
-    features_label:"Funzionalità",features_title:"Tutto quello che ti serve<br>per restare preparato",
-    features_sub:"GoBag+ copre ogni aspetto della preparazione alle emergenze.",
-    feat1_title:"Costruttore di zaino d'emergenza",feat1_p:"Crea e organizza più zaini d'emergenza in 9 categorie: documenti, acqua, cibo, pronto soccorso, strumenti, rifugio, comunicazione, igiene personale e altro.",
-    feat2_title:"Gestione scorte domestiche",feat2_p:"Monitora le tue riserve con date di scadenza e livelli di stock per persona. Ricevi notifiche prima che i prodotti scadano.",
-    feat3_title:"Contatti d'emergenza",feat3_p:"Salva i numeri essenziali per l'accesso offline. Un tocco per chiamare. Condividi una scheda d'emergenza con la famiglia.",
-    feat4_title:"Sincronizzazione familiare iCloud",feat4_p:"Condividi zaini e scorte con i familiari tramite iCloud. Tutti vedono gli stessi dati in tempo reale.",
-    feat5_title:"Notifiche intelligenti",feat5_p:"Promemoria automatici prima delle scadenze e quando le scorte scendono sotto il minimo. Sempre aggiornato.",
-    feat6_title:"Widget schermata home",feat6_p:"Controlla il tuo livello di preparazione a colpo d'occhio senza aprire l'app. Piccolo, medio e grande disponibili.",
-    feat7_title:"Backup e ripristino",feat7_p:"Esporta i tuoi dati in qualsiasi momento e ripristinali su qualsiasi dispositivo.",
-    feat8_title:"7 lingue",feat8_p:"Disponibile in inglese, francese, tedesco, spagnolo, italiano, portoghese e russo.",
+    features_label:"Funzionalità",features_title:"Funzionalità chiave",
+    kfeat1_title:"Kit di emergenza & riserva",kfeat1_p:"Organizza i kit per categoria e tieni traccia delle scorte domestiche con livelli e date di scadenza — tutto in un posto.",
+    kfeat2_title:"Avvisi scadenza & scorte basse",kfeat2_p:"Ricevi notifiche automatiche prima che gli articoli scadano o scendano sotto il minimo. Mai impreparato.",
+    kfeat3_title:"Sync su tutti i dispositivi iOS",kfeat3_p:"I tuoi kit e la riserva restano aggiornati su ogni iPhone e iPad — automaticamente, via iCloud.",
+    kfeat4_title:"Condivisione familiare",kfeat4_p:"Condividi il piano con tutta la famiglia. Tutti sincronizzati — un abbonamento per fino a 5 membri.",
     how_label:"Come funziona",how_title:"Pronto in pochi minuti",how_sub:"Configura il tuo kit d'emergenza in pochi passaggi.",
     step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
     step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
@@ -1005,16 +969,11 @@ const T = {
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e mantenha toda a família preparada — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",cta_btn:"Transferir na App Store",
     screenshots_label:"Pré-visualização",screenshots_title:"Veja em ação",screenshots_sub:"Tudo o que precisa, concebido para simplicidade e rapidez sob pressão.",
-    features_label:"Funcionalidades",features_title:"Tudo o que precisa<br>para estar preparado",
-    features_sub:"O GoBag+ cobre todos os aspetos da preparação para emergências.",
-    feat1_title:"Construtor de mochila de emergência",feat1_p:"Crie e organize várias mochilas de emergência em 9 categorias: documentos, água, comida, primeiros socorros, ferramentas, abrigo, comunicação, cuidado pessoal e mais.",
-    feat2_title:"Controlo de reservas domésticas",feat2_p:"Monitorize as suas reservas com datas de validade e níveis de stock por pessoa. Receba notificações antes de os artigos expirarem.",
-    feat3_title:"Contactos de emergência",feat3_p:"Guarde números essenciais para acesso offline. Um toque para ligar. Partilhe uma ficha de emergência com a família.",
-    feat4_title:"Sincronização familiar com iCloud",feat4_p:"Partilhe as suas mochilas e reservas com familiares via iCloud. Todos veem os mesmos dados em tempo real.",
-    feat5_title:"Notificações inteligentes",feat5_p:"Lembretes automáticos antes das validades e quando o stock baixa do mínimo. Sempre atualizado.",
-    feat6_title:"Widget no ecrã inicial",feat6_p:"Veja o seu nível de preparação de relance sem abrir a app. Tamanhos pequeno, médio e grande disponíveis.",
-    feat7_title:"Cópia de segurança e restauro",feat7_p:"Exporte os seus dados a qualquer momento e restaure-os em qualquer dispositivo.",
-    feat8_title:"7 idiomas",feat8_p:"Disponível em inglês, francês, alemão, espanhol, italiano, português e russo.",
+    features_label:"Funcionalidades",features_title:"Funcionalidades-chave",
+    kfeat1_title:"Mochilas & reserva doméstica",kfeat1_p:"Organize várias mochilas de emergência por categorias e acompanhe as suas reservas em casa com datas de validade e níveis de stock.",
+    kfeat2_title:"Alertas de validade & stock baixo",kfeat2_p:"Receba notificações automáticas antes de os artigos expirarem ou quando o stock baixar do mínimo. Esteja sempre preparado.",
+    kfeat3_title:"Sincronização em todos os dispositivos iOS",kfeat3_p:"Os seus dados sincronizam automaticamente via iCloud em todos os seus iPhone e iPad.",
+    kfeat4_title:"Partilha familiar",kfeat4_p:"Com o Apple Family Sharing, uma subscrição cobre toda a família — sem compras adicionais.",
     how_label:"Como funciona",how_title:"Pronto em minutos",how_sub:"Configure o seu kit de emergência em poucos passos.",
     step1_h:"Escolha o seu idioma",step1_p:"A app adapta-se imediatamente ao seu idioma, sem configurações.",
     step2_h:"Monte a sua mochila",step2_p:"Adicione artigos por categorias. Use a lista integrada ou crie artigos personalizados.",
@@ -1038,16 +997,11 @@ const T = {
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните контакты экстренных служб и держите всю семью готовой — в одном приложении.",
     hero_trial:"1 месяц бесплатно · Без обязательств",cta_btn:"Загрузить в App Store",
     screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите, как это работает",screenshots_sub:"Всё необходимое — просто и быстро, даже в экстремальных ситуациях.",
-    features_label:"Возможности",features_title:"Всё что нужно,<br>чтобы быть готовым",
-    features_sub:"GoBag+ охватывает все аспекты подготовки к чрезвычайным ситуациям.",
-    feat1_title:"Тревожный чемоданчик",feat1_p:"Создайте несколько наборов по категориям: документы, вода, еда, аптечка, инструменты, одежда, электроника и другое.",
-    feat2_title:"Домашние запасы",feat2_p:"Следите за запасами с датами годности и нормами на человека. Получайте уведомления заблаговременно.",
-    feat3_title:"Экстренные контакты",feat3_p:"Держите нужные номера под рукой — без интернета. Одно нажатие для звонка. Поделитесь карточкой с близкими.",
-    feat4_title:"Семейная синхронизация iCloud",feat4_p:"Делитесь чемоданчиками и запасами с семьёй через iCloud. Все видят одни и те же данные в режиме реального времени.",
-    feat5_title:"Умные уведомления",feat5_p:"Автоматические напоминания об истечении сроков годности и нехватке запасов. Всегда в курсе.",
-    feat6_title:"Виджет на экране",feat6_p:"Проверяйте уровень готовности с первого взгляда, не открывая приложение. Три размера виджета.",
-    feat7_title:"Резервное копирование",feat7_p:"Экспортируйте данные в любой момент и восстанавливайте на любом устройстве.",
-    feat8_title:"7 языков",feat8_p:"Доступно на английском, французском, немецком, испанском, итальянском, португальском и русском.",
+    features_label:"Возможности",features_title:"Ключевые возможности",
+    kfeat1_title:"Чемоданчики & домашние запасы",kfeat1_p:"Создайте несколько тревожных наборов по категориям и следите за домашними запасами с датами годности и нормами на человека.",
+    kfeat2_title:"Уведомления о сроках и нехватке",kfeat2_p:"Автоматические напоминания до истечения сроков годности и при падении запасов ниже минимума. Всегда в курсе.",
+    kfeat3_title:"Синхронизация на всех устройствах iOS",kfeat3_p:"Данные синхронизируются через iCloud на всех ваших iPhone и iPad автоматически.",
+    kfeat4_title:"Семейный доступ",kfeat4_p:"С Apple Family Sharing одна подписка GoBag+ охватывает всю семью — без дополнительных покупок.",
     how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте аварийный набор за несколько простых шагов.",
     step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку — никаких дополнительных настроек.",
     step2_h:"Соберите чемоданчик",step2_p:"Добавляйте предметы по категориям. Используйте готовый список или создавайте свои пункты.",
