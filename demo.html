@@ -1485,7 +1485,7 @@ body {
         <div class="main-content">
           <div class="greeting">
             <h2 id="greetingText">Hello!</h2>
-            <div class="tagline">"Best time to prepare was yesterday.<br>Second best time is today."</div>
+            <div class="tagline" id="mainTagline">"Best time to prepare was yesterday.<br>Second best time is today."</div>
           </div>
 
           <div class="round-btns">
@@ -1516,12 +1516,12 @@ body {
                 <rect x="8" y="13" width="8" height="2.5" rx="1.25" fill="#00b4d8"/>
               </svg>
             </div>
-            <div class="sheet-subtitle">Control all Go Bags of your family</div>
-            <div class="sheet-title">New Go Bag</div>
+            <div class="sheet-subtitle" id="sheetSubtitle1">Control all Go Bags of your family</div>
+            <div class="sheet-title" id="sheetTitle1">New Go Bag</div>
             <input class="sheet-input" id="bagNameInput" type="text" placeholder="Who does this Go Bag belong to?" maxlength="30" autocomplete="off">
-            <div class="sheet-hint">You can create up to 5 Go Bags, one for each family member.</div>
-            <button class="sheet-create-btn" onclick="createBag()">Create</button>
-            <button class="sheet-cancel-btn" onclick="closeNewBagSheet()">Cancel</button>
+            <div class="sheet-hint" id="sheetHint1">You can create up to 5 Go Bags, one for each family member.</div>
+            <button class="sheet-create-btn" id="sheetCreateBtn1" onclick="createBag()">Create</button>
+            <button class="sheet-cancel-btn" id="sheetCancelBtn1" onclick="closeNewBagSheet()">Cancel</button>
           </div>
         </div>
       </div>
@@ -1550,12 +1550,12 @@ body {
                 <rect x="8" y="13" width="8" height="2.5" rx="1.25" fill="#00b4d8"/>
               </svg>
             </div>
-            <div class="sheet-subtitle">Control all Go Bags of your family</div>
-            <div class="sheet-title">New Go Bag</div>
+            <div class="sheet-subtitle" id="sheetSubtitle2">Control all Go Bags of your family</div>
+            <div class="sheet-title" id="sheetTitle2">New Go Bag</div>
             <input class="sheet-input" id="bagNameInput2" type="text" placeholder="Who does this Go Bag belong to?" maxlength="30" autocomplete="off">
-            <div class="sheet-hint">You can create up to 5 Go Bags, one for each family member.</div>
-            <button class="sheet-create-btn" onclick="createBag2()">Create</button>
-            <button class="sheet-cancel-btn" onclick="closeNewBagSheet2()">Cancel</button>
+            <div class="sheet-hint" id="sheetHint2">You can create up to 5 Go Bags, one for each family member.</div>
+            <button class="sheet-create-btn" id="sheetCreateBtn2" onclick="createBag2()">Create</button>
+            <button class="sheet-cancel-btn" id="sheetCancelBtn2" onclick="closeNewBagSheet2()">Cancel</button>
           </div>
         </div>
       </div>
@@ -1594,7 +1594,7 @@ body {
             </svg>
             <div class="progress-label">
               <div class="progress-pct" id="progressPct" style="font-size:1.3rem">0%</div>
-              <div class="progress-sub" style="font-size:0.6rem;letter-spacing:0.3px">Complete</div>
+              <div class="progress-sub" id="progressSubLabel" style="font-size:0.6rem;letter-spacing:0.3px">Complete</div>
             </div>
           </div>
           <div class="progress-count" id="progressCount" style="font-size:0.75rem;margin-top:6px">0 of 54 items</div>
@@ -1634,13 +1634,13 @@ body {
         </div>
 
         <div class="items-actions-row">
-          <button class="items-check-all" onclick="checkAll()">
+          <button class="items-check-all" id="checkAllBtn" onclick="checkAll()">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="#5ba3ff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
-            Check All
+            <span id="checkAllBtnLabel">Check All</span>
           </button>
-          <button class="items-uncheck-all" onclick="uncheckAll()">
+          <button class="items-uncheck-all" id="uncheckAllBtn" onclick="uncheckAll()">
             <svg viewBox="0 0 24 24" fill="none" stroke="rgba(232,240,255,0.5)" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/></svg>
-            Uncheck All
+            <span id="uncheckAllBtnLabel">Uncheck All</span>
           </button>
         </div>
 
@@ -1652,25 +1652,25 @@ body {
         <div class="check-sheet-overlay" id="checkItemSheet" onclick="handleCheckSheetClick(event)">
           <div class="check-sheet">
             <div class="check-sheet-header">
-              <button class="check-sheet-cancel" onclick="closeCheckSheet()">Cancel</button>
-              <div class="check-sheet-title">Check Item</div>
-              <button class="check-sheet-confirm" onclick="confirmCheckItem()">Check</button>
+              <button class="check-sheet-cancel" id="checkSheetCancelBtn" onclick="closeCheckSheet()">Cancel</button>
+              <div class="check-sheet-title" id="checkSheetHeaderTitle">Check Item</div>
+              <button class="check-sheet-confirm" id="checkSheetConfirmBtn" onclick="confirmCheckItem()">Check</button>
             </div>
-            <div class="check-sheet-section">Item</div>
+            <div class="check-sheet-section" id="checkSheetItemSection">Item</div>
             <div class="check-sheet-pill">
               <div class="check-sheet-pill-icon" id="checkSheetIcon"></div>
               <div class="check-sheet-pill-name" id="checkSheetName">Water bottles</div>
             </div>
-            <div class="check-sheet-section">Expiry Date</div>
+            <div class="check-sheet-section" id="checkSheetExpirySection">Expiry Date</div>
             <div class="check-sheet-toggle-row">
-              <span>Set expiry date</span>
+              <span id="checkSheetSetExpiryLabel">Set expiry date</span>
               <label class="ios-toggle">
                 <input type="checkbox" id="expiryToggle" onchange="toggleExpiryPicker()">
                 <span class="ios-toggle-slider"></span>
               </label>
             </div>
             <div class="check-sheet-date-row" id="expiryDateRow">
-              <span class="check-sheet-date-label">Expiry date</span>
+              <span class="check-sheet-date-label" id="checkSheetExpiryDateLabel">Expiry date</span>
               <input type="date" class="check-sheet-date-input" id="expiryDateInput">
             </div>
           </div>
@@ -1706,8 +1706,8 @@ body {
               <path d="M34 55v14M27 62h14" stroke="white" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="sos-empty-title">No emergency contacts yet</div>
-          <div class="sos-empty-sub">Tap + to add your first contact</div>
+          <div class="sos-empty-title" id="sosEmptyTitle">No emergency contacts yet</div>
+          <div class="sos-empty-sub" id="sosEmptySub">Tap + to add your first contact</div>
         </div>
 
         <div class="sos-contacts-list" id="sosContactsList" style="display:none"></div>
@@ -1772,7 +1772,7 @@ body {
             </svg>
             <div class="progress-label">
               <div class="progress-pct" id="reserveProgressPct" style="font-size:0.95rem">0%</div>
-              <div class="progress-sub" style="font-size:0.5rem;letter-spacing:0.4px">Stocked</div>
+              <div class="progress-sub" id="reserveProgressSubLabel" style="font-size:0.5rem;letter-spacing:0.4px">Stocked</div>
             </div>
           </div>
           <button class="person-pill" onclick="changePersonCount()">
@@ -1809,11 +1809,11 @@ body {
           <div class="res-items-stats">
             <div class="res-items-stat">
               <div class="res-items-stat-num" id="resItemsTotal" style="color:white">0</div>
-              <div class="res-items-stat-label">Items</div>
+              <div class="res-items-stat-label" id="resItemsTotalLabel">Items</div>
             </div>
             <div class="res-items-stat">
               <div class="res-items-stat-num" id="resItemsLow" style="color:#ff8c42">0</div>
-              <div class="res-items-stat-label" style="color:#ff8c42">Low Stock</div>
+              <div class="res-items-stat-label" id="resItemsLowLabel" style="color:#ff8c42">Low Stock</div>
             </div>
           </div>
           <div class="res-items-person">
@@ -1835,9 +1835,9 @@ body {
         <div class="check-sheet-overlay" id="reserveCheckItemSheet" onclick="handleReserveCheckSheetClick(event)">
           <div class="check-sheet">
             <div class="check-sheet-header">
-              <button class="check-sheet-cancel" onclick="closeReserveCheckSheet()">Cancel</button>
-              <div class="check-sheet-title">Quantity</div>
-              <button class="check-sheet-confirm" onclick="confirmReserveCheckItem()">Add</button>
+              <button class="check-sheet-cancel" id="reserveQtyCancelBtn" onclick="closeReserveCheckSheet()">Cancel</button>
+              <div class="check-sheet-title" id="reserveQtyTitle">Quantity</div>
+              <button class="check-sheet-confirm" id="reserveQtyConfirmBtn" onclick="confirmReserveCheckItem()">Add</button>
             </div>
 
             <div class="qty-sheet-item-name" id="reserveCheckSheetName"></div>
@@ -1853,17 +1853,17 @@ body {
               </div>
               <div class="qty-sheet-divider"></div>
               <div class="qty-sheet-row">
-                <span class="qty-sheet-label">Current:</span>
+                <span class="qty-sheet-label" id="reserveCurrentLabel">Current:</span>
                 <span class="qty-sheet-value" id="reserveCurrentQtyLabel">0 unit</span>
               </div>
               <div class="qty-sheet-divider"></div>
               <div class="qty-sheet-row">
-                <span class="qty-sheet-label">New total:</span>
+                <span class="qty-sheet-label" id="reserveNewTotalLabelStatic">New total:</span>
                 <span class="qty-sheet-value cyan" id="reserveNewTotalLabel">1 unit</span>
               </div>
               <div class="qty-sheet-divider"></div>
               <div class="qty-sheet-row">
-                <span class="qty-sheet-label">Required minimum:</span>
+                <span class="qty-sheet-label" id="reserveReqMinLabel">Required minimum:</span>
                 <div style="display:flex;align-items:center;gap:8px">
                   <button class="qty-circle-cyan" onclick="changeReserveMin(-1)">−</button>
                   <span class="qty-sheet-value cyan" id="reserveMinLabel">6 unit</span>
@@ -1873,16 +1873,16 @@ body {
             </div>
 
             <div id="reserveExpirySectionWrap">
-              <div class="check-sheet-section">Expiry Date</div>
+              <div class="check-sheet-section" id="reserveExpirySection">Expiry Date</div>
               <div class="check-sheet-toggle-row">
-                <span>Set expiry date</span>
+                <span id="reserveSetExpiryLabel">Set expiry date</span>
                 <label class="ios-toggle">
                   <input type="checkbox" id="reserveExpiryToggle" onchange="toggleReserveExpiryPicker()">
                   <span class="ios-toggle-slider"></span>
                 </label>
               </div>
               <div class="check-sheet-date-row" id="reserveExpiryDateRow">
-                <span class="check-sheet-date-label">Expiry date</span>
+                <span class="check-sheet-date-label" id="reserveExpiryDateLabel">Expiry date</span>
                 <input type="date" class="check-sheet-date-input" id="reserveExpiryDateInput">
               </div>
             </div>
@@ -1894,12 +1894,12 @@ body {
       <div class="screen hidden" id="screen-new-contact">
         <div style="background:#0d0d10;flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;">
           <div class="nc-header">
-            <button class="nc-pill-btn" onclick="goBack('screen-sos')">Cancel</button>
+            <button class="nc-pill-btn" id="ncCancelBtn" onclick="goBack('screen-sos')">Cancel</button>
             <div class="nc-center-title" id="lblNavNewContact">New Contact</div>
             <button class="nc-pill-btn nc-save-pill" id="ncSaveBtn" onclick="saveNewContact()">Save</button>
           </div>
           <div style="flex:1;overflow-y:auto;padding:0 16px 24px;">
-            <div class="nc-section-label">Details</div>
+            <div class="nc-section-label" id="ncDetailsSectionLabel">Details</div>
             <div class="nc-card">
               <div class="nc-field">
                 <input id="ncNameInput" type="text" placeholder="Full name" oninput="onNcNameInput()" autocomplete="off">
@@ -1909,7 +1909,7 @@ body {
                 <input id="ncPhoneInput" type="tel" placeholder="Phone number" autocomplete="off">
               </div>
               <div class="nc-relation-row">
-                <span class="nc-relation-label">Relation</span>
+                <span class="nc-relation-label" id="ncRelationLabel">Relation</span>
                 <div class="nc-relation-value" id="ncRelationTrigger" onclick="openRelationPicker()">
                   <span id="ncRelationIcon" style="display:flex;align-items:center"></span>
                   <span id="ncRelationVal">Family</span>
@@ -1917,7 +1917,7 @@ body {
                 </div>
               </div>
             </div>
-            <div class="nc-section-label">Notes</div>
+            <div class="nc-section-label" id="ncNotesSectionLabel">Notes</div>
             <div class="nc-notes-card">
               <textarea id="ncNotesInput" placeholder=""></textarea>
             </div>
@@ -2059,18 +2059,18 @@ body {
       <div class="screen hidden" id="screen-new-category">
         <div style="background:#09090f;flex:1;display:flex;flex-direction:column;overflow:hidden;">
           <div class="new-cat-header">
-            <button class="new-cat-pill" onclick="cancelNewCategory()">Cancel</button>
+            <button class="new-cat-pill" id="newCatCancelBtn" onclick="cancelNewCategory()">Cancel</button>
             <button class="new-cat-pill new-cat-save-pill" id="newCatSaveBtn" onclick="saveNewCategory()">Save</button>
           </div>
-          <div class="new-cat-big-title">New Category</div>
+          <div class="new-cat-big-title" id="newCatTitleText">New Category</div>
           <div class="new-cat-scroll">
-            <div class="new-cat-section-label">Name</div>
+            <div class="new-cat-section-label" id="newCatNameSectionLabel">Name</div>
             <input class="new-cat-name-input" id="newCatNameInput" placeholder="Category name" oninput="onNewCatNameInput()" maxlength="30">
-            <div class="new-cat-section-label">Color</div>
+            <div class="new-cat-section-label" id="newCatColorSectionLabel">Color</div>
             <div class="new-cat-card">
               <div class="new-cat-colors" id="newCatColors"></div>
             </div>
-            <div class="new-cat-section-label">Icon</div>
+            <div class="new-cat-section-label" id="newCatIconSectionLabel">Icon</div>
             <div class="new-cat-card">
               <div class="new-cat-icons-grid" id="newCatIcons"></div>
             </div>
@@ -2124,7 +2124,7 @@ body {
 // ============ DEMO MODAL ============
 function showDemoModal(title, sub) {
   document.getElementById('demoModalTitle').textContent = title;
-  document.getElementById('demoModalSub').textContent = sub;
+  document.getElementById('demoModalSub').textContent = sub || getLangStr().demoModalGenericSub || '';
   document.getElementById('demoModalOverlay').classList.add('open');
 }
 function closeDemoModal(e) {
@@ -2415,7 +2415,7 @@ function handleSheetOverlayClick(e) {
   if (e.target === document.getElementById('newBagSheet')) closeNewBagSheet();
 }
 function createBag() {
-  const name = document.getElementById('bagNameInput').value.trim() || 'My Bag';
+  const name = document.getElementById('bagNameInput').value.trim() || getLangStr().bagDefaultName || 'My Bag';
   closeNewBagSheet();
   const id = bags.length;
   bags.push({ name, id });
@@ -2438,7 +2438,7 @@ function handleSheet2Click(e) {
   if (e.target === document.getElementById('newBagSheet2')) closeNewBagSheet2();
 }
 function createBag2() {
-  const name = document.getElementById('bagNameInput2').value.trim() || 'My Bag';
+  const name = document.getElementById('bagNameInput2').value.trim() || getLangStr().bagDefaultName || 'My Bag';
   closeNewBagSheet2();
   const id = bags.length;
   bags.push({ name, id });
@@ -2474,7 +2474,7 @@ function renderBagsList() {
       </div>
       <div class="bag-row-info">
         <div class="bag-row-name">${bag.name}</div>
-        <div class="bag-row-sub">${totalChecked} of ${totalItems} items</div>
+        <div class="bag-row-sub">${totalChecked} ${getLangStr().itemsOf || 'of'} ${totalItems} ${getLangStr().itemsWord || 'items'}</div>
       </div>
       <span class="bag-row-pct">${pct}%</span>
       <span class="bag-row-chevron">›</span>
@@ -2488,7 +2488,8 @@ function renderBagsList() {
 function openBag(idx) {
   currentBagIdx = idx;
   const bag = bags[idx];
-  document.getElementById('gobagNavTitle').textContent = bag.name + "'s Go Bag";
+  const bagFmt = getLangStr().bagNameFormat || "{name}'s Go Bag";
+  document.getElementById('gobagNavTitle').textContent = bagFmt.replace('{name}', bag.name);
   renderCatGrid();
   showScreen('screen-gobag');
   updateProgressRing();
@@ -2503,13 +2504,14 @@ function renderCatGrid() {
   const grid = document.getElementById('catGrid');
   grid.innerHTML = '';
   const bc = bagChecked();
+  const s = getLangStr();
   CATEGORIES.forEach(cat => {
     const catSet = bc[cat.id] || new Set();
     const checked = catSet.size;
     const total = cat.items.length;
     const btn = document.createElement('button');
     btn.className = 'cat-btn';
-    const displayName = cat.name.replace('\n', '<br>');
+    const displayName = getCatName(cat.id).replace(/\n/g, '<br>');
     btn.innerHTML = `
       <div class="cat-circle" style="border-color:${cat.border};box-shadow:0 0 14px ${cat.glow},inset 0 1px 0 rgba(255,255,255,0.08)">
         ${cat.customIcon || CAT_ICONS[cat.id]}
@@ -2520,10 +2522,9 @@ function renderCatGrid() {
     btn.onclick = () => openCategory(cat);
     grid.appendChild(btn);
   });
-  // Add Category button
   const addBtn = document.createElement('button');
   addBtn.className = 'cat-add-btn';
-  addBtn.innerHTML = `<div class="cat-add-circle">+</div><div class="cat-add-label">Add Category</div>`;
+  addBtn.innerHTML = `<div class="cat-add-circle">+</div><div class="cat-add-label">${(s.addCategory || 'Add\nCategory').replace(/\n/, '<br>')}</div>`;
   addBtn.onclick = () => openNewCategory('gobag');
   grid.appendChild(addBtn);
   updateProgressRing();
@@ -2531,7 +2532,7 @@ function renderCatGrid() {
 
 function openCategory(cat) {
   currentCategory = cat;
-  document.getElementById('itemsScreenTitle').textContent = cat.name.replace(/\n/g, ' ');
+  document.getElementById('itemsScreenTitle').textContent = getCatName(cat.id).replace(/\n/g, ' ');
   const circle = document.getElementById('itemsCatIconCircle');
   circle.style.background = cat.color + '22';
   circle.style.border = '2px solid ' + cat.border;
@@ -2549,13 +2550,15 @@ function renderItems(filter) {
   const bc = bagChecked();
   const catSet = bc[cat.id] || new Set();
   const lower = (filter || '').toLowerCase();
+  const localItems = getCatItems(cat.id);
   cat.items.forEach((item, i) => {
-    if (lower && !item.toLowerCase().includes(lower)) return;
+    const displayName = localItems[i] || item;
+    if (lower && !displayName.toLowerCase().includes(lower)) return;
     const checked = catSet.has(i);
     const row = document.createElement('div');
     row.className = 'item-row' + (checked ? ' checked' : '');
     const expiry = gobagExpiryDates[gobagExpiryKey(i)];
-    row.innerHTML = `<div class="item-checkbox"><span class="item-checkbox-mark">✓</span></div><div><div class="item-name">${item}</div>${expiry ? `<div class="item-expiry-label">Expires ${formatDate(expiry)}</div>` : ''}</div>`;
+    row.innerHTML = `<div class="item-checkbox"><span class="item-checkbox-mark">✓</span></div><div><div class="item-name">${displayName}</div>${expiry ? `<div class="item-expiry-label">Expires ${formatDate(expiry)}</div>` : ''}</div>`;
     row.onclick = () => showCheckSheet(i);
     list.appendChild(row);
   });
@@ -2572,7 +2575,8 @@ function updateCatItemsHeader() {
   const catSet = bc[cat.id] || new Set();
   const total = cat.items.length;
   const checked = catSet.size;
-  document.getElementById('itemsCountText').textContent = `${checked} of ${total} items`;
+  const _s = getLangStr();
+  document.getElementById('itemsCountText').textContent = `${checked} ${_s.itemsOf || 'of'} ${total} ${_s.itemsWord || 'items'}`;
   const pct = total ? (checked / total * 100) : 0;
   document.getElementById('itemsProgFill').style.width = pct + '%';
   document.getElementById('itemsProgFill').style.background = cat.color;
@@ -2598,7 +2602,7 @@ function uncheckAll() {
 }
 
 function addItemPrompt() {
-  const val = prompt('New item name:');
+  const val = prompt(getLangStr().addItemPrompt || 'New item name:');
   if (!val || !val.trim()) return;
   currentCategory.items.push(val.trim());
   renderItems(document.getElementById('itemsSearch').value);
@@ -2702,7 +2706,7 @@ function updateReserveQtyDisplay() {
   const item = cat.items[reserveCheckSheetIdx];
   const qty = reserveQtys[cat.id + '_' + reserveCheckSheetIdx] || 0;
   const newTotal = qty + reserveAddAmount;
-  document.getElementById('reserveAddLabel').textContent = `Add: ${reserveAddAmount} ${item.unit}`;
+  document.getElementById('reserveAddLabel').textContent = `${getLangStr().addLabelPrefix || 'Add'}: ${reserveAddAmount} ${item.unit}`;
   document.getElementById('reserveCurrentQtyLabel').textContent = `${qty} ${item.unit}`;
   document.getElementById('reserveNewTotalLabel').textContent = `${newTotal} ${item.unit}`;
   document.getElementById('reserveMinLabel').textContent = `${reserveEditingMin} ${item.unit}`;
@@ -2775,7 +2779,8 @@ function updateProgressRing() {
   const offset = circumference - (pct / 100) * circumference;
   document.getElementById('progressRing').style.strokeDashoffset = offset;
   document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressCount').textContent = `${totalChecked} of ${totalItems} items packed`;
+  const _ps = getLangStr();
+  document.getElementById('progressCount').textContent = `${totalChecked} ${_ps.itemsOf || 'of'} ${totalItems} ${_ps.itemsPacked || 'items packed'}`;
 }
 
 function updateBagProgress() {
@@ -2830,18 +2835,19 @@ function goToReserve() {
 function renderReserveCatGrid() {
   const grid = document.getElementById('reserveCatGrid');
   grid.innerHTML = '';
+  const s = getLangStr();
   RESERVE_CATEGORIES.forEach(cat => {
     const lowCount = cat.items.filter((item, i) => reserveQtys[cat.id + '_' + i] < item.min).length;
     const btn = document.createElement('button');
     btn.className = 'cat-btn';
     btn.onclick = () => goToReserveItems(cat.id);
     const countColor = lowCount > 0 ? '#ff7c44' : '#4ecb71';
-    const countText = lowCount > 0 ? '⚠ ' + lowCount + ' low' : '✓ stocked';
+    const countText = lowCount > 0 ? '⚠ ' + lowCount + ' ' + (s.lowLabel || 'low') : (s.stockedLabel || '✓ stocked');
     btn.innerHTML = `
       <div class="cat-circle" style="border-color:${cat.border}; box-shadow:0 0 14px ${cat.glow}">
         ${cat.icon}
       </div>
-      <div class="cat-name">${cat.name.replace(/\n/g, '<br>')}</div>
+      <div class="cat-name">${getResCatName(cat.id).replace(/\n/g, '<br>')}</div>
       <div class="cat-count-label" style="color:${countColor}">${countText}</div>
     `;
     grid.appendChild(btn);
@@ -2849,7 +2855,7 @@ function renderReserveCatGrid() {
   const addBtn = document.createElement('button');
   addBtn.className = 'cat-add-btn';
   addBtn.onclick = () => openNewCategory('reserve');
-  addBtn.innerHTML = `<div class="cat-add-circle">+</div><div class="cat-add-label">Add<br>Category</div>`;
+  addBtn.innerHTML = `<div class="cat-add-circle">+</div><div class="cat-add-label">${(s.addCategory || 'Add\nCategory').replace(/\n/, '<br>')}</div>`;
   grid.appendChild(addBtn);
 }
 
@@ -2868,12 +2874,16 @@ function updateReserveStats() {
   if (ring) ring.style.strokeDashoffset = offset;
   const pctEl = document.getElementById('reserveProgressPct');
   if (pctEl) pctEl.textContent = pct + '%';
+  const _rs = getLangStr();
   const countEl = document.getElementById('reserveItemCountLabel');
-  if (countEl) countEl.textContent = total + ' items in reserve';
+  if (countEl) countEl.textContent = total + ' ' + (_rs.itemsInReserve || 'items in reserve');
   const lowEl = document.getElementById('reserveLowBadge');
-  if (lowEl) { lowEl.textContent = '⚠ ' + low + ' low'; lowEl.style.display = low > 0 ? '' : 'none'; }
+  if (lowEl) { lowEl.textContent = '⚠ ' + low + ' ' + (_rs.lowLabel || 'low'); lowEl.style.display = low > 0 ? '' : 'none'; }
   const personEl = document.getElementById('personCountLabel');
-  if (personEl) personEl.textContent = reservePersonCount + (reservePersonCount === 1 ? ' person' : ' persons');
+  if (personEl) {
+    const pTpl = reservePersonCount === 1 ? (_rs.personLabel || '{n} person') : (_rs.personsLabel || '{n} persons');
+    personEl.textContent = pTpl.replace('{n}', reservePersonCount);
+  }
 }
 
 function changePersonCount() {
@@ -2884,13 +2894,14 @@ function changePersonCount() {
 function goToReserveItems(catId) {
   currentReserveCat = RESERVE_CATEGORIES.find(c => c.id === catId);
   if (!currentReserveCat) return;
-  document.getElementById('reserveItemsTitle').textContent = currentReserveCat.name.replace(/\n/g, ' ');
+  document.getElementById('reserveItemsTitle').textContent = getResCatName(currentReserveCat.id).replace(/\n/g, ' ');
   const circle = document.getElementById('resItemsIconCircle');
   circle.style.background = currentReserveCat.color + '22';
   circle.style.border = '2px solid ' + currentReserveCat.border;
   circle.innerHTML = (currentReserveCat.icon || '').replace(/width="\d+"/, 'width="38"').replace(/height="\d+"/, 'height="38"');
   document.getElementById('resItemsSearch').value = '';
-  document.getElementById('resItemsPerson').textContent = 'For ' + reservePersonCount + ' person(s)';
+  const _fp = getLangStr().forPersons || 'For {n} person(s)';
+  document.getElementById('resItemsPerson').textContent = _fp.replace('{n}', reservePersonCount);
   renderReserveItemsList();
   updateReserveItemsHeader();
   showScreen('screen-reserve-items');
@@ -2915,7 +2926,8 @@ function renderReserveItemsList(filter) {
   const lower = (filter || '').toLowerCase();
   const iconSmall = (cat.icon || '').replace(/width="\d+"/, 'width="18"').replace(/height="\d+"/, 'height="18"');
   cat.items.forEach((item, i) => {
-    if (lower && !item.name.toLowerCase().includes(lower)) return;
+    const localName = getResItemName(cat.id, i) || item.name;
+    if (lower && !localName.toLowerCase().includes(lower)) return;
     const key = cat.id + '_' + i;
     const qty = reserveQtys[key];
     const low = qty < item.min;
@@ -2929,7 +2941,7 @@ function renderReserveItemsList(filter) {
     row.innerHTML = `
       <div class="res-item-icon-sm" style="background:${cat.color}22;border:1.5px solid ${cat.border}">${iconSmall}</div>
       <div style="flex:1;min-width:0">
-        <div class="res-item-title">${item.name}</div>
+        <div class="res-item-title">${localName}</div>
         <div class="res-item-subtitle${low ? '' : ' stocked'}">${subtitle}</div>
         ${expiry ? `<div class="res-item-expiry-label">Expires ${formatDate(expiry)}</div>` : ''}
       </div>
@@ -3087,193 +3099,541 @@ const LANGUAGES = [
 ];
 
 const LANG_STRINGS = {
-  en: { settings:'Settings', done:'Done', appearance:'Appearance', darkMode:'Dark Mode',
-        notifSection:'Notifications', notifTitle:'Notifications', notifSub:'Get alerted when items are about to expire.',
-        userSection:'User', nameTitle:'Name', langSection:'Language', langTitle:'Language',
-        subSection:'Subscription', premiumTitle:'Premium · Active', premiumSub:'All features unlocked',
-        backupSection:'Backup & Restore', exportTitle:'Export Data', exportSub:'Saves all your data to a file.',
-        importTitle:'Import Data', importSub:'Restores your data from a backup file.',
-        langPickerTitle:'Language', cancel:'Cancel',
-        lsTitle:'Select Language', lsSub:'Choose your preferred language', continueBtn:'Continue →',
-        obBack:'‹ Back', getStarted:'Get Started →',
-        ob1Title:'GoBag+', ob1List:['Go Bag','Home reserve','Emergency contacts','All in one place'],
-        ob2Title:'Go Bag', ob2Sub:'Build your personal go bags for any emergency',
-        ob3Title:'Reserve', ob3Sub:'Track your home supplies',
-        ob4Title:'Emergency Contacts', ob4Sub:'Key numbers always within reach',
-        ob5Title:'Family & Alerts', ob5List:['Expiry reminders','One plan for the whole family','Syncs across all your devices'],
-        nameScreenTitle:"What's Your Name?", nameScreenSub:'Enter your name', namePlaceholder:'Your name',
-        demoSubtitle:'This is a simplified interactive demo — tap the cards and items to explore',
-        demoCta:'Like what you see? Get the real app.',
-        greeting:'Hello, {name}!',
-        navGoBags:'Go Bags', navGoBag:'Go Bag', navReserve:'Reserve', navSOS:'Emergency Contacts',
-        navNewContact:'New Contact', navReserveSetup:'Reserve Setup',
-        btnGoBag:'Go Bag', btnReserve:'Reserve',
-        rsetupQ:'How many people are you preparing the reserve for?', rsetupPersons:'person(s)', rsetupContinueBtn:'Continue',
-        notifTitle:'"GoBag+" Would Like to Send You Notifications',
-        notifMsg:'Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.',
-        notifDeny:"Don't Allow", notifAllow:'Allow',
-        demoAvailable:'Available in GoBag+', demoGotIt:'Got it' },
-  fr: { settings:'Réglages', done:'OK', appearance:'Apparence', darkMode:'Mode sombre',
-        notifSection:'Notifications', notifTitle:'Notifications', notifSub:"Soyez alerté quand des articles sont sur le point d'expirer.",
-        userSection:'Utilisateur', nameTitle:'Nom', langSection:'Langue', langTitle:'Langue',
-        subSection:'Abonnement', premiumTitle:'Premium · Actif', premiumSub:'Toutes les fonctionnalités déverrouillées',
-        backupSection:'Sauvegarde & Restauration', exportTitle:'Exporter', exportSub:'Enregistre toutes vos données dans un fichier.',
-        importTitle:'Importer', importSub:'Restaure vos données depuis un fichier de sauvegarde.',
-        langPickerTitle:'Langue', cancel:'Annuler',
-        lsTitle:'Sélectionner la langue', lsSub:'Choisissez votre langue préférée', continueBtn:'Continuer →',
-        obBack:'‹ Retour', getStarted:'Commencer →',
-        ob1Title:'GoBag+', ob1List:['Sac de survie','Réserve maison','Contacts d\'urgence','Tout en un seul endroit'],
-        ob2Title:'Sac de survie', ob2Sub:'Créez vos sacs de survie pour toute urgence',
-        ob3Title:'Réserve', ob3Sub:'Suivez vos provisions à domicile',
-        ob4Title:'Contacts d\'urgence', ob4Sub:'Numéros clés toujours à portée',
-        ob5Title:'Famille & Alertes', ob5List:['Rappels d\'expiration','Un plan pour toute la famille','Synchronisé sur tous vos appareils'],
-        nameScreenTitle:'Votre Prénom ?', nameScreenSub:'Entrez votre prénom', namePlaceholder:'Votre prénom',
-        demoSubtitle:'Démo interactive simplifiée — appuyez sur les cartes et les éléments pour explorer',
-        demoCta:'Vous aimez ce que vous voyez ? Obtenez la vraie application.',
-        greeting:'Bonjour, {name} !',
-        navGoBags:'Sacs de survie', navGoBag:'Sac de survie', navReserve:'Réserve', navSOS:'Contacts d\'urgence',
-        navNewContact:'Nouveau contact', navReserveSetup:'Configuration',
-        btnGoBag:'Sac de survie', btnReserve:'Réserve',
-        rsetupQ:'Pour combien de personnes préparez-vous la réserve ?', rsetupPersons:'personne(s)', rsetupContinueBtn:'Continuer',
-        notifTitle:'"GoBag+" souhaite vous envoyer des notifications',
-        notifMsg:'Les notifications peuvent inclure des alertes, sons et badges. Configurables dans Réglages.',
-        notifDeny:'Ne pas autoriser', notifAllow:'Autoriser',
-        demoAvailable:'Disponible dans GoBag+', demoGotIt:'Compris' },
-  de: { settings:'Einstellungen', done:'Fertig', appearance:'Darstellung', darkMode:'Dunkelmodus',
-        notifSection:'Benachrichtigungen', notifTitle:'Benachrichtigungen', notifSub:'Erhalten Sie Hinweise wenn Artikel ablaufen.',
-        userSection:'Benutzer', nameTitle:'Name', langSection:'Sprache', langTitle:'Sprache',
-        subSection:'Abonnement', premiumTitle:'Premium · Aktiv', premiumSub:'Alle Funktionen freigeschaltet',
-        backupSection:'Sicherung & Wiederherstellung', exportTitle:'Exportieren', exportSub:'Speichert alle Daten in einer Datei.',
-        importTitle:'Importieren', importSub:'Stellt Daten aus einer Sicherungsdatei wieder her.',
-        langPickerTitle:'Sprache', cancel:'Abbrechen',
-        lsTitle:'Sprache auswählen', lsSub:'Wählen Sie Ihre bevorzugte Sprache', continueBtn:'Weiter →',
-        obBack:'‹ Zurück', getStarted:'Los geht\'s →',
-        ob1Title:'GoBag+', ob1List:['Notfallrucksack','Heimvorrat','Notfallkontakte','Alles an einem Ort'],
-        ob2Title:'Notfallrucksack', ob2Sub:'Erstellen Sie Notfallrucksäcke für jeden Ernstfall',
-        ob3Title:'Vorrat', ob3Sub:'Verfolgen Sie Ihre Haushaltsvorräte',
-        ob4Title:'Notfallkontakte', ob4Sub:'Wichtige Nummern immer griffbereit',
-        ob5Title:'Familie & Alarme', ob5List:['Ablauferinnerungen','Ein Plan für die ganze Familie','Synchronisiert auf allen Geräten'],
-        nameScreenTitle:'Wie heißen Sie?', nameScreenSub:'Geben Sie Ihren Namen ein', namePlaceholder:'Ihr Name',
-        demoSubtitle:'Vereinfachte interaktive Demo — tippen Sie auf Karten und Elemente zum Erkunden',
-        demoCta:'Gefällt Ihnen was Sie sehen? Holen Sie sich die echte App.',
-        greeting:'Hallo, {name}!',
-        navGoBags:'Notfallrucksäcke', navGoBag:'Notfallrucksack', navReserve:'Vorrat', navSOS:'Notfallkontakte',
-        navNewContact:'Neuer Kontakt', navReserveSetup:'Einrichtung',
-        btnGoBag:'Notfallrucksack', btnReserve:'Vorrat',
-        rsetupQ:'Für wie viele Personen bereiten Sie die Reserve vor?', rsetupPersons:'Person(en)', rsetupContinueBtn:'Weiter',
-        notifTitle:'"GoBag+" möchte Ihnen Benachrichtigungen senden',
-        notifMsg:'Benachrichtigungen können Hinweise, Töne und App-Badges umfassen. In Einstellungen konfigurierbar.',
-        notifDeny:'Nicht erlauben', notifAllow:'Erlauben',
-        demoAvailable:'Verfügbar in GoBag+', demoGotIt:'Verstanden' },
-  es: { settings:'Ajustes', done:'Listo', appearance:'Apariencia', darkMode:'Modo oscuro',
-        notifSection:'Notificaciones', notifTitle:'Notificaciones', notifSub:'Reciba alertas cuando los artículos estén por vencer.',
-        userSection:'Usuario', nameTitle:'Nombre', langSection:'Idioma', langTitle:'Idioma',
-        subSection:'Suscripción', premiumTitle:'Premium · Activo', premiumSub:'Todas las funciones desbloqueadas',
-        backupSection:'Copia de seguridad', exportTitle:'Exportar datos', exportSub:'Guarda todos sus datos en un archivo.',
-        importTitle:'Importar datos', importSub:'Restaura sus datos desde un archivo de respaldo.',
-        langPickerTitle:'Idioma', cancel:'Cancelar',
-        lsTitle:'Seleccionar idioma', lsSub:'Elija su idioma preferido', continueBtn:'Continuar →',
-        obBack:'‹ Volver', getStarted:'Comenzar →',
-        ob1Title:'GoBag+', ob1List:['Bolsa de emergencia','Reserva del hogar','Contactos de emergencia','Todo en un solo lugar'],
-        ob2Title:'Bolsa de emergencia', ob2Sub:'Prepara tu bolsa de emergencia para cualquier situación',
-        ob3Title:'Reserva', ob3Sub:'Controla tus suministros del hogar',
-        ob4Title:'Contactos de emergencia', ob4Sub:'Números clave siempre al alcance',
-        ob5Title:'Familia y Alertas', ob5List:['Recordatorios de vencimiento','Un plan para toda la familia','Sincronizado en todos sus dispositivos'],
-        nameScreenTitle:'¿Cómo te llamas?', nameScreenSub:'Ingresa tu nombre', namePlaceholder:'Tu nombre',
-        demoSubtitle:'Demo interactiva simplificada — toca las tarjetas y los elementos para explorar',
-        demoCta:'¿Te gusta lo que ves? Descarga la app real.',
-        greeting:'¡Hola, {name}!',
-        navGoBags:'Bolsas de emergencia', navGoBag:'Bolsa de emergencia', navReserve:'Reserva', navSOS:'Contactos de emergencia',
-        navNewContact:'Nuevo contacto', navReserveSetup:'Configuración',
-        btnGoBag:'Bolsa de emergencia', btnReserve:'Reserva',
-        rsetupQ:'¿Para cuántas personas preparas la reserva?', rsetupPersons:'persona(s)', rsetupContinueBtn:'Continuar',
-        notifTitle:'"GoBag+" desea enviarte notificaciones',
-        notifMsg:'Las notificaciones pueden incluir alertas, sonidos e insignias. Configurables en Ajustes.',
-        notifDeny:'No permitir', notifAllow:'Permitir',
-        demoAvailable:'Disponible en GoBag+', demoGotIt:'Entendido' },
-  it: { settings:'Impostazioni', done:'Fine', appearance:'Aspetto', darkMode:'Modalità scura',
-        notifSection:'Notifiche', notifTitle:'Notifiche', notifSub:'Ricevi avvisi quando gli articoli stanno per scadere.',
-        userSection:'Utente', nameTitle:'Nome', langSection:'Lingua', langTitle:'Lingua',
-        subSection:'Abbonamento', premiumTitle:'Premium · Attivo', premiumSub:'Tutte le funzioni sbloccate',
-        backupSection:'Backup e ripristino', exportTitle:'Esporta dati', exportSub:'Salva tutti i tuoi dati in un file.',
-        importTitle:'Importa dati', importSub:'Ripristina i tuoi dati da un file di backup.',
-        langPickerTitle:'Lingua', cancel:'Annulla',
-        lsTitle:'Seleziona lingua', lsSub:'Scegli la tua lingua preferita', continueBtn:'Continua →',
-        obBack:'‹ Indietro', getStarted:'Inizia →',
-        ob1Title:'GoBag+', ob1List:['Kit di emergenza','Riserva domestica','Contatti di emergenza','Tutto in un unico posto'],
-        ob2Title:'Kit di emergenza', ob2Sub:'Prepara i tuoi kit di emergenza per ogni eventualità',
-        ob3Title:'Riserva', ob3Sub:'Tieni traccia delle scorte di casa',
-        ob4Title:'Contatti di emergenza', ob4Sub:'Numeri chiave sempre a portata di mano',
-        ob5Title:'Famiglia e Avvisi', ob5List:['Promemoria di scadenza','Un piano per tutta la famiglia','Sincronizzato su tutti i dispositivi'],
-        nameScreenTitle:'Come ti chiami?', nameScreenSub:'Inserisci il tuo nome', namePlaceholder:'Il tuo nome',
-        demoSubtitle:'Demo interattiva semplificata — tocca le schede e gli elementi per esplorare',
-        demoCta:'Ti piace quello che vedi? Scarica la vera app.',
-        greeting:'Ciao, {name}!',
-        navGoBags:'Kit di emergenza', navGoBag:'Kit di emergenza', navReserve:'Riserva', navSOS:'Contatti di emergenza',
-        navNewContact:'Nuovo contatto', navReserveSetup:'Configurazione',
-        btnGoBag:'Kit di emergenza', btnReserve:'Riserva',
-        rsetupQ:'Per quante persone stai preparando la riserva?', rsetupPersons:'persona/e', rsetupContinueBtn:'Continua',
-        notifTitle:'"GoBag+" vorrebbe inviarti notifiche',
-        notifMsg:'Le notifiche possono includere avvisi, suoni e badge. Configurabili in Impostazioni.',
-        notifDeny:'Non consentire', notifAllow:'Consenti',
-        demoAvailable:'Disponibile in GoBag+', demoGotIt:'Capito' },
-  pt: { settings:'Definições', done:'OK', appearance:'Aparência', darkMode:'Modo escuro',
-        notifSection:'Notificações', notifTitle:'Notificações', notifSub:'Receba alertas quando os itens estiverem prestes a expirar.',
-        userSection:'Utilizador', nameTitle:'Nome', langSection:'Idioma', langTitle:'Idioma',
-        subSection:'Subscrição', premiumTitle:'Premium · Ativo', premiumSub:'Todas as funcionalidades desbloqueadas',
-        backupSection:'Cópia de segurança', exportTitle:'Exportar dados', exportSub:'Guarda todos os seus dados num ficheiro.',
-        importTitle:'Importar dados', importSub:'Restaura os seus dados de um ficheiro de backup.',
-        langPickerTitle:'Idioma', cancel:'Cancelar',
-        lsTitle:'Selecionar idioma', lsSub:'Escolha o seu idioma preferido', continueBtn:'Continuar →',
-        obBack:'‹ Voltar', getStarted:'Começar →',
-        ob1Title:'GoBag+', ob1List:['Mochila de emergência','Reserva doméstica','Contatos de emergência','Tudo num só lugar'],
-        ob2Title:'Mochila de emergência', ob2Sub:'Prepare as suas mochilas de emergência para qualquer situação',
-        ob3Title:'Reserva', ob3Sub:'Controle os seus suprimentos domésticos',
-        ob4Title:'Contatos de emergência', ob4Sub:'Números importantes sempre ao alcance',
-        ob5Title:'Família e Alertas', ob5List:['Lembretes de validade','Um plano para toda a família','Sincronizado em todos os dispositivos'],
-        nameScreenTitle:'Qual é o seu nome?', nameScreenSub:'Introduza o seu nome', namePlaceholder:'O seu nome',
-        demoSubtitle:'Demo interativa simplificada — toque nos cartões e itens para explorar',
-        demoCta:'Gostou do que viu? Obtenha a aplicação real.',
-        greeting:'Olá, {name}!',
-        navGoBags:'Mochilas de emergência', navGoBag:'Mochila de emergência', navReserve:'Reserva', navSOS:'Contactos de emergência',
-        navNewContact:'Novo contacto', navReserveSetup:'Configuração',
-        btnGoBag:'Mochila de emergência', btnReserve:'Reserva',
-        rsetupQ:'Para quantas pessoas está a preparar a reserva?', rsetupPersons:'pessoa(s)', rsetupContinueBtn:'Continuar',
-        notifTitle:'"GoBag+" gostaria de enviar-lhe notificações',
-        notifMsg:'As notificações podem incluir alertas, sons e emblemas. Configuráveis nas Definições.',
-        notifDeny:'Não permitir', notifAllow:'Permitir',
-        demoAvailable:'Disponível em GoBag+', demoGotIt:'Entendido' },
-  ru: { settings:'Настройки', done:'Готово', appearance:'Внешний вид', darkMode:'Тёмный режим',
-        notifSection:'Уведомления', notifTitle:'Уведомления', notifSub:'Получайте уведомления когда товары истекают.',
-        userSection:'Пользователь', nameTitle:'Имя', langSection:'Язык', langTitle:'Язык',
-        subSection:'Подписка', premiumTitle:'Премиум · Активна', premiumSub:'Все функции разблокированы',
-        backupSection:'Резервная копия', exportTitle:'Экспорт данных', exportSub:'Сохраняет все ваши данные в файл.',
-        importTitle:'Импорт данных', importSub:'Восстанавливает данные из файла резервной копии.',
-        langPickerTitle:'Язык', cancel:'Отмена',
-        lsTitle:'Выбор языка', lsSub:'Выберите предпочитаемый язык', continueBtn:'Продолжить →',
-        obBack:'‹ Назад', getStarted:'Начать →',
-        ob1Title:'GoBag+', ob1List:['Тревожный чемоданчик','Домашний запас','Экстренные контакты','Всё в одном месте'],
-        ob2Title:'Тревожный чемоданчик', ob2Sub:'Соберите тревожный чемоданчик на любой случай',
-        ob3Title:'Запас', ob3Sub:'Отслеживайте домашние запасы',
-        ob4Title:'Экстренные контакты', ob4Sub:'Важные номера всегда под рукой',
-        ob5Title:'Семья и оповещения', ob5List:['Напоминания об истечении','Один план для всей семьи','Синхронизация на всех устройствах'],
-        nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя',
-        demoSubtitle:'Упрощённая интерактивная демо — нажимайте на карточки и элементы для изучения',
-        demoCta:'Нравится то, что видите? Скачайте настоящее приложение.',
-        greeting:'Привет, {name}!',
-        navGoBags:'Тревожные чемоданчики', navGoBag:'Тревожный чемоданчик', navReserve:'Запас', navSOS:'Экстренные контакты',
-        navNewContact:'Новый контакт', navReserveSetup:'Настройка',
-        btnGoBag:'Тревожный чемоданчик', btnReserve:'Запас',
-        rsetupQ:'Для скольких человек вы готовите запас?', rsetupPersons:'чел.', rsetupContinueBtn:'Продолжить',
-        notifTitle:'"GoBag+" хочет отправлять вам уведомления',
-        notifMsg:'Уведомления могут включать оповещения, звуки и значки. Настраиваются в Настройках.',
-        notifDeny:'Не разрешать', notifAllow:'Разрешить',
-        demoAvailable:'Доступно в GoBag+', demoGotIt:'Понятно' },
+  en: {
+    settings:'Settings', done:'Done', appearance:'Appearance', darkMode:'Dark Mode',
+    notifSection:'Notifications', notifTitle:'Notifications', notifSub:'Get alerted when items are about to expire.',
+    userSection:'User', nameTitle:'Name', langSection:'Language', langTitle:'Language',
+    subSection:'Subscription', premiumTitle:'Premium · Active', premiumSub:'All features unlocked',
+    backupSection:'Backup & Restore', exportTitle:'Export Data', exportSub:'Saves all your data to a file.',
+    importTitle:'Import Data', importSub:'Restores your data from a backup file.',
+    langPickerTitle:'Language', cancel:'Cancel',
+    lsTitle:'Select Language', lsSub:'Choose your preferred language', continueBtn:'Continue →',
+    obBack:'‹ Back', getStarted:'Get Started →',
+    ob1Title:'GoBag+', ob1List:['Go Bag','Home reserve','Emergency contacts','All in one place'],
+    ob2Title:'Go Bag', ob2Sub:'Build your personal go bags for any emergency',
+    ob3Title:'Reserve', ob3Sub:'Track your home supplies',
+    ob4Title:'Emergency Contacts', ob4Sub:'Key numbers always within reach',
+    ob5Title:'Family & Alerts', ob5List:['Expiry reminders','One plan for the whole family','Syncs across all your devices'],
+    nameScreenTitle:"What's Your Name?", nameScreenSub:'Enter your name', namePlaceholder:'Your name',
+    demoSubtitle:'This is a simplified interactive demo — tap the cards and items to explore',
+    demoCta:'Like what you see? Get the real app.',
+    greeting:'Hello, {name}!',
+    navGoBags:'Go Bags', navGoBag:'Go Bag', navReserve:'Reserve', navSOS:'Emergency Contacts',
+    navNewContact:'New Contact', navReserveSetup:'Reserve Setup',
+    btnGoBag:'Go Bag', btnReserve:'Reserve',
+    rsetupQ:'How many people are you preparing the reserve for?', rsetupPersons:'person(s)', rsetupContinueBtn:'Continue',
+    notifTitle:'"GoBag+" Would Like to Send You Notifications',
+    notifMsg:'Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.',
+    notifDeny:"Don't Allow", notifAllow:'Allow',
+    demoAvailable:'Available in GoBag+', demoGotIt:'Got it',
+    tagline:'"Best time to prepare was yesterday.\nSecond best time is today."',
+    sheetSubtitle:'Control all Go Bags of your family', sheetTitle:'New Go Bag',
+    sheetPlaceholder:'Who does this Go Bag belong to?',
+    sheetHint:'You can create up to 5 Go Bags, one for each family member.',
+    createBtn:'Create', cancelBtn:'Cancel', saveBtn:'Save',
+    checkAllBtn:'Check All', uncheckAllBtn:'Uncheck All',
+    searchPlaceholder:'Search items...', resSearchPlaceholder:'Search items...',
+    progressComplete:'Complete', progressStocked:'Stocked',
+    itemsOf:'of', itemsWord:'items', itemsPacked:'items packed',
+    addCategory:'Add\nCategory',
+    checkItemTitle:'Check Item', checkItemSection:'Item',
+    expirySection:'Expiry Date', setExpiryToggle:'Set expiry date', expiryDateLabel:'Expiry date',
+    checkBtn:'Check', quantityTitle:'Quantity', addBtn:'Add',
+    addLabelPrefix:'Add:', currentLabel:'Current:', newTotalLabel:'New total:', requiredMinLabel:'Required minimum:',
+    itemsInReserve:'items in reserve',
+    personLabel:'{n} person', personsLabel:'{n} persons', forPersons:'For {n} person(s)',
+    sosEmptyTitle:'No emergency contacts yet', sosEmptySub:'Tap + to add your first contact',
+    ncDetailsSection:'Details', ncNotesSection:'Notes',
+    ncNamePlaceholder:'Full name', ncPhonePlaceholder:'Phone number',
+    ncRelationLabel:'Relation', ncNameError:'Name is required',
+    newCatTitle:'New Category', newCatNameSection:'Name', newCatColorSection:'Color', newCatIconSection:'Icon',
+    newCatNamePlaceholder:'Category name', demoModalGenericSub:'This feature is available in the full app.',
+    stockedLabel:'✓ stocked', lowLabel:'low', bagDefaultName:'My Bag', bagNameFormat:"{name}'s Go Bag",
+    relFamily:'Family', relDoctor:'Doctor', relAuthority:'Authority', relOther:'Other',
+    cat_documents:'Documents', cat_waterFood:'Water &\nFood', cat_clothing:'Clothing',
+    cat_medical:'Medical\n& Hygiene', cat_tools:'Tools &\nEquipment', cat_electronics:'Electronics',
+    cat_money:'Money &\nValuables', cat_personal:'Personal\n& Family', cat_misc:'Miscellaneous',
+    rcat_water:'Water &\nFood', rcat_medical:'Medical &\nHygiene', rcat_electronics:'Electronics',
+    rcat_cleaning:'Cleaning', rcat_fuel:'Fuel &\nEnergy', rcat_tools:'Tools &\nEquip.', rcat_other:'Other',
+    items_documents:['Passport','Insurance card','Birth certificate','Marriage certificate','Medical records','Emergency contacts list','Property deeds'],
+    items_waterFood:['Water bottles (3L/person)','Non-perishable food (3 days)','Baby formula','Pet food'],
+    items_clothing:['Change of clothes','Waterproof jacket','Warm clothes','Blanket','Sturdy shoes'],
+    items_medical:['First aid kit','Prescription medications','Pain relievers','Antiseptic wipes','Thermometer','Face masks','Hand sanitizer','Bandages','Scissors','Gloves','Antiseptic solution','Burn cream'],
+    items_tools:['Flashlight','Headlamp','Swiss army knife','Waterproof matches','Lighter','Can opener','Plastic sheeting','Local maps'],
+    items_electronics:['Portable charger','Portable radio','Extra batteries','Charging cables'],
+    items_money:['Cash (small bills)','Bank cards copy'],
+    items_personal:['Diapers','Eyeglasses / spare','Comfort items','Family photos','Books / games','Hearing aid','Bible / prayer book'],
+    items_misc:['Spare keys','Whistle','N95 masks','Tarp / rain cover','Zip ties'],
+    ritems_water:['Bottled Water','Canned Vegetables','Rice','Pasta','Cooking Oil'],
+    ritems_medical:['Pain Relievers','Bandages','Hand Sanitizer','Soap','Antiseptic Solution'],
+    ritems_electronics:['AA Batteries','Portable Charger','Flashlight','AM/FM Radio'],
+    ritems_cleaning:['Dish Soap','Bleach','Trash Bags','Paper Towels'],
+    ritems_fuel:['Candles','Matches','Lighters','Fuel Tablets'],
+    ritems_tools:['Duct Tape','Rope','Multi-tool','Work Gloves'],
+    ritems_other:['Spare Keys','Extra Cash','Whistle'],
+  },
+  fr: {
+    settings:'Réglages', done:'OK', appearance:'Apparence', darkMode:'Mode sombre',
+    notifSection:'Notifications', notifTitle:'Notifications', notifSub:"Soyez alerté quand des articles sont sur le point d'expirer.",
+    userSection:'Utilisateur', nameTitle:'Nom', langSection:'Langue', langTitle:'Langue',
+    subSection:'Abonnement', premiumTitle:'Premium · Actif', premiumSub:'Toutes les fonctionnalités déverrouillées',
+    backupSection:'Sauvegarde & Restauration', exportTitle:'Exporter', exportSub:'Enregistre toutes vos données dans un fichier.',
+    importTitle:'Importer', importSub:'Restaure vos données depuis un fichier de sauvegarde.',
+    langPickerTitle:'Langue', cancel:'Annuler',
+    lsTitle:'Sélectionner la langue', lsSub:'Choisissez votre langue préférée', continueBtn:'Continuer →',
+    obBack:'‹ Retour', getStarted:'Commencer →',
+    ob1Title:'GoBag+', ob1List:['Sac de survie','Réserve maison','Contacts d\'urgence','Tout en un seul endroit'],
+    ob2Title:'Sac de survie', ob2Sub:'Créez vos sacs de survie pour toute urgence',
+    ob3Title:'Réserve', ob3Sub:'Suivez vos provisions à domicile',
+    ob4Title:'Contacts d\'urgence', ob4Sub:'Numéros clés toujours à portée',
+    ob5Title:'Famille & Alertes', ob5List:['Rappels d\'expiration','Un plan pour toute la famille','Synchronisé sur tous vos appareils'],
+    nameScreenTitle:'Votre Prénom ?', nameScreenSub:'Entrez votre prénom', namePlaceholder:'Votre prénom',
+    demoSubtitle:'Démo interactive simplifiée — appuyez sur les cartes et les éléments pour explorer',
+    demoCta:'Vous aimez ce que vous voyez ? Obtenez la vraie application.',
+    greeting:'Bonjour, {name} !',
+    navGoBags:'Sacs de survie', navGoBag:'Sac de survie', navReserve:'Réserve', navSOS:'Contacts d\'urgence',
+    navNewContact:'Nouveau contact', navReserveSetup:'Configuration',
+    btnGoBag:'Sac de survie', btnReserve:'Réserve',
+    rsetupQ:'Pour combien de personnes préparez-vous la réserve ?', rsetupPersons:'personne(s)', rsetupContinueBtn:'Continuer',
+    notifTitle:'"GoBag+" souhaite vous envoyer des notifications',
+    notifMsg:'Les notifications peuvent inclure des alertes, sons et badges. Configurables dans Réglages.',
+    notifDeny:'Ne pas autoriser', notifAllow:'Autoriser',
+    demoAvailable:'Disponible dans GoBag+', demoGotIt:'Compris',
+    tagline:'"Le meilleur moment pour se préparer était hier.\nLe deuxième meilleur, c\'est maintenant."',
+    sheetSubtitle:'Gérez tous les sacs de survie de votre famille', sheetTitle:'Nouveau sac de survie',
+    sheetPlaceholder:'À qui appartient ce sac ?',
+    sheetHint:'Vous pouvez créer jusqu\'à 5 sacs, un pour chaque membre de la famille.',
+    createBtn:'Créer', cancelBtn:'Annuler', saveBtn:'Enregistrer',
+    checkAllBtn:'Tout cocher', uncheckAllBtn:'Tout décocher',
+    searchPlaceholder:'Rechercher...', resSearchPlaceholder:'Rechercher...',
+    progressComplete:'Complet', progressStocked:'Stocké',
+    itemsOf:'sur', itemsWord:'articles', itemsPacked:'articles emballés',
+    addCategory:'Ajouter\ncatégorie',
+    checkItemTitle:'Vérifier l\'article', checkItemSection:'Article',
+    expirySection:'Date d\'expiration', setExpiryToggle:'Définir la date d\'expiration', expiryDateLabel:'Date d\'expiration',
+    checkBtn:'Cocher', quantityTitle:'Quantité', addBtn:'Ajouter',
+    addLabelPrefix:'Ajouter :', currentLabel:'Actuel :', newTotalLabel:'Nouveau total :', requiredMinLabel:'Minimum requis :',
+    itemsInReserve:'articles en réserve',
+    personLabel:'{n} personne', personsLabel:'{n} personnes', forPersons:'Pour {n} personne(s)',
+    sosEmptyTitle:'Aucun contact d\'urgence', sosEmptySub:'Appuyez sur + pour ajouter un contact',
+    ncDetailsSection:'Détails', ncNotesSection:'Notes',
+    ncNamePlaceholder:'Nom complet', ncPhonePlaceholder:'Numéro de téléphone',
+    ncRelationLabel:'Relation', ncNameError:'Le nom est requis',
+    newCatTitle:'Nouvelle catégorie', newCatNameSection:'Nom', newCatColorSection:'Couleur', newCatIconSection:'Icône',
+    newCatNamePlaceholder:'Nom de la catégorie', demoModalGenericSub:'Cette fonctionnalité est disponible dans l\'application complète.',
+    stockedLabel:'✓ stocké', lowLabel:'bas', bagDefaultName:'Mon sac', bagNameFormat:'Sac de {name}',
+    relFamily:'Famille', relDoctor:'Médecin', relAuthority:'Autorité', relOther:'Autre',
+    cat_documents:'Documents', cat_waterFood:'Eau &\nNourriture', cat_clothing:'Vêtements',
+    cat_medical:'Médical\n& Hygiène', cat_tools:'Outils &\nÉquipement', cat_electronics:'Électronique',
+    cat_money:'Argent &\nValeurs', cat_personal:'Personnel\n& Famille', cat_misc:'Divers',
+    rcat_water:'Eau &\nNourriture', rcat_medical:'Médical &\nHygiène', rcat_electronics:'Électronique',
+    rcat_cleaning:'Nettoyage', rcat_fuel:'Carburant\n& Énergie', rcat_tools:'Outils &\nÉquip.', rcat_other:'Autre',
+    items_documents:['Passeport','Carte d\'assurance','Acte de naissance','Acte de mariage','Dossier médical','Liste de contacts d\'urgence','Titres de propriété'],
+    items_waterFood:['Bouteilles d\'eau (3L/pers.)','Nourriture non périssable (3 j)','Lait infantile','Nourriture pour animaux'],
+    items_clothing:['Changement de vêtements','Veste imperméable','Vêtements chauds','Couverture','Chaussures solides'],
+    items_medical:['Trousse de premiers secours','Médicaments sur ordonnance','Analgésiques','Lingettes antiseptiques','Thermomètre','Masques','Gel hydroalcoolique','Bandages','Ciseaux','Gants','Solution antiseptique','Crème pour brûlures'],
+    items_tools:['Lampe de poche','Lampe frontale','Couteau suisse','Allumettes imperméables','Briquet','Ouvre-boîte','Bâche plastique','Cartes locales'],
+    items_electronics:['Chargeur portable','Radio portable','Piles de rechange','Câbles de recharge'],
+    items_money:['Espèces (petites coupures)','Copie des cartes bancaires'],
+    items_personal:['Couches','Lunettes / rechange','Objets de réconfort','Photos de famille','Livres / jeux','Aide auditive','Bible / livre de prières'],
+    items_misc:['Clés de rechange','Sifflet','Masques N95','Bâche imperméable','Colliers de serrage'],
+    ritems_water:['Eau en bouteille','Légumes en conserve','Riz','Pâtes','Huile de cuisson'],
+    ritems_medical:['Analgésiques','Bandages','Gel hydroalcoolique','Savon','Solution antiseptique'],
+    ritems_electronics:['Piles AA','Chargeur portable','Lampe de poche','Radio AM/FM'],
+    ritems_cleaning:['Liquide vaisselle','Eau de Javel','Sacs poubelle','Essuie-tout'],
+    ritems_fuel:['Bougies','Allumettes','Briquets','Pastilles de combustible'],
+    ritems_tools:['Ruban adhésif','Corde','Multioutil','Gants de travail'],
+    ritems_other:['Clés de rechange','Argent liquide supplémentaire','Sifflet'],
+  },
+  de: {
+    settings:'Einstellungen', done:'Fertig', appearance:'Darstellung', darkMode:'Dunkelmodus',
+    notifSection:'Benachrichtigungen', notifTitle:'Benachrichtigungen', notifSub:'Erhalten Sie Hinweise wenn Artikel ablaufen.',
+    userSection:'Benutzer', nameTitle:'Name', langSection:'Sprache', langTitle:'Sprache',
+    subSection:'Abonnement', premiumTitle:'Premium · Aktiv', premiumSub:'Alle Funktionen freigeschaltet',
+    backupSection:'Sicherung & Wiederherstellung', exportTitle:'Exportieren', exportSub:'Speichert alle Daten in einer Datei.',
+    importTitle:'Importieren', importSub:'Stellt Daten aus einer Sicherungsdatei wieder her.',
+    langPickerTitle:'Sprache', cancel:'Abbrechen',
+    lsTitle:'Sprache auswählen', lsSub:'Wählen Sie Ihre bevorzugte Sprache', continueBtn:'Weiter →',
+    obBack:'‹ Zurück', getStarted:'Los geht\'s →',
+    ob1Title:'GoBag+', ob1List:['Notfallrucksack','Heimvorrat','Notfallkontakte','Alles an einem Ort'],
+    ob2Title:'Notfallrucksack', ob2Sub:'Erstellen Sie Notfallrucksäcke für jeden Ernstfall',
+    ob3Title:'Vorrat', ob3Sub:'Verfolgen Sie Ihre Haushaltsvorräte',
+    ob4Title:'Notfallkontakte', ob4Sub:'Wichtige Nummern immer griffbereit',
+    ob5Title:'Familie & Alarme', ob5List:['Ablauferinnerungen','Ein Plan für die ganze Familie','Synchronisiert auf allen Geräten'],
+    nameScreenTitle:'Wie heißen Sie?', nameScreenSub:'Geben Sie Ihren Namen ein', namePlaceholder:'Ihr Name',
+    demoSubtitle:'Vereinfachte interaktive Demo — tippen Sie auf Karten und Elemente zum Erkunden',
+    demoCta:'Gefällt Ihnen was Sie sehen? Holen Sie sich die echte App.',
+    greeting:'Hallo, {name}!',
+    navGoBags:'Notfallrucksäcke', navGoBag:'Notfallrucksack', navReserve:'Vorrat', navSOS:'Notfallkontakte',
+    navNewContact:'Neuer Kontakt', navReserveSetup:'Einrichtung',
+    btnGoBag:'Notfallrucksack', btnReserve:'Vorrat',
+    rsetupQ:'Für wie viele Personen bereiten Sie die Reserve vor?', rsetupPersons:'Person(en)', rsetupContinueBtn:'Weiter',
+    notifTitle:'"GoBag+" möchte Ihnen Benachrichtigungen senden',
+    notifMsg:'Benachrichtigungen können Hinweise, Töne und App-Badges umfassen. In Einstellungen konfigurierbar.',
+    notifDeny:'Nicht erlauben', notifAllow:'Erlauben',
+    demoAvailable:'Verfügbar in GoBag+', demoGotIt:'Verstanden',
+    tagline:'"Der beste Zeitpunkt zur Vorbereitung war gestern.\nDer zweitbeste ist jetzt."',
+    sheetSubtitle:'Verwalten Sie alle Notfallrucksäcke Ihrer Familie', sheetTitle:'Neuer Notfallrucksack',
+    sheetPlaceholder:'Wem gehört dieser Rucksack?',
+    sheetHint:'Sie können bis zu 5 Notfallrucksäcke erstellen, einen für jedes Familienmitglied.',
+    createBtn:'Erstellen', cancelBtn:'Abbrechen', saveBtn:'Speichern',
+    checkAllBtn:'Alle abhaken', uncheckAllBtn:'Alle abwählen',
+    searchPlaceholder:'Suchen...', resSearchPlaceholder:'Suchen...',
+    progressComplete:'Vollständig', progressStocked:'Vorrätig',
+    itemsOf:'von', itemsWord:'Artikel', itemsPacked:'Artikel gepackt',
+    addCategory:'Kategorie\nhinzufügen',
+    checkItemTitle:'Artikel abhaken', checkItemSection:'Artikel',
+    expirySection:'Ablaufdatum', setExpiryToggle:'Ablaufdatum festlegen', expiryDateLabel:'Ablaufdatum',
+    checkBtn:'Abhaken', quantityTitle:'Menge', addBtn:'Hinzufügen',
+    addLabelPrefix:'Hinzufügen:', currentLabel:'Aktuell:', newTotalLabel:'Neue Summe:', requiredMinLabel:'Mindestmenge:',
+    itemsInReserve:'Artikel im Vorrat',
+    personLabel:'{n} Person', personsLabel:'{n} Personen', forPersons:'Für {n} Person(en)',
+    sosEmptyTitle:'Keine Notfallkontakte vorhanden', sosEmptySub:'Tippen Sie auf + um einen Kontakt hinzuzufügen',
+    ncDetailsSection:'Details', ncNotesSection:'Notizen',
+    ncNamePlaceholder:'Vollständiger Name', ncPhonePlaceholder:'Telefonnummer',
+    ncRelationLabel:'Beziehung', ncNameError:'Name ist erforderlich',
+    newCatTitle:'Neue Kategorie', newCatNameSection:'Name', newCatColorSection:'Farbe', newCatIconSection:'Symbol',
+    newCatNamePlaceholder:'Kategoriename', demoModalGenericSub:'Diese Funktion ist in der vollständigen App verfügbar.',
+    stockedLabel:'✓ vorrätig', lowLabel:'niedrig', bagDefaultName:'Mein Rucksack', bagNameFormat:'Rucksack von {name}',
+    relFamily:'Familie', relDoctor:'Arzt', relAuthority:'Behörde', relOther:'Sonstige',
+    cat_documents:'Dokumente', cat_waterFood:'Wasser &\nLebensmittel', cat_clothing:'Kleidung',
+    cat_medical:'Medizin\n& Hygiene', cat_tools:'Werkzeug &\nAusrüstung', cat_electronics:'Elektronik',
+    cat_money:'Geld &\nWertsachen', cat_personal:'Persönlich\n& Familie', cat_misc:'Sonstiges',
+    rcat_water:'Wasser &\nLebensmittel', rcat_medical:'Medizin &\nHygiene', rcat_electronics:'Elektronik',
+    rcat_cleaning:'Reinigung', rcat_fuel:'Kraftstoff\n& Energie', rcat_tools:'Werkzeug &\nAusr.', rcat_other:'Sonstiges',
+    items_documents:['Reisepass','Versicherungskarte','Geburtsurkunde','Heiratsurkunde','Krankenakte','Notfallkontaktliste','Grundbuchauszüge'],
+    items_waterFood:['Wasserflaschen (3L/Person)','Haltbare Lebensmittel (3 Tage)','Babynahrung','Tiernahrung'],
+    items_clothing:['Wechselkleidung','Wasserfeste Jacke','Warme Kleidung','Decke','Robuste Schuhe'],
+    items_medical:['Erste-Hilfe-Kasten','Verschreibungspflichtige Medikamente','Schmerzmittel','Antiseptische Tücher','Thermometer','Gesichtsmasken','Händedesinfektionsmittel','Verbände','Schere','Handschuhe','Antiseptische Lösung','Brandsalbe'],
+    items_tools:['Taschenlampe','Stirnlampe','Schweizer Taschenmesser','Wasserdichte Streichhölzer','Feuerzeug','Dosenöffner','Plastikfolie','Lokale Karten'],
+    items_electronics:['Powerbank','Tragbares Radio','Ersatzbatterien','Ladekabel'],
+    items_money:['Bargeld (kleine Scheine)','Kopie der Bankkarten'],
+    items_personal:['Windeln','Brille / Ersatz','Tröststücke','Familienfotos','Bücher / Spiele','Hörgerät','Bibel / Gebetsbuch'],
+    items_misc:['Ersatzschlüssel','Pfeife','N95-Masken','Plane / Regenschutz','Kabelbinder'],
+    ritems_water:['Mineralwasser','Gemüsekonserven','Reis','Nudeln','Speiseöl'],
+    ritems_medical:['Schmerzmittel','Verbände','Händedesinfektionsmittel','Seife','Antiseptische Lösung'],
+    ritems_electronics:['AA-Batterien','Powerbank','Taschenlampe','AM/FM-Radio'],
+    ritems_cleaning:['Spülmittel','Bleichmittel','Müllbeutel','Papiertücher'],
+    ritems_fuel:['Kerzen','Streichhölzer','Feuerzeuge','Brennstofftabletten'],
+    ritems_tools:['Klebeband','Seil','Multitool','Arbeitshandschuhe'],
+    ritems_other:['Ersatzschlüssel','Bargeldreserve','Pfeife'],
+  },
+  es: {
+    settings:'Ajustes', done:'Listo', appearance:'Apariencia', darkMode:'Modo oscuro',
+    notifSection:'Notificaciones', notifTitle:'Notificaciones', notifSub:'Reciba alertas cuando los artículos estén por vencer.',
+    userSection:'Usuario', nameTitle:'Nombre', langSection:'Idioma', langTitle:'Idioma',
+    subSection:'Suscripción', premiumTitle:'Premium · Activo', premiumSub:'Todas las funciones desbloqueadas',
+    backupSection:'Copia de seguridad', exportTitle:'Exportar datos', exportSub:'Guarda todos sus datos en un archivo.',
+    importTitle:'Importar datos', importSub:'Restaura sus datos desde un archivo de respaldo.',
+    langPickerTitle:'Idioma', cancel:'Cancelar',
+    lsTitle:'Seleccionar idioma', lsSub:'Elija su idioma preferido', continueBtn:'Continuar →',
+    obBack:'‹ Volver', getStarted:'Comenzar →',
+    ob1Title:'GoBag+', ob1List:['Bolsa de emergencia','Reserva del hogar','Contactos de emergencia','Todo en un solo lugar'],
+    ob2Title:'Bolsa de emergencia', ob2Sub:'Prepara tu bolsa de emergencia para cualquier situación',
+    ob3Title:'Reserva', ob3Sub:'Controla tus suministros del hogar',
+    ob4Title:'Contactos de emergencia', ob4Sub:'Números clave siempre al alcance',
+    ob5Title:'Familia y Alertas', ob5List:['Recordatorios de vencimiento','Un plan para toda la familia','Sincronizado en todos sus dispositivos'],
+    nameScreenTitle:'¿Cómo te llamas?', nameScreenSub:'Ingresa tu nombre', namePlaceholder:'Tu nombre',
+    demoSubtitle:'Demo interactiva simplificada — toca las tarjetas y los elementos para explorar',
+    demoCta:'¿Te gusta lo que ves? Descarga la app real.',
+    greeting:'¡Hola, {name}!',
+    navGoBags:'Bolsas de emergencia', navGoBag:'Bolsa de emergencia', navReserve:'Reserva', navSOS:'Contactos de emergencia',
+    navNewContact:'Nuevo contacto', navReserveSetup:'Configuración',
+    btnGoBag:'Bolsa de emergencia', btnReserve:'Reserva',
+    rsetupQ:'¿Para cuántas personas preparas la reserva?', rsetupPersons:'persona(s)', rsetupContinueBtn:'Continuar',
+    notifTitle:'"GoBag+" desea enviarte notificaciones',
+    notifMsg:'Las notificaciones pueden incluir alertas, sonidos e insignias. Configurables en Ajustes.',
+    notifDeny:'No permitir', notifAllow:'Permitir',
+    demoAvailable:'Disponible en GoBag+', demoGotIt:'Entendido',
+    tagline:'"El mejor momento para prepararse fue ayer.\nEl segundo mejor momento es ahora."',
+    sheetSubtitle:'Controla todas las bolsas de tu familia', sheetTitle:'Nueva bolsa de emergencia',
+    sheetPlaceholder:'¿A quién pertenece esta bolsa?',
+    sheetHint:'Puedes crear hasta 5 bolsas, una para cada miembro de la familia.',
+    createBtn:'Crear', cancelBtn:'Cancelar', saveBtn:'Guardar',
+    checkAllBtn:'Marcar todo', uncheckAllBtn:'Desmarcar todo',
+    searchPlaceholder:'Buscar artículos...', resSearchPlaceholder:'Buscar artículos...',
+    progressComplete:'Completo', progressStocked:'Abastecido',
+    itemsOf:'de', itemsWord:'artículos', itemsPacked:'artículos embalados',
+    addCategory:'Añadir\ncategoría',
+    checkItemTitle:'Marcar artículo', checkItemSection:'Artículo',
+    expirySection:'Fecha de vencimiento', setExpiryToggle:'Establecer fecha de vencimiento', expiryDateLabel:'Fecha de vencimiento',
+    checkBtn:'Marcar', quantityTitle:'Cantidad', addBtn:'Añadir',
+    addLabelPrefix:'Añadir:', currentLabel:'Actual:', newTotalLabel:'Nuevo total:', requiredMinLabel:'Mínimo requerido:',
+    itemsInReserve:'artículos en reserva',
+    personLabel:'{n} persona', personsLabel:'{n} personas', forPersons:'Para {n} persona(s)',
+    sosEmptyTitle:'No hay contactos de emergencia', sosEmptySub:'Toca + para añadir tu primer contacto',
+    ncDetailsSection:'Detalles', ncNotesSection:'Notas',
+    ncNamePlaceholder:'Nombre completo', ncPhonePlaceholder:'Número de teléfono',
+    ncRelationLabel:'Relación', ncNameError:'El nombre es obligatorio',
+    newCatTitle:'Nueva categoría', newCatNameSection:'Nombre', newCatColorSection:'Color', newCatIconSection:'Icono',
+    newCatNamePlaceholder:'Nombre de la categoría', demoModalGenericSub:'Esta función está disponible en la aplicación completa.',
+    stockedLabel:'✓ abastecido', lowLabel:'bajo', bagDefaultName:'Mi bolsa', bagNameFormat:'Bolsa de {name}',
+    relFamily:'Familia', relDoctor:'Médico', relAuthority:'Autoridad', relOther:'Otro',
+    cat_documents:'Documentos', cat_waterFood:'Agua &\nComida', cat_clothing:'Ropa',
+    cat_medical:'Médico\n& Higiene', cat_tools:'Herramientas\n& Equipo', cat_electronics:'Electrónica',
+    cat_money:'Dinero &\nValores', cat_personal:'Personal\n& Familia', cat_misc:'Varios',
+    rcat_water:'Agua &\nComida', rcat_medical:'Médico &\nHigiene', rcat_electronics:'Electrónica',
+    rcat_cleaning:'Limpieza', rcat_fuel:'Combustible\n& Energía', rcat_tools:'Herramientas\n& Equip.', rcat_other:'Otros',
+    items_documents:['Pasaporte','Tarjeta de seguro','Certificado de nacimiento','Certificado de matrimonio','Historial médico','Lista de contactos de emergencia','Escrituras de propiedad'],
+    items_waterFood:['Botellas de agua (3L/persona)','Comida no perecedera (3 días)','Fórmula para bebés','Comida para mascotas'],
+    items_clothing:['Ropa de repuesto','Chaqueta impermeable','Ropa de abrigo','Manta','Zapatos resistentes'],
+    items_medical:['Botiquín de primeros auxilios','Medicamentos con receta','Analgésicos','Toallitas antisépticas','Termómetro','Mascarillas','Gel desinfectante','Vendas','Tijeras','Guantes','Solución antiséptica','Crema para quemaduras'],
+    items_tools:['Linterna','Linterna frontal','Navaja suiza','Cerillas impermeables','Encendedor','Abrelatas','Lona plástica','Mapas locales'],
+    items_electronics:['Cargador portátil','Radio portátil','Pilas de repuesto','Cables de carga'],
+    items_money:['Efectivo (billetes pequeños)','Copia de tarjetas bancarias'],
+    items_personal:['Pañales','Gafas / repuesto','Objetos de confort','Fotos familiares','Libros / juegos','Audífono','Biblia / libro de oraciones'],
+    items_misc:['Llaves de repuesto','Silbato','Mascarillas N95','Lona / cubierta','Bridas'],
+    ritems_water:['Agua embotellada','Verduras en conserva','Arroz','Pasta','Aceite de cocina'],
+    ritems_medical:['Analgésicos','Vendas','Gel desinfectante','Jabón','Solución antiséptica'],
+    ritems_electronics:['Pilas AA','Cargador portátil','Linterna','Radio AM/FM'],
+    ritems_cleaning:['Lavavajillas','Lejía','Bolsas de basura','Papel de cocina'],
+    ritems_fuel:['Velas','Cerillas','Encendedores','Tabletas de combustible'],
+    ritems_tools:['Cinta adhesiva','Cuerda','Multiherramienta','Guantes de trabajo'],
+    ritems_other:['Llaves de repuesto','Efectivo extra','Silbato'],
+  },
+  it: {
+    settings:'Impostazioni', done:'Fine', appearance:'Aspetto', darkMode:'Modalità scura',
+    notifSection:'Notifiche', notifTitle:'Notifiche', notifSub:'Ricevi avvisi quando gli articoli stanno per scadere.',
+    userSection:'Utente', nameTitle:'Nome', langSection:'Lingua', langTitle:'Lingua',
+    subSection:'Abbonamento', premiumTitle:'Premium · Attivo', premiumSub:'Tutte le funzioni sbloccate',
+    backupSection:'Backup e ripristino', exportTitle:'Esporta dati', exportSub:'Salva tutti i tuoi dati in un file.',
+    importTitle:'Importa dati', importSub:'Ripristina i tuoi dati da un file di backup.',
+    langPickerTitle:'Lingua', cancel:'Annulla',
+    lsTitle:'Seleziona lingua', lsSub:'Scegli la tua lingua preferita', continueBtn:'Continua →',
+    obBack:'‹ Indietro', getStarted:'Inizia →',
+    ob1Title:'GoBag+', ob1List:['Kit di emergenza','Riserva domestica','Contatti di emergenza','Tutto in un unico posto'],
+    ob2Title:'Kit di emergenza', ob2Sub:'Prepara i tuoi kit di emergenza per ogni eventualità',
+    ob3Title:'Riserva', ob3Sub:'Tieni traccia delle scorte di casa',
+    ob4Title:'Contatti di emergenza', ob4Sub:'Numeri chiave sempre a portata di mano',
+    ob5Title:'Famiglia e Avvisi', ob5List:['Promemoria di scadenza','Un piano per tutta la famiglia','Sincronizzato su tutti i dispositivi'],
+    nameScreenTitle:'Come ti chiami?', nameScreenSub:'Inserisci il tuo nome', namePlaceholder:'Il tuo nome',
+    demoSubtitle:'Demo interattiva semplificata — tocca le schede e gli elementi per esplorare',
+    demoCta:'Ti piace quello che vedi? Scarica la vera app.',
+    greeting:'Ciao, {name}!',
+    navGoBags:'Kit di emergenza', navGoBag:'Kit di emergenza', navReserve:'Riserva', navSOS:'Contatti di emergenza',
+    navNewContact:'Nuovo contatto', navReserveSetup:'Configurazione',
+    btnGoBag:'Kit di emergenza', btnReserve:'Riserva',
+    rsetupQ:'Per quante persone stai preparando la riserva?', rsetupPersons:'persona/e', rsetupContinueBtn:'Continua',
+    notifTitle:'"GoBag+" vorrebbe inviarti notifiche',
+    notifMsg:'Le notifiche possono includere avvisi, suoni e badge. Configurabili in Impostazioni.',
+    notifDeny:'Non consentire', notifAllow:'Consenti',
+    demoAvailable:'Disponibile in GoBag+', demoGotIt:'Capito',
+    tagline:'"Il momento migliore per prepararsi era ieri.\nIl secondo migliore è adesso."',
+    sheetSubtitle:'Gestisci tutti i kit di emergenza della tua famiglia', sheetTitle:'Nuovo kit di emergenza',
+    sheetPlaceholder:'A chi appartiene questo kit?',
+    sheetHint:'Puoi creare fino a 5 kit, uno per ogni membro della famiglia.',
+    createBtn:'Crea', cancelBtn:'Annulla', saveBtn:'Salva',
+    checkAllBtn:'Segna tutto', uncheckAllBtn:'Deseleziona tutto',
+    searchPlaceholder:'Cerca articoli...', resSearchPlaceholder:'Cerca articoli...',
+    progressComplete:'Completo', progressStocked:'Rifornito',
+    itemsOf:'di', itemsWord:'articoli', itemsPacked:'articoli preparati',
+    addCategory:'Aggiungi\ncategoria',
+    checkItemTitle:'Segna articolo', checkItemSection:'Articolo',
+    expirySection:'Data di scadenza', setExpiryToggle:'Imposta data di scadenza', expiryDateLabel:'Data di scadenza',
+    checkBtn:'Segna', quantityTitle:'Quantità', addBtn:'Aggiungi',
+    addLabelPrefix:'Aggiungi:', currentLabel:'Attuale:', newTotalLabel:'Nuovo totale:', requiredMinLabel:'Minimo richiesto:',
+    itemsInReserve:'articoli in riserva',
+    personLabel:'{n} persona', personsLabel:'{n} persone', forPersons:'Per {n} persona/e',
+    sosEmptyTitle:'Nessun contatto di emergenza', sosEmptySub:'Tocca + per aggiungere il primo contatto',
+    ncDetailsSection:'Dettagli', ncNotesSection:'Note',
+    ncNamePlaceholder:'Nome completo', ncPhonePlaceholder:'Numero di telefono',
+    ncRelationLabel:'Relazione', ncNameError:'Il nome è obbligatorio',
+    newCatTitle:'Nuova categoria', newCatNameSection:'Nome', newCatColorSection:'Colore', newCatIconSection:'Icona',
+    newCatNamePlaceholder:'Nome della categoria', demoModalGenericSub:'Questa funzione è disponibile nell\'app completa.',
+    stockedLabel:'✓ rifornito', lowLabel:'basso', bagDefaultName:'Il mio kit', bagNameFormat:'Kit di {name}',
+    relFamily:'Famiglia', relDoctor:'Medico', relAuthority:'Autorità', relOther:'Altro',
+    cat_documents:'Documenti', cat_waterFood:'Acqua &\nCibo', cat_clothing:'Abbigliamento',
+    cat_medical:'Medico\n& Igiene', cat_tools:'Strumenti\n& Attrezzatura', cat_electronics:'Elettronica',
+    cat_money:'Denaro &\nValori', cat_personal:'Personale\n& Famiglia', cat_misc:'Varie',
+    rcat_water:'Acqua &\nCibo', rcat_medical:'Medico &\nIgiene', rcat_electronics:'Elettronica',
+    rcat_cleaning:'Pulizia', rcat_fuel:'Carburante\n& Energia', rcat_tools:'Strumenti\n& Attrez.', rcat_other:'Altro',
+    items_documents:['Passaporto','Tessera assicurativa','Certificato di nascita','Certificato di matrimonio','Cartella medica','Lista contatti di emergenza','Titoli di proprietà'],
+    items_waterFood:['Bottiglie d\'acqua (3L/persona)','Cibo non deperibile (3 giorni)','Latte in formula','Cibo per animali'],
+    items_clothing:['Cambio di vestiti','Giacca impermeabile','Vestiti caldi','Coperta','Scarpe robuste'],
+    items_medical:['Kit di primo soccorso','Farmaci con ricetta','Antidolorifici','Salviette antisettiche','Termometro','Maschere facciali','Disinfettante per mani','Bende','Forbici','Guanti','Soluzione antisettica','Crema per ustioni'],
+    items_tools:['Torcia','Frontale','Coltellino svizzero','Fiammiferi impermeabili','Accendino','Apriscatole','Telo di plastica','Mappe locali'],
+    items_electronics:['Caricabatterie portatile','Radio portatile','Batterie di riserva','Cavi di ricarica'],
+    items_money:['Contanti (banconote piccole)','Copia delle carte bancarie'],
+    items_personal:['Pannolini','Occhiali / riserva','Oggetti di conforto','Foto di famiglia','Libri / giochi','Apparecchio acustico','Bibbia / libro di preghiere'],
+    items_misc:['Chiavi di riserva','Fischietto','Mascherine N95','Telone impermeabile','Fascette'],
+    ritems_water:['Acqua in bottiglia','Verdure in scatola','Riso','Pasta','Olio da cucina'],
+    ritems_medical:['Antidolorifici','Bende','Disinfettante mani','Sapone','Soluzione antisettica'],
+    ritems_electronics:['Batterie AA','Caricabatterie portatile','Torcia','Radio AM/FM'],
+    ritems_cleaning:['Detersivo piatti','Candeggina','Sacchi della spazzatura','Carta da cucina'],
+    ritems_fuel:['Candele','Fiammiferi','Accendini','Pastiglie per combustione'],
+    ritems_tools:['Nastro adesivo','Corda','Multiutensile','Guanti da lavoro'],
+    ritems_other:['Chiavi di riserva','Contanti extra','Fischietto'],
+  },
+  pt: {
+    settings:'Definições', done:'OK', appearance:'Aparência', darkMode:'Modo escuro',
+    notifSection:'Notificações', notifTitle:'Notificações', notifSub:'Receba alertas quando os itens estiverem prestes a expirar.',
+    userSection:'Utilizador', nameTitle:'Nome', langSection:'Idioma', langTitle:'Idioma',
+    subSection:'Subscrição', premiumTitle:'Premium · Ativo', premiumSub:'Todas as funcionalidades desbloqueadas',
+    backupSection:'Cópia de segurança', exportTitle:'Exportar dados', exportSub:'Guarda todos os seus dados num ficheiro.',
+    importTitle:'Importar dados', importSub:'Restaura os seus dados de um ficheiro de backup.',
+    langPickerTitle:'Idioma', cancel:'Cancelar',
+    lsTitle:'Selecionar idioma', lsSub:'Escolha o seu idioma preferido', continueBtn:'Continuar →',
+    obBack:'‹ Voltar', getStarted:'Começar →',
+    ob1Title:'GoBag+', ob1List:['Mochila de emergência','Reserva doméstica','Contatos de emergência','Tudo num só lugar'],
+    ob2Title:'Mochila de emergência', ob2Sub:'Prepare as suas mochilas de emergência para qualquer situação',
+    ob3Title:'Reserva', ob3Sub:'Controle os seus suprimentos domésticos',
+    ob4Title:'Contatos de emergência', ob4Sub:'Números importantes sempre ao alcance',
+    ob5Title:'Família e Alertas', ob5List:['Lembretes de validade','Um plano para toda a família','Sincronizado em todos os dispositivos'],
+    nameScreenTitle:'Qual é o seu nome?', nameScreenSub:'Introduza o seu nome', namePlaceholder:'O seu nome',
+    demoSubtitle:'Demo interativa simplificada — toque nos cartões e itens para explorar',
+    demoCta:'Gostou do que viu? Obtenha a aplicação real.',
+    greeting:'Olá, {name}!',
+    navGoBags:'Mochilas de emergência', navGoBag:'Mochila de emergência', navReserve:'Reserva', navSOS:'Contactos de emergência',
+    navNewContact:'Novo contacto', navReserveSetup:'Configuração',
+    btnGoBag:'Mochila de emergência', btnReserve:'Reserva',
+    rsetupQ:'Para quantas pessoas está a preparar a reserva?', rsetupPersons:'pessoa(s)', rsetupContinueBtn:'Continuar',
+    notifTitle:'"GoBag+" gostaria de enviar-lhe notificações',
+    notifMsg:'As notificações podem incluir alertas, sons e emblemas. Configuráveis nas Definições.',
+    notifDeny:'Não permitir', notifAllow:'Permitir',
+    demoAvailable:'Disponível em GoBag+', demoGotIt:'Entendido',
+    tagline:'"O melhor momento para se preparar foi ontem.\nO segundo melhor é agora."',
+    sheetSubtitle:'Gira todas as mochilas de emergência da sua família', sheetTitle:'Nova mochila de emergência',
+    sheetPlaceholder:'A quem pertence esta mochila?',
+    sheetHint:'Pode criar até 5 mochilas, uma para cada membro da família.',
+    createBtn:'Criar', cancelBtn:'Cancelar', saveBtn:'Guardar',
+    checkAllBtn:'Marcar tudo', uncheckAllBtn:'Desmarcar tudo',
+    searchPlaceholder:'Pesquisar artigos...', resSearchPlaceholder:'Pesquisar artigos...',
+    progressComplete:'Completo', progressStocked:'Abastecido',
+    itemsOf:'de', itemsWord:'artigos', itemsPacked:'artigos preparados',
+    addCategory:'Adicionar\ncategoria',
+    checkItemTitle:'Marcar artigo', checkItemSection:'Artigo',
+    expirySection:'Data de validade', setExpiryToggle:'Definir data de validade', expiryDateLabel:'Data de validade',
+    checkBtn:'Marcar', quantityTitle:'Quantidade', addBtn:'Adicionar',
+    addLabelPrefix:'Adicionar:', currentLabel:'Atual:', newTotalLabel:'Novo total:', requiredMinLabel:'Mínimo necessário:',
+    itemsInReserve:'artigos em reserva',
+    personLabel:'{n} pessoa', personsLabel:'{n} pessoas', forPersons:'Para {n} pessoa(s)',
+    sosEmptyTitle:'Ainda não tem contactos de emergência', sosEmptySub:'Toque em + para adicionar o primeiro contacto',
+    ncDetailsSection:'Detalhes', ncNotesSection:'Notas',
+    ncNamePlaceholder:'Nome completo', ncPhonePlaceholder:'Número de telefone',
+    ncRelationLabel:'Relação', ncNameError:'O nome é obrigatório',
+    newCatTitle:'Nova categoria', newCatNameSection:'Nome', newCatColorSection:'Cor', newCatIconSection:'Ícone',
+    newCatNamePlaceholder:'Nome da categoria', demoModalGenericSub:'Esta funcionalidade está disponível na aplicação completa.',
+    stockedLabel:'✓ abastecido', lowLabel:'baixo', bagDefaultName:'A minha mochila', bagNameFormat:'Mochila de {name}',
+    relFamily:'Família', relDoctor:'Médico', relAuthority:'Autoridade', relOther:'Outro',
+    cat_documents:'Documentos', cat_waterFood:'Água &\nAlimentos', cat_clothing:'Vestuário',
+    cat_medical:'Médico\n& Higiene', cat_tools:'Ferramentas\n& Equipamento', cat_electronics:'Eletrónica',
+    cat_money:'Dinheiro &\nValores', cat_personal:'Pessoal\n& Família', cat_misc:'Diversos',
+    rcat_water:'Água &\nAlimentos', rcat_medical:'Médico &\nHigiene', rcat_electronics:'Eletrónica',
+    rcat_cleaning:'Limpeza', rcat_fuel:'Combustível\n& Energia', rcat_tools:'Ferramentas\n& Equip.', rcat_other:'Outros',
+    items_documents:['Passaporte','Cartão de seguro','Certidão de nascimento','Certidão de casamento','Historial médico','Lista de contactos de emergência','Escrituras de propriedade'],
+    items_waterFood:['Garrafas de água (3L/pessoa)','Comida não perecível (3 dias)','Fórmula para bebé','Comida para animais'],
+    items_clothing:['Muda de roupa','Casaco impermeável','Roupa quente','Manta','Sapatos resistentes'],
+    items_medical:['Kit de primeiros socorros','Medicamentos prescritos','Analgésicos','Toalhetes antissépticos','Termómetro','Máscaras faciais','Gel desinfetante','Ligaduras','Tesoura','Luvas','Solução antisséptica','Creme para queimaduras'],
+    items_tools:['Lanterna','Lanterna frontal','Canivete suíço','Fósforos impermeáveis','Isqueiro','Abre-latas','Plástico','Mapas locais'],
+    items_electronics:['Carregador portátil','Rádio portátil','Pilhas sobresselentes','Cabos de carregamento'],
+    items_money:['Dinheiro em notas pequenas','Cópia dos cartões bancários'],
+    items_personal:['Fraldas','Óculos / extra','Objetos de conforto','Fotos de família','Livros / jogos','Aparelho auditivo','Bíblia / livro de orações'],
+    items_misc:['Chaves sobresselentes','Apito','Máscaras N95','Lona / cobertura','Abraçadeiras'],
+    ritems_water:['Água engarrafada','Legumes em conserva','Arroz','Massa','Óleo de cozinha'],
+    ritems_medical:['Analgésicos','Ligaduras','Gel desinfetante','Sabão','Solução antisséptica'],
+    ritems_electronics:['Pilhas AA','Carregador portátil','Lanterna','Rádio AM/FM'],
+    ritems_cleaning:['Detergente para louça','Lixívia','Sacos de lixo','Papel de cozinha'],
+    ritems_fuel:['Velas','Fósforos','Isqueiros','Pastilhas de combustível'],
+    ritems_tools:['Fita adesiva','Corda','Multiferramenta','Luvas de trabalho'],
+    ritems_other:['Chaves sobresselentes','Dinheiro extra','Apito'],
+  },
+  ru: {
+    settings:'Настройки', done:'Готово', appearance:'Внешний вид', darkMode:'Тёмный режим',
+    notifSection:'Уведомления', notifTitle:'Уведомления', notifSub:'Получайте уведомления когда товары истекают.',
+    userSection:'Пользователь', nameTitle:'Имя', langSection:'Язык', langTitle:'Язык',
+    subSection:'Подписка', premiumTitle:'Премиум · Активна', premiumSub:'Все функции разблокированы',
+    backupSection:'Резервная копия', exportTitle:'Экспорт данных', exportSub:'Сохраняет все ваши данные в файл.',
+    importTitle:'Импорт данных', importSub:'Восстанавливает данные из файла резервной копии.',
+    langPickerTitle:'Язык', cancel:'Отмена',
+    lsTitle:'Выбор языка', lsSub:'Выберите предпочитаемый язык', continueBtn:'Продолжить →',
+    obBack:'‹ Назад', getStarted:'Начать →',
+    ob1Title:'GoBag+', ob1List:['Тревожный чемоданчик','Домашний запас','Экстренные контакты','Всё в одном месте'],
+    ob2Title:'Тревожный чемоданчик', ob2Sub:'Соберите тревожный чемоданчик на любой случай',
+    ob3Title:'Запас', ob3Sub:'Отслеживайте домашние запасы',
+    ob4Title:'Экстренные контакты', ob4Sub:'Важные номера всегда под рукой',
+    ob5Title:'Семья и оповещения', ob5List:['Напоминания об истечении','Один план для всей семьи','Синхронизация на всех устройствах'],
+    nameScreenTitle:'Как вас зовут?', nameScreenSub:'Введите ваше имя', namePlaceholder:'Ваше имя',
+    demoSubtitle:'Упрощённая интерактивная демо — нажимайте на карточки и элементы для изучения',
+    demoCta:'Нравится то, что видите? Скачайте настоящее приложение.',
+    greeting:'Привет, {name}!',
+    navGoBags:'Тревожные чемоданчики', navGoBag:'Тревожный чемоданчик', navReserve:'Запас', navSOS:'Экстренные контакты',
+    navNewContact:'Новый контакт', navReserveSetup:'Настройка',
+    btnGoBag:'Тревожный чемоданчик', btnReserve:'Запас',
+    rsetupQ:'Для скольких человек вы готовите запас?', rsetupPersons:'чел.', rsetupContinueBtn:'Продолжить',
+    notifTitle:'"GoBag+" хочет отправлять вам уведомления',
+    notifMsg:'Уведомления могут включать оповещения, звуки и значки. Настраиваются в Настройках.',
+    notifDeny:'Не разрешать', notifAllow:'Разрешить',
+    demoAvailable:'Доступно в GoBag+', demoGotIt:'Понятно',
+    tagline:'"Лучшее время для подготовки было вчера.\nВторое лучшее время — сейчас."',
+    sheetSubtitle:'Управляйте всеми чемоданчиками своей семьи', sheetTitle:'Новый тревожный чемоданчик',
+    sheetPlaceholder:'Для кого этот чемоданчик?',
+    sheetHint:'Вы можете создать до 5 чемоданчиков, по одному на каждого члена семьи.',
+    createBtn:'Создать', cancelBtn:'Отмена', saveBtn:'Сохранить',
+    checkAllBtn:'Отметить всё', uncheckAllBtn:'Снять всё',
+    searchPlaceholder:'Поиск...', resSearchPlaceholder:'Поиск...',
+    progressComplete:'Готово', progressStocked:'Запас',
+    itemsOf:'из', itemsWord:'предметов', itemsPacked:'предметов упаковано',
+    addCategory:'Добавить\nкатегорию',
+    checkItemTitle:'Отметить предмет', checkItemSection:'Предмет',
+    expirySection:'Срок годности', setExpiryToggle:'Установить срок годности', expiryDateLabel:'Срок годности',
+    checkBtn:'Отметить', quantityTitle:'Количество', addBtn:'Добавить',
+    addLabelPrefix:'Добавить:', currentLabel:'Сейчас:', newTotalLabel:'Новый итог:', requiredMinLabel:'Минимум:',
+    itemsInReserve:'предметов в запасе',
+    personLabel:'{n} человек', personsLabel:'{n} человек', forPersons:'На {n} чел.',
+    sosEmptyTitle:'Нет экстренных контактов', sosEmptySub:'Нажмите + чтобы добавить первый контакт',
+    ncDetailsSection:'Данные', ncNotesSection:'Заметки',
+    ncNamePlaceholder:'Полное имя', ncPhonePlaceholder:'Номер телефона',
+    ncRelationLabel:'Отношение', ncNameError:'Имя обязательно',
+    newCatTitle:'Новая категория', newCatNameSection:'Название', newCatColorSection:'Цвет', newCatIconSection:'Иконка',
+    newCatNamePlaceholder:'Название категории', demoModalGenericSub:'Эта функция доступна в полной версии приложения.',
+    stockedLabel:'✓ есть', lowLabel:'мало', bagDefaultName:'Мой чемоданчик', bagNameFormat:'Чемоданчик {name}',
+    relFamily:'Семья', relDoctor:'Врач', relAuthority:'Органы власти', relOther:'Другое',
+    cat_documents:'Документы', cat_waterFood:'Вода &\nПитание', cat_clothing:'Одежда',
+    cat_medical:'Медицина\n& Гигиена', cat_tools:'Инструменты\n& Снаряжение', cat_electronics:'Электроника',
+    cat_money:'Деньги &\nЦенности', cat_personal:'Личное\n& Семья', cat_misc:'Прочее',
+    rcat_water:'Вода &\nПитание', rcat_medical:'Медицина &\nГигиена', rcat_electronics:'Электроника',
+    rcat_cleaning:'Уборка', rcat_fuel:'Топливо &\nЭнергия', rcat_tools:'Инструменты\n& Снар.', rcat_other:'Прочее',
+    items_documents:['Паспорт','Страховой полис','Свидетельство о рождении','Свидетельство о браке','Медицинские документы','Список экстренных контактов','Документы на собственность'],
+    items_waterFood:['Бутылки с водой (3л/чел.)','Консервы и долгосрочные продукты (3 дня)','Детское питание','Корм для животных'],
+    items_clothing:['Смена одежды','Непромокаемая куртка','Тёплая одежда','Одеяло','Крепкая обувь'],
+    items_medical:['Аптечка первой помощи','Рецептурные лекарства','Обезболивающие','Антисептические салфетки','Термометр','Маски','Антисептик для рук','Бинты','Ножницы','Перчатки','Антисептический раствор','Крем от ожогов'],
+    items_tools:['Фонарик','Налобный фонарь','Швейцарский нож','Водонепроницаемые спички','Зажигалка','Консервный нож','Полиэтиленовая плёнка','Местные карты'],
+    items_electronics:['Повербанк','Портативный радиоприёмник','Запасные батарейки','Зарядные кабели'],
+    items_money:['Наличные (мелкие купюры)','Копии банковских карт'],
+    items_personal:['Подгузники','Очки / запасные','Предметы для комфорта','Семейные фотографии','Книги / игры','Слуховой аппарат','Библия / молитвенник'],
+    items_misc:['Запасные ключи','Свисток','Маски N95','Брезент / дождевик','Хомуты'],
+    ritems_water:['Бутилированная вода','Консервированные овощи','Рис','Макароны','Растительное масло'],
+    ritems_medical:['Обезболивающие','Бинты','Антисептик для рук','Мыло','Антисептический раствор'],
+    ritems_electronics:['Батарейки AA','Повербанк','Фонарик','Радиоприёмник AM/FM'],
+    ritems_cleaning:['Средство для мытья посуды','Отбеливатель','Мусорные пакеты','Бумажные полотенца'],
+    ritems_fuel:['Свечи','Спички','Зажигалки','Таблетки сухого горючего'],
+    ritems_tools:['Скотч','Верёвка','Мультитул','Рабочие перчатки'],
+    ritems_other:['Запасные ключи','Запас наличных','Свисток'],
+  },
 };
 
 const VALID_LANGS = ['en','fr','de','es','it','pt','ru'];
 const _savedLang = localStorage.getItem('gobag_lang') || new URLSearchParams(location.search).get('lang') || 'en';
 let currentLang = VALID_LANGS.includes(_savedLang) ? _savedLang : 'en';
+
+function getLangStr() { return LANG_STRINGS[currentLang] || LANG_STRINGS.en; }
+function getCatName(catId) {
+  const s = getLangStr();
+  return s['cat_' + catId] || (CATEGORIES.find(c => c.id === catId)?.name) || catId;
+}
+function getCatItems(catId) {
+  const s = getLangStr();
+  return s['items_' + catId] || (CATEGORIES.find(c => c.id === catId)?.items) || [];
+}
+function getResCatName(catId) {
+  const s = getLangStr();
+  return s['rcat_' + catId.replace('res_', '')] || (RESERVE_CATEGORIES.find(c => c.id === catId)?.name) || catId;
+}
+function getResItemName(catId, idx) {
+  const s = getLangStr();
+  const arr = s['ritems_' + catId.replace('res_', '')];
+  return (arr && arr[idx]) || (RESERVE_CATEGORIES.find(c => c.id === catId)?.items[idx]?.name) || '';
+}
 
 function applySettingsLang() {
   const s = LANG_STRINGS[currentLang];
@@ -3337,6 +3697,76 @@ function applySettingsLang() {
   // Demo modal
   set('lblDemoModalBadge', s.demoAvailable);
   set('lblDemoModalClose', s.demoGotIt);
+  // Main tagline
+  set('mainTagline', s.tagline);
+  // New bag sheets
+  set('sheetSubtitle1', s.sheetSubtitle); set('sheetTitle1', s.sheetTitle); set('sheetHint1', s.sheetHint);
+  set('sheetCreateBtn1', s.createBtn);    set('sheetCancelBtn1', s.cancelBtn);
+  set('sheetSubtitle2', s.sheetSubtitle); set('sheetTitle2', s.sheetTitle); set('sheetHint2', s.sheetHint);
+  set('sheetCreateBtn2', s.createBtn);    set('sheetCancelBtn2', s.cancelBtn);
+  // Bag name placeholders
+  const bni1 = document.getElementById('bagNameInput'); if (bni1) bni1.placeholder = s.sheetPlaceholder || '';
+  const bni2 = document.getElementById('bagNameInput2'); if (bni2) bni2.placeholder = s.sheetPlaceholder || '';
+  // Progress ring sub-labels
+  set('progressSubLabel', s.progressComplete);
+  set('reserveProgressSubLabel', s.progressStocked);
+  // GoBag items screen
+  set('checkAllBtnLabel', s.checkAllBtn);
+  set('uncheckAllBtnLabel', s.uncheckAllBtn);
+  const isrch = document.getElementById('itemsSearch'); if (isrch) isrch.placeholder = s.searchPlaceholder || '';
+  // Check item sheet
+  set('checkSheetCancelBtn', s.cancelBtn);
+  set('checkSheetHeaderTitle', s.checkItemTitle);
+  set('checkSheetConfirmBtn', s.checkBtn);
+  set('checkSheetItemSection', s.checkItemSection);
+  set('checkSheetExpirySection', s.expirySection);
+  set('checkSheetSetExpiryLabel', s.setExpiryToggle);
+  set('checkSheetExpiryDateLabel', s.expiryDateLabel);
+  // SOS empty state
+  set('sosEmptyTitle', s.sosEmptyTitle);
+  set('sosEmptySub', s.sosEmptySub);
+  // Reserve items screen
+  const risrch = document.getElementById('resItemsSearch'); if (risrch) risrch.placeholder = s.resSearchPlaceholder || '';
+  set('resItemsTotalLabel', s.itemsWord);
+  set('resItemsLowLabel', s.lowLabel);
+  // Reserve qty sheet
+  set('reserveQtyCancelBtn', s.cancelBtn);
+  set('reserveQtyTitle', s.quantityTitle);
+  set('reserveQtyConfirmBtn', s.addBtn);
+  set('reserveCurrentLabel', s.currentLabel);
+  set('reserveNewTotalLabelStatic', s.newTotalLabel);
+  set('reserveReqMinLabel', s.requiredMinLabel);
+  set('reserveExpirySection', s.expirySection);
+  set('reserveSetExpiryLabel', s.setExpiryToggle);
+  set('reserveExpiryDateLabel', s.expiryDateLabel);
+  // New contact screen
+  set('ncCancelBtn', s.cancelBtn);
+  set('ncDetailsSectionLabel', s.ncDetailsSection);
+  set('ncNotesSectionLabel', s.ncNotesSection);
+  set('ncRelationLabel', s.ncRelationLabel);
+  set('ncNameError', s.ncNameError);
+  const ncni = document.getElementById('ncNameInput'); if (ncni) ncni.placeholder = s.ncNamePlaceholder || '';
+  const ncpi = document.getElementById('ncPhoneInput'); if (ncpi) ncpi.placeholder = s.ncPhonePlaceholder || '';
+  // New category screen
+  set('newCatCancelBtn', s.cancelBtn);
+  set('newCatTitleText', s.newCatTitle);
+  set('newCatNameSectionLabel', s.newCatNameSection);
+  set('newCatColorSectionLabel', s.newCatColorSection);
+  set('newCatIconSectionLabel', s.newCatIconSection);
+  const ncnpi = document.getElementById('newCatNameInput'); if (ncnpi) ncnpi.placeholder = s.newCatNamePlaceholder || '';
+  // Re-render dynamic screens that show localized content
+  if (currentScreen === 'screen-gobag' || currentScreen === 'screen-bags') renderBagsList();
+  if (currentScreen === 'screen-gobag') renderCatGrid();
+  if (currentScreen === 'screen-items') { renderItems(document.getElementById('itemsSearch')?.value); updateCatItemsHeader(); }
+  if (currentScreen === 'screen-reserve') renderReserveCatGrid();
+  if (currentScreen === 'screen-reserve') updateReserveStats();
+  if (currentScreen === 'screen-reserve-items') {
+    renderReserveItemsList(document.getElementById('resItemsSearch')?.value);
+    updateReserveStats();
+    const _fpEl = document.getElementById('resItemsPerson');
+    if (_fpEl) _fpEl.textContent = (s.forPersons || 'For {n} person(s)').replace('{n}', reservePersonCount);
+  }
+  if (currentScreen === 'screen-sos' || currentScreen === 'screen-new-contact') { renderSosContacts && renderSosContacts(); updateRelationDisplay && updateRelationDisplay(); }
   // Greeting (update if on main screen)
   if (currentUserName && currentUserName !== 'User') {
     const gt = document.getElementById('greetingText');
@@ -3408,9 +3838,15 @@ function openNewContact() {
   showScreen('screen-new-contact');
 }
 
+function getRelLabel(name) {
+  const s = getLangStr();
+  const map = { Family: s.relFamily, Doctor: s.relDoctor, Authority: s.relAuthority, Other: s.relOther };
+  return map[name] || name;
+}
+
 function updateRelationDisplay() {
   const rel = RELATIONS.find(r => r.name === ncSelectedRelation) || RELATIONS[0];
-  document.getElementById('ncRelationVal').textContent = rel.name;
+  document.getElementById('ncRelationVal').textContent = getRelLabel(rel.name);
   document.getElementById('ncRelationIcon').innerHTML = rel.icon;
 }
 
@@ -3460,7 +3896,7 @@ function renderSosContacts() {
       <div class="sos-contact-name">${c.name}</div>
       ${c.phone ? `<div class="sos-contact-phone">📞 ${c.phone}</div>` : ''}
       <div class="sos-contact-meta" style="display:flex;align-items:center;gap:5px;margin-top:4px">
-        ${relIcon}<span>${c.relation}</span>${c.notes ? `<span style="color:rgba(255,255,255,0.25)">·</span><span>${c.notes}</span>` : ''}
+        ${relIcon}<span>${getRelLabel(c.relation)}</span>${c.notes ? `<span style="color:rgba(255,255,255,0.25)">·</span><span>${c.notes}</span>` : ''}
       </div>
     `;
     list.appendChild(card);
@@ -3488,7 +3924,7 @@ function renderRelationList() {
     row.innerHTML = `
       <span class="rel-check">${sel ? '✓' : ''}</span>
       <span class="rel-icon">${rel.icon}</span>
-      <span class="rel-label">${rel.name}</span>
+      <span class="rel-label">${getRelLabel(rel.name)}</span>
     `;
     row.onclick = () => {
       ncSelectedRelation = rel.name;
