@@ -287,6 +287,14 @@
             margin-top: 48px;
         }
         @media (max-width: 600px) { .key-features-grid { grid-template-columns: 1fr; } }
+        @keyframes kf-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes kf-icon-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--kf-glow, rgba(0,180,216,0)); }
+            50% { box-shadow: 0 0 22px 8px var(--kf-glow, rgba(0,180,216,0.15)); }
+        }
         .key-feature {
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
@@ -295,14 +303,20 @@
             display: flex;
             gap: 20px;
             align-items: flex-start;
-            transition: border-color 0.25s, transform 0.25s;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
-        .key-feature:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-4px); }
+        .key-feature:hover { border-color: rgba(0,180,216,0.35); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,180,216,0.07); }
+        .key-feature:hover .key-feature-icon { animation-play-state: paused; }
         .key-feature-icon {
             width: 52px; height: 52px; border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
+            animation: kf-float 4.5s ease-in-out infinite, kf-icon-pulse 3s ease-in-out infinite;
         }
+        .key-feature:nth-child(1) .key-feature-icon { --kf-glow: rgba(42,111,240,0.35);  animation-delay: 0s,    0s;    }
+        .key-feature:nth-child(2) .key-feature-icon { --kf-glow: rgba(255,107,26,0.35);  animation-delay: 1.1s,  0.75s; }
+        .key-feature:nth-child(3) .key-feature-icon { --kf-glow: rgba(0,180,216,0.35);   animation-delay: 2.25s, 1.5s;  }
+        .key-feature:nth-child(4) .key-feature-icon { --kf-glow: rgba(52,199,89,0.35);   animation-delay: 3.35s, 2.25s; }
         .key-feature-icon svg { width: 26px; height: 26px; }
         .key-feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
         .key-feature p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
